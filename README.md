@@ -26,6 +26,7 @@ Users often struggle to understand lengthy and complex terms and conditions docu
 - **Save & Share:**
   - Options to save the summaries and share them via email or social media.
 
+
 ## 🚀 Stretch Goals
 
 - **Custom Alerts:**
@@ -43,6 +44,7 @@ Users often struggle to understand lengthy and complex terms and conditions docu
 - **Integration with E-Signature Services:**
   - Direct integration with e-signature platforms to provide highlights before signing documents.
 
+
 ## 📅 Milestones
 
 | Week      | Tasks                                                                                                                                             |
@@ -57,6 +59,7 @@ Users often struggle to understand lengthy and complex terms and conditions docu
 | **Week Eight: Last Minute Work** | - Address any remaining issues or refinements.<br> - Finalize all features.<br> - Prepare the project for presentation. |
 | **Week Nine: Presentation Preparation** | - Develop presentation materials.<br> - Rehearse presentations.<br> - Refine presentation based on feedback. |
 | **Week Ten: Presentations** | - Finalize presentation.<br> - Present the project to stakeholders or in a public setting. |
+
 
 ## 💻 Tech Stack
 
@@ -111,6 +114,7 @@ Users often struggle to understand lengthy and complex terms and conditions docu
 
 - **⚠️ Roadblock:** Ensuring AI-driven analysis accurately summarizes key points.
 - **💡 Solution:** Utilize robust machine learning models and continuously train them with a diverse dataset of legal documents.
+
 
 ## 🛠️ Required Tools
 
@@ -183,6 +187,7 @@ Users often struggle to understand lengthy and complex terms and conditions docu
   </ul>
 </details>
 
+
 ## 🏆 Competition
 
 - **Terms of Service; Didn't Read (ToS;DR):**
@@ -197,6 +202,7 @@ Users often struggle to understand lengthy and complex terms and conditions docu
 - **Legalese Decoder:**
   - Translates legal jargon into plain language.
 
+
 ## 🔧 Miscellaneous
 
 ### Building a Chrome Extension YouTube Videos:
@@ -207,7 +213,6 @@ Users often struggle to understand lengthy and complex terms and conditions docu
 - **Open AI + Chrome Extension:** [Integrating the two together](https://www.youtube.com/watch?v=3JXV_8GctDQ)
 - **Text Summarizer:** [Example of an open AI + Chrome extension that summarizes](https://www.youtube.com/watch?v=RZBkKt7mzx4)
 
-  
 ### Git Commands
 
 | Command                        | What it does                                |
@@ -220,6 +225,7 @@ Users often struggle to understand lengthy and complex terms and conditions docu
 | `git commit -m "Testing123"`   | Commits with a message                      |
 | `git push origin "branch"`     | Pushes to the specified branch              |
 | `git pull origin "branch"`     | Pulls updates from the specified branch     |
+
 
 ## 🧑‍⚖️ The Court
 

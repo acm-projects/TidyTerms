@@ -1,25 +1,15 @@
-![Cleaning Panda](download.jpg)
+<p align="center">
+  <img src="download.jpg" alt="Cleaning Panda">
+</p>
 
-# TidyTerms
+<h1 align="center">🧹 TidyTerms</h1>
 
-### Project Name: TidyTerms  
-### Prepared by: Shreya S Ramani
+### <p align="center">❓ Problem Statement:</p>
+<p align="center">
+Users often struggle to understand lengthy and complex terms and conditions documents, leading to uninformed decisions and potential legal pitfalls. TidyTerms is a Chrome extension designed to simplify the process of understanding terms and conditions. The extension scans lengthy legal documents and provides concise, easy-to-understand highlights, helping users quickly grasp important points such as privacy policies, data usage, cancellation terms, and hidden fees. By leveraging OpenAI's GPT for AI-driven analysis, TidyTerms provides accurate and meaningful summaries, empowering users with clear and actionable information to foster informed decision-making and protect consumer rights. TidyTerms helps users understand complex legal documents quickly, enabling them to make informed decisions and avoid potential legal issues.
+</p>
 
-## TL;DR
-**Feasibility:** Feasible, user-friendly Chrome extension for summarizing terms and conditions with AI-driven analysis using GPT.
-
-## Summary
-
-### Problem Statement:
-Users often struggle to understand lengthy and complex terms and conditions documents, leading to uninformed decisions and potential legal pitfalls.
-
-### Solution:
-TidyTerms is a Chrome extension designed to simplify the process of understanding terms and conditions. The extension scans lengthy legal documents and provides concise, easy-to-understand highlights, helping users quickly grasp important points such as privacy policies, data usage, cancellation terms, and hidden fees. By leveraging OpenAI's GPT for AI-driven analysis, TidyTerms provides accurate and meaningful summaries, empowering users with clear and actionable information to foster informed decision-making and protect consumer rights.
-
-### For Users:
-TidyTerms helps users understand complex legal documents quickly, enabling them to make informed decisions and avoid potential legal issues.
-
-## Minimum Viable Product (MVP) Features
+## 🛠️ Minimum Viable Product (MVP) Features
 
 - **Document Scanning:**
   - Ability to scan terms and conditions documents directly from web pages.
@@ -36,7 +26,7 @@ TidyTerms helps users understand complex legal documents quickly, enabling them 
 - **Save & Share:**
   - Options to save the summaries and share them via email or social media.
 
-## Stretch Goals
+## 🚀 Stretch Goals
 
 - **Custom Alerts:**
   - Notifications for users when significant changes are detected in the terms and conditions of services they use.
@@ -53,7 +43,7 @@ TidyTerms helps users understand complex legal documents quickly, enabling them 
 - **Integration with E-Signature Services:**
   - Direct integration with e-signature platforms to provide highlights before signing documents.
 
-## Milestones
+## 📅 Milestones
 
 | Week      | Tasks                                                                                                                                             |
 |-----------|---------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -68,8 +58,7 @@ TidyTerms helps users understand complex legal documents quickly, enabling them 
 | **Week Nine: Presentation Preparation** | - Develop presentation materials.<br> - Rehearse presentations.<br> - Refine presentation based on feedback. |
 | **Week Ten: Presentations** | - Finalize presentation.<br> - Present the project to stakeholders or in a public setting. |
 
-
-## Tech Stack
+## 💻 Tech Stack
 
 - **HTML:** For creating the popup UI.
   - [Official Documentation: MDN Web Docs: HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
@@ -97,12 +86,12 @@ TidyTerms helps users understand complex legal documents quickly, enabling them 
   - [YouTube Tutorial: Using OpenAI API](https://www.youtube.com/watch?v=fDLjsWCcKvQ)
   - [Example Projects: OpenAI API Examples](https://beta.openai.com/examples)
   
-## Roadblocks and Possible Solutions
+## 🚧 Roadblocks and Possible Solutions
 
-- **Roadblock:** Ensuring AI-driven analysis accurately summarizes key points.
-- **Solution:** Utilize robust machine learning models and continuously train them with a diverse dataset of legal documents.
+- **⚠️ Roadblock:** Ensuring AI-driven analysis accurately summarizes key points.
+- **💡 Solution:** Utilize robust machine learning models and continuously train them with a diverse dataset of legal documents.
 
-## Required Tools
+## 🛠️ Required Tools
 
 - **IDE:** Visual Studio Code
   - [Official Documentation: Visual Studio Code Documentation](https://code.visualstudio.com/docs)
@@ -146,7 +135,7 @@ TidyTerms helps users understand complex legal documents quickly, enabling them 
     - [YouTube Tutorial: Deploy a Web App on DigitalOcean](https://www.youtube.com/watch?v=lwh1vFcCkFY)
     - [Droplet Management Guide: Droplets Documentation](https://www.digitalocean.com/docs/droplets/)
 
-## Competition
+## 🏆 Competition
 
 - **Terms of Service; Didn't Read (ToS;DR):**
   - Provides crowdsourced summaries and ratings of terms and conditions.
@@ -160,7 +149,7 @@ TidyTerms helps users understand complex legal documents quickly, enabling them 
 - **Legalese Decoder:**
   - Translates legal jargon into plain language.
 
-## Miscellaneous
+## 🔧 Miscellaneous
 
 ### Building a Chrome Extension YouTube Videos:
 - **Basic Setup:** [Building and Publishing a Chrome Extension in 10 minutes](https://www.youtube.com/watch?v=pkY7anV5Whk)
@@ -170,8 +159,7 @@ TidyTerms helps users understand complex legal documents quickly, enabling them 
 - **Open AI + Chrome Extension:** [Integrating the two together](https://www.youtube.com/watch?v=3JXV_8GctDQ)
 - **Text Summarizer:** [Example of an open AI + Chrome extension that summarizes](https://www.youtube.com/watch?v=RZBkKt7mzx4)
 
-
-## Git Commands
+## 🛠️ Git Commands
 
 | Command                      | What it does                                |
 |------------------------------|---------------------------------------------|

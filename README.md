@@ -1,4 +1,4 @@
-![Cleaning Panda](https://media.tenor.com/iMhDA0uMO1EAAAAC/tkthao219-bubududu-panda.gif)
+![Cleaning Panda](download.jpg)
 
 # TidyTerms
 

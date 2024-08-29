@@ -159,15 +159,20 @@ Users often struggle to understand lengthy and complex terms and conditions docu
 - **Open AI + Chrome Extension:** [Integrating the two together](https://www.youtube.com/watch?v=3JXV_8GctDQ)
 - **Text Summarizer:** [Example of an open AI + Chrome extension that summarizes](https://www.youtube.com/watch?v=RZBkKt7mzx4)
 
-## 🛠️ Git Commands
+  
+### 🛠️ Git Commands
 
-| Command                      | What it does                                |
-|------------------------------|---------------------------------------------|
-| `git branch`                 | Lists all the branches                      |
-| `git branch "branch name"`   | Creates a new branch                        |
-| `git checkout "branch name"` | Switches to the specified branch            |
-| `git checkout -b "branch name"` | Combines branch creation and checkout     |
-| `git add .`                  | Stages all changed files                    |
-| `git commit -m "Testing123"` | Commits with a message                      |
-| `git push origin "branch"`   | Pushes to the specified branch              |
-| `git pull origin "branch"`   | Pulls updates from the specified branch     |
+| Command                        | What it does                                |
+|--------------------------------|---------------------------------------------|
+| `git branch`                   | Lists all the branches                      |
+| `git branch "branch name"`     | Creates a new branch                        |
+| `git checkout "branch name"`   | Switches to the specified branch            |
+| `git checkout -b "branch name"`| Combines branch creation and checkout       |
+| `git add .`                    | Stages all changed files                    |
+| `git commit -m "Testing123"`   | Commits with a message                      |
+| `git push origin "branch"`     | Pushes to the specified branch              |
+| `git pull origin "branch"`     | Pulls updates from the specified branch     |
+
+## 🧑‍⚖️ The Lawyers
+
+- Shreya S Ramani

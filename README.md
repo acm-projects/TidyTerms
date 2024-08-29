@@ -60,31 +60,52 @@ Users often struggle to understand lengthy and complex terms and conditions docu
 
 ## 💻 Tech Stack
 
-- **HTML:** For creating the popup UI.
-  - [Official Documentation: MDN Web Docs: HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
-  - [Beginner's Guide: HTML for Beginners](https://www.w3schools.com/html/)
-  - [YouTube Tutorial: HTML Full Course - Build a Website Tutorial](https://www.youtube.com/watch?v=pQN-pnXPaVg)
-  
-- **CSS:** For styling the popup UI.
-  - [Official Documentation: MDN Web Docs: CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
-  - [Beginner's Guide: CSS for Beginners](https://www.w3schools.com/css/)
-  - [YouTube Tutorial: CSS Crash Course](https://www.youtube.com/watch?v=yfoY53QXEnI)
-  
-- **JavaScript:** For the logic of the extension.
-  - [Official Documentation: MDN Web Docs: JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-  - [Beginner's Guide: JavaScript for Beginners](https://www.w3schools.com/js/)
-  - [YouTube Tutorial: JavaScript Full Course](https://www.youtube.com/watch?v=PkZNo7MFNFg)
-  
-- **JSON:** For the manifest file.
-  - [Official Documentation: MDN Web Docs: JSON](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON)
-  - [Beginner's Guide: JSON Introduction](https://www.w3schools.com/js/js_json_intro.asp)
-  - [YouTube Tutorial: JSON Tutorial for Beginners](https://www.youtube.com/watch?v=iiADhChRriM)
-  
-- **OpenAI API:** For AI text analysis and summarization.
-  - [Official Documentation: OpenAI API Documentation](https://beta.openai.com/docs/)
-  - [Getting Started Guide: Quickstart Tutorial](https://beta.openai.com/docs/quickstart)
-  - [YouTube Tutorial: Using OpenAI API](https://www.youtube.com/watch?v=fDLjsWCcKvQ)
-  - [Example Projects: OpenAI API Examples](https://beta.openai.com/examples)
+<details>
+  <summary><strong>HTML:</strong> For creating the popup UI.</summary>
+  <ul>
+    <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML">Official Documentation: MDN Web Docs: HTML</a></li>
+    <li><a href="https://www.w3schools.com/html/">Beginner's Guide: HTML for Beginners</a></li>
+    <li><a href="https://www.youtube.com/watch?v=pQN-pnXPaVg">YouTube Tutorial: HTML Full Course - Build a Website Tutorial</a></li>
+  </ul>
+</details>
+
+<details>
+  <summary><strong>CSS:</strong> For styling the popup UI.</summary>
+  <ul>
+    <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS">Official Documentation: MDN Web Docs: CSS</a></li>
+    <li><a href="https://www.w3schools.com/css/">Beginner's Guide: CSS for Beginners</a></li>
+    <li><a href="https://www.youtube.com/watch?v=yfoY53QXEnI">YouTube Tutorial: CSS Crash Course</a></li>
+  </ul>
+</details>
+
+<details>
+  <summary><strong>JavaScript:</strong> For the logic of the extension.</summary>
+  <ul>
+    <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">Official Documentation: MDN Web Docs: JavaScript</a></li>
+    <li><a href="https://www.w3schools.com/js/">Beginner's Guide: JavaScript for Beginners</a></li>
+    <li><a href="https://www.youtube.com/watch?v=PkZNo7MFNFg">YouTube Tutorial: JavaScript Full Course</a></li>
+  </ul>
+</details>
+
+<details>
+  <summary><strong>JSON:</strong> For the manifest file.</summary>
+  <ul>
+    <li><a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON">Official Documentation: MDN Web Docs: JSON</a></li>
+    <li><a href="https://www.w3schools.com/js/js_json_intro.asp">Beginner's Guide: JSON Introduction</a></li>
+    <li><a href="https://www.youtube.com/watch?v=iiADhChRriM">YouTube Tutorial: JSON Tutorial for Beginners</a></li>
+  </ul>
+</details>
+
+<details>
+  <summary><strong>OpenAI API:</strong> For AI text analysis and summarization.</summary>
+  <ul>
+    <li><a href="https://beta.openai.com/docs/">Official Documentation: OpenAI API Documentation</a></li>
+    <li><a href="https://beta.openai.com/docs/quickstart">Getting Started Guide: Quickstart Tutorial</a></li>
+    <li><a href="https://www.youtube.com/watch?v=fDLjsWCcKvQ">YouTube Tutorial: Using OpenAI API</a></li>
+    <li><a href="https://beta.openai.com/examples">Example Projects: OpenAI API Examples</a></li>
+  </ul>
+</details>
+
   
 ## 🚧 Roadblocks and Possible Solutions
 
@@ -93,47 +114,74 @@ Users often struggle to understand lengthy and complex terms and conditions docu
 
 ## 🛠️ Required Tools
 
-- **IDE:** Visual Studio Code
-  - [Official Documentation: Visual Studio Code Documentation](https://code.visualstudio.com/docs)
-  - [Beginner's Guide: Getting Started with Visual Studio Code](https://code.visualstudio.com/docs/introvideos/basics)
-  - [YouTube Tutorial: Visual Studio Code Crash Course](https://www.youtube.com/watch?v=WPqXP_kLzpo)
-  - [Extensions Guide: Top Visual Studio Code Extensions](https://code.visualstudio.com/docs/editor/extension-marketplace)
-  
-- **Design:** Figma
-  - [Official Documentation: Figma Help Center](https://help.figma.com/hc/en-us)
-  - [Beginner's Guide: Figma 101: Introduction to Figma](https://figma101.com/)
-  - [YouTube Tutorial: Figma Tutorial for Beginners](https://www.youtube.com/watch?v=9Gf5iVyzTKI)
-  - [Design System Guide: Creating a Design System in Figma](https://www.figma.com/design-systems/)
-  
-- **Version Control:** Git
-  - [Official Documentation: Git Documentation](https://git-scm.com/doc)
-  - [Beginner's Guide: Git - The Simple Guide](https://rogerdudler.github.io/git-guide/)
-  - [YouTube Tutorial: Git and GitHub for Beginners](https://www.youtube.com/watch?v=RGOj5yH7evk)
-  
-- **API:** OpenAI API for GPT-based text summarization
-  - [Official Documentation: OpenAI API Documentation](https://beta.openai.com/docs/)
-  - [Getting Started Guide: Quickstart Tutorial](https://beta.openai.com/docs/quickstart)
-  - [YouTube Tutorial: Using OpenAI API](https://www.youtube.com/watch?v=fDLjsWCcKvQ)
-  - [Example Projects: OpenAI API Examples](https://beta.openai.com/examples)
-  
-- **Cloud:** Any cloud service for hosting (e.g., Heroku, AWS, DigitalOcean)
-  - **Heroku:**
-    - [Official Documentation: Heroku Dev Center](https://devcenter.heroku.com/)
-    - [Beginner's Guide: Getting Started on Heroku](https://devcenter.heroku.com/start)
-    - [YouTube Tutorial: Deploying Applications with Heroku](https://www.youtube.com/watch?v=ZKbmrF4Ync0)
-    - [Heroku CLI Guide: Heroku CLI Documentation](https://devcenter.heroku.com/articles/heroku-cli)
-  
-  - **AWS:**
-    - [Official Documentation: AWS Documentation](https://aws.amazon.com/documentation/)
-    - [Beginner's Guide: Getting Started with AWS](https://aws.amazon.com/getting-started/)
-    - [YouTube Tutorial: AWS Full Course - Learn Cloud Computing](https://www.youtube.com/watch?v=Ia-UEYYR44s)
-    - [AWS Free Tier Guide: Using the AWS Free Tier](https://aws.amazon.com/free/)
-  
-  - **DigitalOcean:**
-    - [Official Documentation: DigitalOcean Documentation](https://docs.digitalocean.com/)
-    - [Beginner's Guide: Getting Started with DigitalOcean](https://www.digitalocean.com/docs/getting-started/)
-    - [YouTube Tutorial: Deploy a Web App on DigitalOcean](https://www.youtube.com/watch?v=lwh1vFcCkFY)
-    - [Droplet Management Guide: Droplets Documentation](https://www.digitalocean.com/docs/droplets/)
+<details>
+  <summary><strong>IDE:</strong> Visual Studio Code</summary>
+  <ul>
+    <li><a href="https://code.visualstudio.com/docs">Official Documentation: Visual Studio Code Documentation</a></li>
+    <li><a href="https://code.visualstudio.com/docs/introvideos/basics">Beginner's Guide: Getting Started with Visual Studio Code</a></li>
+    <li><a href="https://www.youtube.com/watch?v=WPqXP_kLzpo">YouTube Tutorial: Visual Studio Code Crash Course</a></li>
+    <li><a href="https://code.visualstudio.com/docs/editor/extension-marketplace">Extensions Guide: Top Visual Studio Code Extensions</a></li>
+  </ul>
+</details>
+
+<details>
+  <summary><strong>Design:</strong> Figma</summary>
+  <ul>
+    <li><a href="https://help.figma.com/hc/en-us">Official Documentation: Figma Help Center</a></li>
+    <li><a href="https://figma101.com/">Beginner's Guide: Figma 101: Introduction to Figma</a></li>
+    <li><a href="https://www.youtube.com/watch?v=9Gf5iVyzTKI">YouTube Tutorial: Figma Tutorial for Beginners</a></li>
+    <li><a href="https://www.figma.com/design-systems/">Design System Guide: Creating a Design System in Figma</a></li>
+  </ul>
+</details>
+
+<details>
+  <summary><strong>Version Control:</strong> Git</summary>
+  <ul>
+    <li><a href="https://git-scm.com/doc">Official Documentation: Git Documentation</a></li>
+    <li><a href="https://rogerdudler.github.io/git-guide/">Beginner's Guide: Git - The Simple Guide</a></li>
+    <li><a href="https://www.youtube.com/watch?v=RGOj5yH7evk">YouTube Tutorial: Git and GitHub for Beginners</a></li>
+  </ul>
+</details>
+
+<details>
+  <summary><strong>API:</strong> OpenAI API for GPT-based text summarization</summary>
+  <ul>
+    <li><a href="https://beta.openai.com/docs/">Official Documentation: OpenAI API Documentation</a></li>
+    <li><a href="https://beta.openai.com/docs/quickstart">Getting Started Guide: Quickstart Tutorial</a></li>
+    <li><a href="https://www.youtube.com/watch?v=fDLjsWCcKvQ">YouTube Tutorial: Using OpenAI API</a></li>
+    <li><a href="https://beta.openai.com/examples">Example Projects: OpenAI API Examples</a></li>
+  </ul>
+</details>
+
+<details>
+  <summary><strong>Cloud:</strong> Any cloud service for hosting (e.g., Heroku, AWS, DigitalOcean)</summary>
+  <ul>
+    <li><strong>Heroku:</strong>
+      <ul>
+        <li><a href="https://devcenter.heroku.com/">Official Documentation: Heroku Dev Center</a></li>
+        <li><a href="https://devcenter.heroku.com/start">Beginner's Guide: Getting Started on Heroku</a></li>
+        <li><a href="https://www.youtube.com/watch?v=ZKbmrF4Ync0">YouTube Tutorial: Deploying Applications with Heroku</a></li>
+        <li><a href="https://devcenter.heroku.com/articles/heroku-cli">Heroku CLI Guide: Heroku CLI Documentation</a></li>
+      </ul>
+    </li>
+    <li><strong>AWS:</strong>
+      <ul>
+        <li><a href="https://aws.amazon.com/documentation/">Official Documentation: AWS Documentation</a></li>
+        <li><a href="https://aws.amazon.com/getting-started/">Beginner's Guide: Getting Started with AWS</a></li>
+        <li><a href="https://www.youtube.com/watch?v=Ia-UEYYR44s">YouTube Tutorial: AWS Full Course - Learn Cloud Computing</a></li>
+        <li><a href="https://aws.amazon.com/free/">AWS Free Tier Guide: Using the AWS Free Tier</a></li>
+      </ul>
+    </li>
+    <li><strong>DigitalOcean:</strong>
+      <ul>
+        <li><a href="https://docs.digitalocean.com/">Official Documentation: DigitalOcean Documentation</a></li>
+        <li><a href="https://www.digitalocean.com/docs/getting-started/">Beginner's Guide: Getting Started with DigitalOcean</a></li>
+        <li><a href="https://www.youtube.com/watch?v=lwh1vFcCkFY">YouTube Tutorial: Deploy a Web App on DigitalOcean</a></li>
+        <li><a href="https://www.digitalocean.com/docs/droplets/">Droplet Management Guide: Droplets Documentation</a></li>
+      </ul>
+    </li>
+  </ul>
+</details>
 
 ## 🏆 Competition
 
@@ -173,6 +221,11 @@ Users often struggle to understand lengthy and complex terms and conditions docu
 | `git push origin "branch"`     | Pushes to the specified branch              |
 | `git pull origin "branch"`     | Pulls updates from the specified branch     |
 
-## 🧑‍⚖️ The Lawyers
+## 🧑‍⚖️ The Court
 
-- Shreya S Ramani
+- **Judge** (Project Manager): Shreya S Ramani
+- **Jury** (Industry Mentor):
+- **Lawyer 1**:
+- **Lawyer 2**:
+- **Lawyer 3**:
+- **Lawyer 4**:

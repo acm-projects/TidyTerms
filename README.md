@@ -208,7 +208,7 @@ Users often struggle to understand lengthy and complex terms and conditions docu
 - **Text Summarizer:** [Example of an open AI + Chrome extension that summarizes](https://www.youtube.com/watch?v=RZBkKt7mzx4)
 
   
-### 🛠️ Git Commands
+### Git Commands
 
 | Command                        | What it does                                |
 |--------------------------------|---------------------------------------------|

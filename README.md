@@ -230,7 +230,7 @@ Users often struggle to understand lengthy and complex terms and conditions docu
 ## 🧑‍⚖️ The Court
 
 - **Judge** (Project Manager): Shreya S Ramani
-- **Jury** (Industry Mentor):
+- **Jury** (Industry Mentor): Royce Mathews
 - **Lawyer 1**: Vivian Nguyen
 - **Lawyer 2**: Atreya Ghosh
 - **Lawyer 3**: Srinitya Chirravuri

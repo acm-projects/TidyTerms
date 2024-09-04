@@ -112,9 +112,20 @@ Users often struggle to understand lengthy and complex terms and conditions docu
   
 ## 🚧 Roadblocks and Possible Solutions
 
-- **⚠️ Roadblock:** Ensuring AI-driven analysis accurately summarizes key points.
-- **💡 Solution:** Utilize robust machine learning models and continuously train them with a diverse dataset of legal documents.
+1. **⚠️ Roadblock: Scalability Issues with AI Processing Large Documents**
+   - **Solution**: Implement a load-balancing system for handling large document submissions and optimize backend performance with server-side caching.
 
+2. **⚠️ Roadblock: Handling Edge Cases in Legal Document Formatting**
+   - **Solution**: Create an AI pre-processor to detect unusual document formats and streamline them into a more readable structure before analysis.
+
+3. **⚠️ Roadblock: Difficulty in Summarizing Ambiguous or Poorly Written Clauses**
+   - **Solution**: Add a fallback mechanism where users can highlight unclear sections for manual review or provide multiple interpretations based on context clues.
+
+4. **⚠️ Roadblock: Ensuring Security and Privacy for Sensitive Documents**
+   - **Solution**: Implement end-to-end encryption for document handling and processing to protect user privacy, ensuring compliance with data protection laws.
+
+5. **⚠️ Roadblock: Maintaining Consistency Across Devices and Browsers**
+   - **Solution**: Conduct extensive cross-browser testing and create fallback features for browsers with limited functionality, like an optimized mobile experience.
 
 ## 🛠️ Required Tools
 

@@ -112,20 +112,20 @@ Users often struggle to understand lengthy and complex terms and conditions docu
   
 ## 🚧 Roadblocks and Possible Solutions
 
-1. **⚠️ Roadblock: Scalability Issues with AI Processing Large Documents**
-   - **Solution**: Implement a load-balancing system for handling large document submissions and optimize backend performance with server-side caching.
+1. **⚠️ Roadblock: Scalability and Processing Large Documents**
+   - **Solution**: Implement load-balancing and server-side caching to handle large document submissions efficiently while maintaining smooth performance.
 
-2. **⚠️ Roadblock: Handling Edge Cases in Legal Document Formatting**
-   - **Solution**: Create an AI pre-processor to detect unusual document formats and streamline them into a more readable structure before analysis.
+2. **⚠️ Roadblock: Miscommunication and Team Coordination**
+   - **Solution**: Use clear communication channels (Slack, Teams), daily stand-ups, and tools like Jira to keep team members aligned and track individual progress effectively.
 
-3. **⚠️ Roadblock: Difficulty in Summarizing Ambiguous or Poorly Written Clauses**
-   - **Solution**: Add a fallback mechanism where users can highlight unclear sections for manual review or provide multiple interpretations based on context clues.
+3. **⚠️ Roadblock: Scope Creep and Feature Management**
+   - **Solution**: Define the project scope early and establish a formal process to evaluate new feature requests, preventing unnecessary deviation from the original plan.
 
-4. **⚠️ Roadblock: Ensuring Security and Privacy for Sensitive Documents**
-   - **Solution**: Implement end-to-end encryption for document handling and processing to protect user privacy, ensuring compliance with data protection laws.
+4. **⚠️ Roadblock: Ensuring AI Accuracy in Summarization**
+   - **Solution**: Continuously improve machine learning models by training them with diverse legal datasets and create a fallback mechanism for ambiguous clauses.
 
-5. **⚠️ Roadblock: Maintaining Consistency Across Devices and Browsers**
-   - **Solution**: Conduct extensive cross-browser testing and create fallback features for browsers with limited functionality, like an optimized mobile experience.
+5. **⚠️ Roadblock: Team Burnout and Unforeseen Delays**
+   - **Solution**: Build buffer time into the schedule, redistribute workloads, and monitor for signs of burnout to adjust deadlines or shift resources if necessary.
 
 ## 🛠️ Required Tools
 

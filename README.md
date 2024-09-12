@@ -26,17 +26,17 @@ Users often struggle to understand lengthy and complex terms and conditions docu
 - **Save & Share:**
   - Options to save the summaries and share them via email or social media.
 
+- **Comparison Feature:**
+  - Compare terms and conditions across different services to help users make informed choices.
+
 
 ## 🚀 Stretch Goals
 
 - **Custom Alerts:**
-  - Notifications for users when significant changes are detected in the terms and conditions of services they use.
+  - Notifications are given to users when significant changes are detected in the terms and conditions of their services.
   
 - **Legal Jargon Glossary:**
   - In-app glossary to explain common legal terms and jargon.
-  
-- **Comparison Feature:**
-  - Compare terms and conditions across different services to help users make informed choices.
   
 - **Interactive Tutorials:**
   - Guides and tutorials on understanding common clauses and their implications.

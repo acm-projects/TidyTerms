@@ -242,7 +242,7 @@ Users often struggle to understand lengthy and complex terms and conditions docu
 
 - **Judge** (Project Manager): Shreya S Ramani
 - **Jury** (Industry Mentor): Royce Mathews
-- **Lawyer 1**: Vivian Nguyen
-- **Lawyer 2**: Atreya Ghosh
-- **Lawyer 3**: Srinitya Chirravuri
-- **Lawyer 4**: Arshia Puri
+- **Lawyer 1**: Vivian Nguyen (Frontend)
+- **Lawyer 2**: Atreya Ghosh (Backend)
+- **Lawyer 3**: Srinitya Chirravuri (Frontend)
+- **Lawyer 4**: Arshia Puri (Backend)

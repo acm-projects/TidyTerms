@@ -1,0 +1,18 @@
+{
+    "manifest_version": 3,
+    "name": "TidyTerms",
+    "description": "Summarizes Terms and Conditions documents into readable bullet points for the user",
+    "version": "1.0",
+    "action": {
+      "default_popup": "action/popup.html"
+    },
+    "background" : {
+      "service_worker": "background/background.js"
+
+
+    },
+    "permissions": [
+      "tabs"
+    ]
+    
+  }

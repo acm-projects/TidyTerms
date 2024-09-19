@@ -6,6 +6,11 @@
     "action": {
       "default_popup": "action/popup.html"
     },
+    "icons": {
+      "16": "images/TTLogo 16.png",
+      "48": "images/TTLogo 48.png",
+      "128": "images/TTLogo 128.png"
+    },
     "background" : {
       "service_worker": "background/background.js"
 

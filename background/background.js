@@ -13,24 +13,48 @@ chrome.runtime.onMessage.addListener(message => {
       var tab = tabs[0];
       console.log(tab.url);
 
-      const data = {
-        tab: tab.url
+      url = tab.url
 
-      }
 
-      fetch("http://127.0.0.1:5000/data", {
-        method: 'POST', // HTTP method
-        headers: {
-            'Content-Type': 'application/json', // Specify that we're sending JSON data
-        },
-        body: JSON.stringify(data) // Convert the data object to a JSON string
+
+      fetch(url)
+      .then(response => response.text())  // Get the HTML as plain text
+      .then(data => {
+
+        chrome.tabs.sendMessage(tab.id, { html: data });
+
       })
-      .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json(); // Parse the JSON response
-      })
+      .catch(error => console.error('Error fetching the page:', error));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //   fetch("http://127.0.0.1:5000/data", {
+    //     method: 'POST', // HTTP method
+    //     headers: {
+    //         'Content-Type': 'application/json', // Specify that we're sending JSON data
+    //     },
+    //     body: JSON.stringify(data) // Convert the data object to a JSON string
+    //   })
+    //   .then(response => {
+    //     if (!response.ok) {
+    //         throw new Error('Network response was not ok');
+    //     }
+    //     return response.json(); // Parse the JSON response
+    //   })
 
     })
 

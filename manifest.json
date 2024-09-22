@@ -16,8 +16,19 @@
 
 
     },
+    "host_permissions": [
+      "*://*/*"     
+    ],
     "permissions": [
       "tabs"
+    ],
+
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],       
+        "js": ["content/content.js"]           
+      
+      }
     ]
     
   }

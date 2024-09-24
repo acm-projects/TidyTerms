@@ -20,7 +20,8 @@
       "*://*/*"     
     ],
     "permissions": [
-      "tabs"
+      "scripting",
+      "activeTab"
     ],
 
     "content_scripts": [

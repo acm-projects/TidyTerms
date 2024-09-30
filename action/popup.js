@@ -1,37 +1,28 @@
+const tabs = document.querySelectorAll('.tab');
+const contentDiv = document.getElementById('content');
 
-document.getElementById('button').addEventListener('click', () => {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.scripting.executeScript({
-        target: { tabId: tabs[0].id },
-        function: parsePageContent
-      });
+function loadContent(url) {
+    fetch(url)
+        .then(response => {
+            if (!response.ok) throw new Error('Network response is not okay.');
+            return response.text();
+        })
+        .then(data => {
+          console.log('content is loaded!'); 
+            contentDiv.innerHTML = data;
+        })
+        .catch(err => {
+            contentDiv.innerHTML = `<p>Error loading the content: ${err.message}</p>`;
+        });
+}
+
+tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        loadContent(tab.getAttribute('data-target'));
     });
-  });
-  
-  function parsePageContent() {
+});
 
-
-    let data = {}
-
-    const htmlContent = document.documentElement.outerHTML;
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(htmlContent, "text/html");
-
-
-    const paragraphs = doc.querySelectorAll(['p', 'h1']);
-
-    let jsonObject = Array.from(paragraphs).map(paragraph => ({
-      textContent: paragraph.textContent,
-
-    }));
-
-    // Convert to a JSON string
-    let jsonString = JSON.stringify(jsonObject, null, 4);
-
-    // Output JSON string
-    console.log(jsonString);
-
-
-
-  }
-  
+// Load default content
+loadContent('home.html');

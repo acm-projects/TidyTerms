@@ -3,15 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylePopup.css"> 
     <title>TidyTerms</title>
+    
+    
 </head>
 <body>
-    <div>
-        <h1>TidyTerms</h1>
+
+        <div class="overlay"></div>
+
+        <!-- makes sure that the information isn't behind the image overlay -->
+    <div class="content">
+        <!-- Coding for the tabs-->
+    <div class="tabs"> 
+        <div class="tab active" data-target="home.html">Home</div>
+        <div class="tab" data-target="share.html">Share</div>
+        <div class="tab" data-target="summary.html">Summary</div>
     </div>
-    <div>
-        <button id="button">Button</button>
+    <div id="content" class = "tab-content">
+        <!--Home content will load here?-->
     </div>
+      
+        <h1>TIDY TERMS</h1>
+    </div>
+
+    
+    <script src="popup.js"></script>
 </body>
-<script src="popup.js"></script>
 </html>

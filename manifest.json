@@ -16,8 +16,10 @@
 
 
     },
-    "permissions": [
-      "tabs"
-    ]
-    
+    "permissions": [],
+    "web_accessible_resources": [{
+      "resources": ["home.html","summary.html","share.html"], 
+      "matches": ["<all_urls>"]
+    }
+  ] 
   }

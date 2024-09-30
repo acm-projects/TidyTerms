@@ -1,42 +1,34 @@
 
 
-chrome.runtime.onMessage.addListener(message => {
-  // 2. A page requested user data, respond with a copy of `user`
+chrome.runtime.onMessage.addListener(async function(message, sender, sendResponse) {
+    if (message.data) {
+      console.log("Received data:", message.data);
 
-  if(message ==  'button clicked')
-  {
-
-    chrome.tabs.query({
-      active: true,
-      lastFocusedWindow: true
-    }, function(tabs) {
-      // and use that tab to fill in out title and url
-      var tab = tabs[0];
-      console.log(tab.url);
-
-      chrome.scripting.executeScript({
-        target: { tabId: tab.id },
-        function: fetchPageContent
+      fetch('http://localhost:5000/summarize', {
+        method: 'POST', // Specify the HTTP method
+        headers: {
+          'Content-Type': 'application/json', // Specify the content type as JSON
+        },
+        body: message.data
+      })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json(); // Convert the response to JSON
+        })
+      .catch((error) => {
+        console.error('There was a problem with the fetch operation:', error);
       });
-  
-     
-  
-    })
-  }
+
+
+      
+      
+      // Optionally send a response back
+      sendResponse({ status: "Data received" });
+    }
+    return true; // Required if you want to send an asynchronous response
+
+
 
 });
-
-function fetchPageContent() {
-  // This will fetch the HTML content of the current page
-  const htmlContent = document.documentElement.outerHTML;
-
-  // Now you can do something with the HTML content, like sending it to your extension's background script
-  console.log('Page HTML:', htmlContent);
-
-  // Optionally, you can send the content to the background script
-  //chrome.runtime.sendMessage({ html: htmlContent });
-}
-
-
-
-  

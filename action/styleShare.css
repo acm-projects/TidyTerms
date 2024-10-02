@@ -63,7 +63,7 @@ gap: 5px; /* Space between ropes horizontally */
 justify-items: start; /* Align items to the start (not centered) */
 position: relative; /* establishes layering */
 z-index: 1; 
-top: -130px; /*moves the ropes so that they start before the box */ 
+top: -150px; /*moves the ropes so that they start before the box */ 
 }
 
 /* Used to hold the circle and rope togethers*/
@@ -72,14 +72,14 @@ display: flex;
 flex-direction: column;
 align-items: center; /* Centers the circle and rope horizontally */
 justify-content: flex-start; /* Rope stays at the top*/
-height: 180px; /* Adjust to fit the hanging rope*/
+height: 900px; /* Adjust to fit the hanging rope*/
 z-index: 1; 
 }
 
 
 .rope {
 width: 2px;              
-height: 200px;             
+height: 180px;             
 background-color: #C6D9E6; 
 z-index: 1;  
 }

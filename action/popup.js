@@ -1,5 +1,6 @@
 const tabs = document.querySelectorAll('.tab');
 const contentDiv = document.getElementById('content');
+//const chatBox = document.getElementById('chatBox');
 
 function loadContent(url) {
     fetch(url)
@@ -16,13 +17,27 @@ function loadContent(url) {
         });
 }
 
+
+
 tabs.forEach(tab => {
     tab.addEventListener('click', () => {
         tabs.forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
+
+
         loadContent(tab.getAttribute('data-target'));
     });
 });
+document.addEventListener('DOMContentLoaded', function () {
+    const logo = document.querySelector('.logo'); // Select the logo element
+    const chatBox = document.getElementById('chatBox'); // Select the chat box
+
+    // Add event listener to the logo
+    logo.addEventListener('click', function () {
+        chatBox.classList.toggle('active'); // Toggle the chat box visibility
+    });
+});
+
 
 // Load default content
 loadContent('home.html');

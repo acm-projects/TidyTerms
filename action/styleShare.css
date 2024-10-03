@@ -6,7 +6,7 @@ body {
     display: flex; 
     justify-content: space-between; /* aligns the space between the shapes */
     align-items: center; /*aligns the shape*/
-    width: 314px; 
+    width: 314px;  
     height: 90px; 
     background-color: #C6D9E6; 
     padding: 15px; /*space between content and box */ 
@@ -23,8 +23,8 @@ body {
     display: flex; 
     justify-content: center; /*aligns horizontally */
     align-items: center; /* aligns vertically */
-    width: 60px; 
-    height: 60px; 
+    width: 50px; 
+    height: 50px; 
     border-radius: 50%; 
     background-color: white; 
     text-align: center; 
@@ -40,7 +40,7 @@ body {
 }
 
 .circle-container p {
-    margin: 10px 0 0 0;         /* Add some space between circle and text */
+    margin: 5px 0 0 0;         /* Add some space between circle and text */
     font-weight: bold;            /* Set font size for text */
     font-family: "Inter","Arial",sans-serif; 
     color: #00477A;             /* Set text color */
@@ -52,12 +52,12 @@ h2 {
 }
 
 img {
-width: 100%; 
+width: 90%; 
 
 }
 /*will be used to hold multiple circles and ropes together */ 
 .rope-grid {
-display: grid; /* allows the ropes tobe next to each other*/
+display: grid; /* allows the ropes to be next to each other*/
 grid-template-columns: repeat(9, 1fr); /* 3 columns for positioning ropes */
 gap: 5px; /* Space between ropes horizontally */
 justify-items: start; /* Align items to the start (not centered) */
@@ -72,16 +72,15 @@ display: flex;
 flex-direction: column;
 align-items: center; /* Centers the circle and rope horizontally */
 justify-content: flex-start; /* Rope stays at the top*/
-height: 900px; /* Adjust to fit the hanging rope*/
+min-height: 210%; /* Adjust to fit the hanging rope*/
 z-index: 1; 
 }
 
-
 .rope {
 width: 2px;              
-height: 180px;             
+min-height: 210%;             
 background-color: #C6D9E6; 
-z-index: 1;  
+z-index: 1; 
 }
 
 .smallCircle {

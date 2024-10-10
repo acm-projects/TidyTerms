@@ -1,0 +1,18 @@
+body {
+    background-image: url(imagesWebsite/backgroundWebsite.png);
+    background-size: 100% 100%; 
+}
+.box {
+    margin: 0 auto; /*centers the box horizontally*/ 
+    display: flex; 
+    /* justify-content: space-between; /* aligns the space between the shapes */
+     align-items: center;  /* center aligns*/ 
+    width: 700px;  
+    height: 280px; 
+    background-color: #C6D9E6; 
+    padding: 15px; /*space between content and box */ 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5); 
+    /* z-index: 2;  */
+    /* position: relative; establishes layering */
+
+}

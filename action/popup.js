@@ -1,4 +1,5 @@
 
+
 // const button = document.getElementById("button")
 
 // button.onclick = function() {
@@ -109,3 +110,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Load default content
 loadContent('home.html');
+

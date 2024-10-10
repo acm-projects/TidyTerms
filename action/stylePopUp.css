@@ -116,6 +116,10 @@ h1 {
     width: 120px; /* Fixed width for the active tab */
     text-align: center; /* Centers the text inside the tab */
 }
+/* .tab.summary-active {
+    background-color: #00477A; 
+    color: white;  
+} */
 .tab.active .tab-text {
     display: inline;                   /* Show text for active tab */
 }
@@ -142,7 +146,7 @@ h1 {
 footer {
     width: 100%;                         /* Full width */
     background-color: white;          /* Light background color */
-    padding: 5px 0;                     /* Vertical padding for height */
+    padding: 1.5px 0;                     /* Vertical padding for height */
     position: absolute;                   /* Position at the bottom */
     bottom: 0;                           /* Align to the bottom of the page */
     text-align: center;                  /* Center the text */
@@ -151,4 +155,120 @@ footer {
     z-index: 5;
     font-family: 'Zen Kaku Gothic New';
     font-weight: 500;
+}
+.scan-button {
+    width: 170px;
+    padding: 10px 15px; 
+    background-color: #00477A;
+    color: white;
+    border: none;
+    border-radius: 13px;
+    cursor: pointer;
+    font-family: 'Zen Kaku Gothic New';
+    font-weight: 1000;
+    z-index:3;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.scan-button:hover {
+    background-color: #00375f; 
+}
+.white-button {
+    width: 170px;
+    padding: 10px 15px; 
+    background-color: white;
+    color: #00477A;
+    border: none;
+    border-radius: 13px;
+    cursor: pointer;
+    font-family: 'Zen Kaku Gothic New';
+    font-weight: 1000;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.white-button:hover {
+    background-color: rgb(233, 233, 233); 
+}
+.center-container {
+    display: flex;            /* Align buttons in a row */
+    gap: 10px; 
+    justify-content: center;
+}
+.link-input-container {
+    margin-top: 10px;          /* Adds space between buttons and the link input field */
+    text-align: center;        /* Centers the link input field */
+}
+
+input[type="url"] {
+    padding: 8px;
+    width: 300px;              /* Set a fixed width for the input field */
+    border: 1px solid #C6D9E6;
+    border-radius: 4px;
+    font-family: 'Zen Kaku Gothic New';
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+label {
+    font-family: 'Zen Kaku Gothic New';
+    margin-right: 10px;
+}
+input[type="url"]:focus {
+    outline: none;               /* Removes the default outline */
+    border-color: #00477A;       /* Change to your desired border color */
+    border-width: 1.2px;
+}
+.search-bar-container {
+    display: flex;
+    justify-content: center;   /* Center the search bar horizontally */
+    align-items: center;       /* Align the search bar items vertically */
+    padding: 0px;             /* Add some padding around the container */
+    background-color: white;
+    position: sticky;          /* Stick the search bar to the top */
+    top: 0;                    /* Ensure it's at the top of the page */
+    z-index: 3;             /* Keep the search bar above other content */
+    font-family: 'Zen Kaku Gothic New';
+    font-weight: 300;
+    border-radius: 13px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#search-bar {
+    padding: 8px;
+    width: 300px;              /* Set the width of the search bar */
+    border: 1px solid white;     /* Default border */
+    border-radius: 13px; /* Rounded corners for the left side */
+    font-family: 'Zen Kaku Gothic New';
+    font-weight: 400;
+    background-color: white;
+    color: #00477A;
+    flex: 1;
+     
+}
+
+.search-button {
+    /* width: 170px; */
+    margin-right: 5px;
+    padding: 5px 5px; 
+    color: #00477A;
+    border: none;
+    border-radius: 13px;
+    cursor: pointer;
+    font-family: 'Zen Kaku Gothic New';
+    font-weight: 1000;
+}
+.search-button:hover {
+    background-color: #bbceda; 
+}
+
+.summary-box {
+    display: flex;
+    margin-top: 13px;
+    justify-content: center;   /* Center the search bar horizontally */
+    padding: 75px;             /* Add some padding around the container */
+    background-color: white;
+    /* position: sticky;          Stick the search bar to the top */
+    top: 0;                    /* Ensure it's at the top of the page */
+    z-index: 3;             /* Keep the search bar above other content */
+    font-family: 'Zen Kaku Gothic New';
+    font-weight: 400;
+    border-radius: 13px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }

@@ -1,6 +1,4 @@
-body {
-    background-color: #00477A; 
-}
+
 .box {
     margin: 0 auto; /*centers the box horizontally*/ 
     display: flex; 

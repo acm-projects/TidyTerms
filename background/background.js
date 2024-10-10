@@ -1,6 +1,7 @@
 
 
 chrome.runtime.onMessage.addListener(async function(message, sender, sendResponse) {
+  
     if (message.data) {
       console.log("Received data:", message.data);
 
@@ -32,3 +33,4 @@ chrome.runtime.onMessage.addListener(async function(message, sender, sendRespons
 
 
 });
+

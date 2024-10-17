@@ -1,12 +1,3 @@
-
-
-// const button = document.getElementById("button")
-
-// button.onclick = function() {
-//     chrome.runtime.sendMessage('this is a test message')
-
-// }
-
 document.addEventListener('DOMContentLoaded', function() {
     const tabButtons = document.querySelectorAll('.tab-button');
     const tabContent = document.getElementById('tab-content');

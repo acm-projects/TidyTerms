@@ -4,7 +4,7 @@
   "description": "Summarizes Terms and Conditions documents into readable bullet points for the user",
   "version": "1.0",
   "action": {
-    "default_popup": ["action/popup.html"]
+    "default_popup": "action/popup.html"
   },
   "icons": {
     "16": "images/TTLogo 16.png",

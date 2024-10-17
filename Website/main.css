@@ -1,0 +1,302 @@
+
+body, html {
+    margin: 0; 
+   background-color:#074A79; 
+}
+
+
+
+
+@font-face {
+    font-family: 'LTInstitute';
+    src: url('fonts/LTInstitute-1.otf') format('opentype'); /* Specify the format as 'opentype' */
+    font-weight: normal;
+    font-style: normal;
+}
+.zen-kaku-gothic-new-light {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+ 
+.zen-kaku-gothic-new-regular {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+ 
+.zen-kaku-gothic-new-medium {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+ 
+.zen-kaku-gothic-new-bold {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+ 
+.zen-kaku-gothic-new-black {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 1000;
+    font-style: normal;
+}
+
+
+h1 {
+    margin-top: 0px; 
+    text-align: center;
+    font-size: 80px;
+    color: white;
+    margin-bottom: 0px;
+}
+
+
+p {
+    text-align: center;
+    color: white;
+    margin-top: 0;
+}
+
+
+
+
+[data-tab-content]
+  {
+    display:none;
+
+
+  }
+
+
+.active[data-tab-content]
+{
+     display: block;
+}
+
+
+.container {
+    display: flex; /* Enable flexbox */
+    height: 100vh; 
+}
+
+.containerTwo {
+    display: flex; 
+    align-items: center;
+    margin-top: 10px; 
+    margin: 7px;
+}
+
+
+.tab-container {
+    background-image: url('imagesWebsite/backgroundWebsite.png'); /* Set your background image */
+    background-size: cover; /* Cover the entire tab container */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent repeating */
+    width: 300px; /* Set a fixed width for the tabs */
+    height: 100vh; 
+    display: flex;
+    flex-direction: column; /* Stack tabs vertically */
+}
+
+.tabs {
+    display: flex;
+    flex-direction: column; /* Stack tabs vertically */
+    list-style-type: none; /* removes period */
+    margin: 0;
+    padding: 0;
+    color: white;
+
+
+}
+
+
+.tab {
+    float: left;
+    cursor: pointer;
+    padding: 10px;
+    margin: 10px; 
+
+}
+
+
+.tab-active {
+    background-color: #4da5e4;
+}
+
+
+.tab:hover {
+    background-color: #24608a;
+}
+
+
+.tab-content {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+li {
+    color: #C6D9E6; 
+    font-size: 20px; 
+}
+
+
+
+label {
+    font-family: 'Zen Kaku Gothic New';
+    margin-right: 10px;
+}
+input[type="url"]:focus {
+    outline: none;               /* Removes the default outline */
+    border-color: #00477A;       /* Change to your desired border color */
+    border-width: 1.2px;
+}
+.search-bar-container {
+    display: flex;
+    justify-content: center;   /* Center the search bar horizontally */
+    align-items: center;       /* Align the search bar items vertically */
+    padding: 0px;             /* Add some padding around the container */
+    background-color: white;; 
+    position: sticky;          /* Stick the search bar to the top */
+    top: 0;                    /* Ensure it's at the top of the page */
+    border-radius: 2px; 
+    z-index: 3;             /* Keep the search bar above other content */
+    font-family: 'Zen Kaku Gothic New';
+    font-weight: 300;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    margin-bottom: 10px; 
+}
+
+#search-bar {
+    padding: 8px;
+    width: 800px;              /* Set the width of the search bar */
+    border: 1px solid white;     /* Default border */
+    border-radius: 2px; 
+    font-family: 'Zen Kaku Gothic New';
+    font-weight: 400;
+    background-color: white; 
+    color: #00477A;;
+    flex: 1;
+     
+}
+
+.search-button {
+    /* width: 170px; */
+    margin-right: 5px;
+    padding: 5px 5px; 
+    color: #00477A;
+    border: none;
+    border-radius: 13px;
+    cursor: pointer;
+    font-family: 'Zen Kaku Gothic New';
+    font-weight: 1000;
+}
+.search-button:hover {
+    background-color: #bbceda; 
+}
+
+
+.box {
+    width: 70vw;          /* 95% of the viewport width */
+    height: 90vh;  
+    background-color: #C6D9E6; 
+    padding: 10px; 
+    margin-top: 10px 
+}
+
+#new-screen {
+    display: none; /* Hidden by default */
+    /* Styles for the new screen */
+    padding: 20px;
+    /* background-color: #f9f9f9;
+    min-height: 100vh; /* Fills the height of the viewport */
+    /*min-width: 100vh;  */
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+}
+
+.styled-button {
+    position: relative;
+    display: flex;
+    flex-direction: column; /* Stack the text and icon vertically */
+    align-items: center;    /* Horizontally center the content */
+    justify-content: center; /* Vertically center the content */
+    cursor: pointer;
+    padding: 10px;
+    margin: 10px; 
+    color: #00477A;  
+    background-color: white; 
+    box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.7);
+    width: 200px; 
+    height: 200px; 
+    border: none; 
+    font-size: 20px; 
+    border-radius: 5px; 
+
+}
+
+.styled-button:hover {
+    background-color: #0056b3;
+}
+.tabinlineContainer {
+    float: right;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: inline;
+}
+
+.icon-container {
+    position: absolute; /* Absolute positioning for icons container */
+    bottom: 5px; /* Distance from the bottom edge of the button */
+    right: 5px; /* Distance from the right edge of the button */
+    display: flex; /* Use flexbox to arrange icons */
+    gap: 5px; /* Space between the icons */
+}
+
+/* Overlay styling */
+.overlay {
+    display: none; /* Initially hidden */
+    position: fixed; /* Fullscreen overlay */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8); /* Dark background with more opacity */
+    color: white;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* On top of other content */
+}
+
+/* Overlay content styling */
+.overlay-content {
+    background: #00477A;
+    padding: 40px; /* Increased padding for content */
+    border-radius: 8px;
+    width: 100%; /* Set width of the content to 60% of the overlay */
+    max-width: 800px; /* Max width for larger screens */
+    height: auto; /* Height will adjust based on content */
+    text-align: center; /* Center text within the overlay */
+    position: relative; /* Allow positioning of elements within */
+    font-size: 1.5em; /* Increased font size */
+}
+
+/* Back button styling */
+#backButton {
+    font-size: 0.8em; /* Smaller font size for back button */
+    padding: 8px 12px; /* Smaller padding for back button */
+    margin-top: 20px; /* Margin for spacing from content */
+    height: 50px; 
+}
+
+
+.button-container {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: inline; /* Stack buttons vertically */
+    align-items: center; /* Center buttons horizontally */
+    margin-top: 20px; /* Add space above the container */
+}

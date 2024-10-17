@@ -47,7 +47,7 @@ app.post('/summarize', async (req, res) => {
     }
 
     
-    const paragraph = (text[4].textContent);
+    const paragraph = (text[5].textContent);
     console.log(paragraph);
 
     try {

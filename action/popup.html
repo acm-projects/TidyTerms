@@ -1,17 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap');
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylePopUp.css"> 
     <title>TidyTerms</title>
+    
+    
 </head>
 <body>
-    <div>
-        <h1>TidyTerms</h1>
-    </div>
-    <div>
-        <button id="tidy_terms_button">Button</button>
-    </div>
+
+
+        <!-- <div class="overlay"></div> -->
+
+        <!-- makes sure that the information isn't behind the image overlay -->
+    <div class="content">
+        <!-- Coding for the tabs-->
+        <div class="tabs">
+            <!-- <div class="overlay2"></div> -->
+            <img src="TTLogo 128.png" alt="Logo" class="logo"> 
+            <div class="tab active" data-target="home.html">
+                <i class="fas fa-home"></i> <!-- Home icon -->
+                <span class="tab-text">home</span>
+            </div>
+            <div class="tab" data-target="summary.html">
+                <i class="fa-solid fa-file-lines"></i><!-- Summary icon -->
+                <span class="tab-text">summary</span>
+            </div>
+            <div class="tab" data-target="share.html">
+                <i class="fa-solid fa-share-nodes"></i> <!-- Share icon -->
+                <span class="tab-text">share</span>
+            </div>
+        </div>
+        <div id="content" class = "tab-content">
+            <!--Home content will load here?-->
+        </div>
+        <div class="chat-box" id="chatBox">
+            <h3>Chat Box</h3>
+        </div>
+        </div>
+        <!-- <h1 class="zen-kaku-gothic-new-black">TIDY TERMS</h1> -->
+
+
+    <footer>
+        Version 1.0
+    </footer>
+
+    <script src="popup.js"></script>
 </body>
-<script src="popup.js"></script>
 </html>

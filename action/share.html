@@ -1,0 +1,103 @@
+
+<html> 
+    <head> 
+        <link rel="stylesheet" href="styleShare.css"> 
+    </head>
+    <body> 
+        <!--Creates the box -->
+        <div class = "box">
+            <div class = "circle-container">
+                <!-- circle 1 and the ../ tells the browser to go out of the action directory and into images -->
+            <div class = "circle"> <img src="../images/copy.png"> </div>
+            <p> Download </p> 
+            </div> 
+
+            <div class = "circle-container">
+                <!-- circle 2 -->
+            <!-- <input type="text" value="Summary" id="myInput"> -->
+            
+
+            <div class = "circle"> <img src="../images/download.png"> </div>
+            <p> Copy </p> 
+
+            </div> 
+
+            <div class = "circle-container">
+            <!-- circle 3-->
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=&su=Terms%20and%20Conditions%20Summary&body=This%20is%20the%20email%20body." target="_blank" class="circle">
+                <!-- Format for empty: &to=&su=&body=
+                will need to in the body have a copy and paste version in the gmail of what we copied forom summary -->
+    
+                    <img src="../images/share.png" height = 90%> 
+            </a> 
+            <p> Share </p>
+            </div> 
+
+            
+             
+           <!-- <div onclick = "shareToGmail()" class = "circle" target = blank >  <img src="../images/share.png" height = 90%>    <p> Share </p> </div> -->
+      </div> <!-- end div for box -->
+      <!-- Creates the ropes with circles that spell out TIDY TERMS-->
+          <div class = "rope-grid"> 
+            <div class="rope-container">
+                <div class="rope"></div>
+                <div class="smallCircle"> <h2> T</h2></div>
+            </div>
+    
+            <div class="rope-container">
+                <div class="rope"></div>
+                <div class="smallCircle"> <h2> I</h2> </div>
+            </div>
+    
+            <div class="rope-container">
+                <div class="rope"></div>
+                <div class="smallCircle"> <h2> D</h2> </div>
+            </div>
+    
+            <div class="rope-container">
+                <div class="rope"></div>
+                <div class="smallCircle"> <h2> Y</h2></div>
+            </div>
+            <div class="rope-container">
+                <div class="rope"></div>
+                <div class="smallCircle"> <h2> T</h2></div>
+            </div>
+            <div class="rope-container">
+                <div class="rope"></div>
+                <div class="smallCircle"> <h2> E</h2></div>
+            </div>
+            <div class="rope-container">
+                <div class="rope"></div>
+                <div class="smallCircle"> <h2> R</h2></div>
+            </div>
+            <div class="rope-container">
+                <div class="rope"></div>
+                <div class="smallCircle"> <h2> M</h2></div>
+            </div>
+            <div class="rope-container">
+                <div class="rope"></div>
+                <div class="smallCircle"> <h2> S</h2></div>
+            </div>
+        
+           </div><!--end div for rope grid -->
+
+           <!-- <script>
+            function copyText() {
+              // Get the text field
+              var copyText = document.getElementById("myInput");
+            
+              // Select the text field
+              copyText.select();
+              copyText.setSelectionRange(0, 99999); // For mobile devices
+            
+              // Copy the text inside the text field to the clipboard
+              navigator.clipboard.writeText(copyText.value);
+            
+              // Show a message or change the text to indicate the copy was successful
+              document.getElementById("copyMessage").innerHTML = "Copied: " + copyText.value;
+            }
+            </script> -->
+            
+            <script> src="share.js"</script> 
+    </body>
+</html>

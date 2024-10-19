@@ -1,7 +1,4 @@
 
-
-
-
 function parsePageContent() {
 
 
@@ -11,17 +8,29 @@ function parsePageContent() {
   const parser = new DOMParser();
   const doc = parser.parseFromString(htmlContent, "text/html");
 
+ 
 
-  const paragraphs = doc.querySelectorAll(['p', 'h1']);
+  const title = doc.querySelector(['h1']);
 
-  let jsonObject = Array.from(paragraphs).map(paragraph => ({
-    id: paragraph.getAttribute('data-id'),
+  console.log(title);
+
+  let jsonObject = {
+    'title': title ? title.innerText : null
+  };
+
+
+  const paragraphs = doc.querySelectorAll(['p']);
+
+  
+
+  jsonObject['content'] = Array.from(paragraphs).map(paragraph => ({
     textContent: paragraph.textContent.trim(),
 
   }));
 
   // Convert to a JSON string
   let jsonString = JSON.stringify(jsonObject, null, 4);
+  console.log(jsonString);
 
   chrome.runtime.sendMessage({ data: jsonString }, function(response) {
     console.log("Response from background:", response);
@@ -33,3 +42,4 @@ function parsePageContent() {
 
 
 parsePageContent();
+

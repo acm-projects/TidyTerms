@@ -47,33 +47,95 @@ const openai = new OpenAI({
 
 // POST /summarize - to summarize the document and save it to MongoDB
 app.post('/summarize', async (req, res) => {
-  const { title, content } = req.body; // Expecting title and content in the body
 
-  if (!content) {
-    return res.status(400).json({ error: 'Document content is required' });
-  }
 
-  try {
-    const response = await openai.chat.completions.create({
-      model: 'gpt-4', // Ensure you use a valid model
-      messages: [
-        { role: 'system', content: 'You are a helpful assistant whose task is to summarize pieces of text.' },
-        { role: 'user', content: `Summarize the following document in one sentence: ${content}` },
-      ],
-    });
+    const {title, content} = req.body;
 
-    const summary = response.choices[0].message.content; // Accessing the content of the summary
-    console.log('Generated Summary:', summary);
+    if (!content) {
+        return res.status(400).json({ error: 'Text is required' });
+    }
 
+    
+
+    // const paragraph = (text[4].textContent);
+    // console.log(paragraph);
+
+    const highlights = ["personal data, data colection, third-party sharing, data protection"];
+
+    let summaries = "Summaries: ";
+
+    for(let paragraph of content){
+
+        if(paragraph.textContent === "")
+            continue;
+
+        try {
+            const response = await openai.chat.completions.create({
+              model: 'gpt-4o-mini',
+              messages: [
+                    { role: 'system', content: "You are a helpful assistant whose task is to summarize pieces of text"},
+                    { 
+                        role: 'user', 
+                        content:  `Summarize the following paragraph in 1-2 sentences: ${paragraph.textContent}` },
+    
+            
+                ],
+                temperature: 0.3,
+
+            });
+        
+            const summary = response.choices[0].message;
+            //console.log(summary.content);
+            summaries = summaries.concat(`\n\n`, summary.content);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: 'Failed to summarize text' });
+        }
+
+
+    }
+  
+  
     // Save the document summary to MongoDB
     const newDocument = new Document({ title, summary });
     await newDocument.save();
-
     res.status(200).json({ message: 'Document saved successfully', summary });
-  } catch (error) {
-    console.error('Error summarizing document:', error);
-    res.status(500).json({ error: 'Failed to summarize text' });
-  }
+
+
+    try {
+        const response = await openai.chat.completions.create({
+          model: 'gpt-4o-mini',
+          messages: [
+                { role: 'system', content: "You are a helpful assitant whose task is to extract key information from texts"},
+                { 
+                    role: 'user', 
+                    content:  `Extracat and rephrase key information based on the following keywords: ${highlights.join(', ')} from the following text\n\n ${summaries}, Be as concise as possible in your response` },
+
+        
+            ],
+            temperature: 0.3,
+
+        });
+    
+        const key_points = response.choices[0].message;
+        console.log(key_points.content);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to extract info' });
+    }
+
+
+    
+
+
+    res.status(200).json({ summaries  });
+
+    
+
+ 
+    
+
 });
 
 // GET /documents - to retrieve all saved documents

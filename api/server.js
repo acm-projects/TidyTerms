@@ -97,9 +97,11 @@ app.post('/summarize', async (req, res) => {
   
   
     // Save the document summary to MongoDB
-    const newDocument = new Document({ title, summary });
+    const newDocument = new Document({ 
+      title: title,
+      summary: summaries, 
+    });
     await newDocument.save();
-    res.status(200).json({ message: 'Document saved successfully', summary });
 
 
     try {

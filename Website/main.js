@@ -119,3 +119,14 @@ loadButtons.forEach(button => {
         loadNewContent(content);
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const logo = document.querySelector('.logo'); // Select the logo element
+    const chatBox = document.getElementById('chatBox'); // Select the chat box
+
+    // Add event listener to the logo
+    logo.addEventListener('click', function () {
+        chatBox.classList.toggle('active'); // Toggle the chat box visibility
+    });
+    
+});

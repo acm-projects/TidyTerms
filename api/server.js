@@ -47,6 +47,7 @@ app.post('/summarize', async (req, res) => {
     }
 
     
+
     // const paragraph = (text[4].textContent);
     // console.log(paragraph);
 
@@ -84,6 +85,7 @@ app.post('/summarize', async (req, res) => {
 
 
     }
+
 
     try {
         const response = await openai.chat.completions.create({

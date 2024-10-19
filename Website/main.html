@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap');
+       
+   </style>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   <link rel="stylesheet" href="main.css">
+   <script src="main.js" defer> </script>
+   <!-- defer is used to make sure the script happens after the html is loaded  -->
+</head>
+<body>
+   <div class = "container"> <!-- used to help align the tabs and content-->
+   <div class = "tab-container"> 
+   <div class = "containerTwo"> 
+
+    <img src ="imagesWebsite/TTLogo 128.png" style= "width:50px; height:50px; margin-right: 10px;">  
+    <h1 class =  "zen-kaku-gothic-new-medium" style = "font-size: 28px; color:#C6D9E6;"> TIDY TERMS </h1>
+   </div>
+    <ul class = "tabs">
+        <li data-tab-target="#mySummaries" class = "active tab zen-kaku-gothic-new-black"> 
+            <i class="fa-solid fa-file-lines"></i>
+            My Summaries 
+        </li>
+        <li data-tab-target="#trash"  class = "tab zen-kaku-gothic-new-black" > 
+            <i class="fa-solid fa-trash"></i>
+            Trash </li>
+        <li data-tab-target="#settings"  class = "tab zen-kaku-gothic-new-black">
+            <i class="fa-solid fa-gear"></i>
+             Settings</li>
+
+        
+        <li data-tab-target="#support"  class = "tab zen-kaku-gothic-new-black">
+        <i class="fa-solid fa-circle-exclamation"></i>
+            Support</li>
+            
+        <li data-tab-target="#signOut"  class = "tab zen-kaku-gothic-new-black">
+            <i class="fa-solid fa-sign-out"></i>
+                Sign Out</li>
+
+        </ul>
+   </div>
+
+
+        <div class="tab-content">
+            <div id="mySummaries" data-tab-content class="active" style = "margin-top: 8px;">
+                <div class="search-bar-container">
+                    <input type="search" id="search-bar" placeholder="Search Summaries" />
+                    <button class="search-button" type="submit" >
+                        <i class="fas fa-search"></i>
+                    </button>    
+                </div> <!-- end of search bar -->
+                <div class="button-container">
+                    <button id="newSummary" class="styled-button zen-kaku-gothic-new-regular">
+                        Add New Summary
+                            <i class="fas fa-folder-plus"></i>
+                    </button>
+                    <button id="summaryOne" class="styled-button zen-kaku-gothic-new-regular">
+                        Summary One 
+                        <div class="icon-container">
+                            <i class="fas fa-share"></i>
+                            <i class="fas fa-trash"></i>
+                        </div>
+                    </button>
+                </div>
+
+            </div> <!--end of inner div for tabSummary -content-->
+
+
+            <div id="trash" data-tab-content>
+               <div class = "box"> 
+                <div class="search-bar-container">
+                    <input type="search" id="search-bar" placeholder="Search Summaries" />
+                    <button class="search-button" type="submit" >
+                        <i class="fas fa-search"></i>
+                    </button>    
+                </div> <!-- end of search bar -->
+                <h2 style = "color:#00477A" class="zen-kaku-gothic-new-black"> 
+                    Summaries will automatically be deleted 30 days.
+
+                </h2>
+        <!-- Initially empty content section -->
+        <div id="mainContent"></div>
+
+        <!-- Button to load content -->
+        <div class="button-container">
+            <button id="loadContent1" class="styled-button zen-kaku-gothic-new-regular">
+                Deleted Summary Three
+                <div class = "icon-container"> 
+                   <i class="fa-solid fa-undo" ></i>
+                   <i class="fas fa-trash"></i>
+                </div> 
+            </button>
+            <button id="loadContent2" class="styled-button zen-kaku-gothic-new-regular">
+                Deleted Summary Two
+                <div class = "icon-container"> 
+                    <i class="fa-solid fa-undo" ></i>
+                    <i class="fas fa-trash"></i>
+                 </div> 
+            </button>
+            <button id="loadContent3" class="styled-button zen-kaku-gothic-new-regular">
+                Deleted Summary One 
+                <div class = "icon-container"> 
+                    <i class="fa-solid fa-undo" ></i>
+                    <i class="fas fa-trash"></i>
+                 </div> 
+            </button>
+        </div>
+
+               </div> <!--end of the div for the box-->
+            </div> <!--end of div for trash-->
+            <div id="settings" data-tab-content>
+                <h1> Settings </h1>
+            </div><!--end of div for settings-->
+
+            <div id="support" data-tab-content> 
+                <h1> Support</h1>
+            </div><!--end of div for support-->
+
+            <div id="signOut" data-tab-content> 
+                <h1> Sign Out</h1>
+            </div> <!--end of div for sign out-->
+
+
+            </div> <!--end of div for tab content-->
+    </div> <!--end of div for containers-->
+
+
+   
+     <!-- Overlay for loading new content -->
+     <div id="overlay" class="overlay">
+        <div class="overlay-content" id="overlayContent"></div>
+    </div>
+</body>
+</html>
+
+<div id="popupOverlay" class="popup-overlay">
+    <div class="popup-content" id="popupContent"></div>
+</div>

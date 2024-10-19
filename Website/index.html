@@ -1,6 +1,58 @@
-<html> 
-    <head> </head>
-    <body> 
-        
-    </body>
-    </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap');
+       
+   </style>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   <link rel="stylesheet" href="indexStyle.css">
+   <script src="indexJS.js" defer> </script>
+   <!-- defer is used to make sure the script happens after the html is loaded  -->
+</head>
+<body>
+    <ul class = "tabs">
+    <li data-tab-target="#home" class = "active tab zen-kaku-gothic-new-black"> <i class="fas fa-home"></i></li>
+    <li data-tab-target="#about"  class = "tab zen-kaku-gothic-new-black"> <i class="fas fa-circle-info fa-lg" ></i></li>
+    </ul>
+
+
+
+
+    <div class="tab-content">
+        <div id="home" data-tab-content class="active">
+            <div class = "container-box">
+                <div class = "box" >
+                    <h1 class="zen-kaku-gothic-new-black">TIDY TERMS</h1>
+                    <p class="zen-kaku-gothic-new-light"> Summarizing Terms and Conditions </p>
+
+                <div class = "horizontal-center"> 
+                    <button class="centered-button" style = "text-align:center;background-color: #022742; color: white; " onmouseover="this.style.backgroundColor='#04558e';"
+                    onmouseout="this.style.backgroundColor='#022742';" > SIGN UP </button>
+                </div>
+                    <div class = "horizontal-center"> 
+                    <button class="centered-button" style = "margin-top: 10px; ">LOGIN</button>
+                </div>
+            </div>
+        </div>
+        <div id="about" data-tab-content>
+            <h1> About </h1>
+    </div>
+       
+
+
+
+
+    </div>  <!--  end of div for the tabs  -->
+
+
+
+   
+</body>
+</html>
+
+
+
+

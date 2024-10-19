@@ -1,12 +1,3 @@
-
-
-// const button = document.getElementById("button")
-
-// button.onclick = function() {
-//     chrome.runtime.sendMessage('this is a test message')
-
-// }
-
 document.addEventListener('DOMContentLoaded', function() {
     const tabButtons = document.querySelectorAll('.tab-button');
     const tabContent = document.getElementById('tab-content');
@@ -89,8 +80,17 @@ tabs.forEach(tab => {
         // }
 
         loadContent(tab.getAttribute('data-target'));
-        document.body.style.backgroundColor = (tab.dataset.target === 'summary.html') ? '#00477A' : ''; // Example: Change color based on active tab
-        document.body.style.backgroundColor = (tab.dataset.target === 'share.html') ? '#00477A' : ''; // Example: Change color based on active tab
+
+        if(tab.dataset.target === 'summary.html')
+        {
+            document.body.style.backgroundColor = '#00477A';
+        }
+        else if(tab.dataset.target === 'share.html')
+        {
+            document.body.style.backgroundColor = '#00477A';
+        }
+        // document.body.style.backgroundColor = (tab.dataset.target === 'summary.html') ? '#00477A' : ''; // Example: Change color based on active tab
+        // document.body.style.backgroundColor = (tab.dataset.target === 'share.html') ? '#00477A' : ''; // Example: Change color based on active tab
         //overlay.style.opacity = (tab.dataset.target === 'summary.html') ? '0.4' : '0.5'; 
     });
 });

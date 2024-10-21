@@ -1,9 +1,9 @@
 
-
 chrome.runtime.onMessage.addListener(async function(message, sender, sendResponse) {
-  
+
+  if (message.action === "call summarize endpoint"){
+
     if (message.data) {
-      console.log("Received data:", message.data);
 
       fetch('http://localhost:5000/summarize', {
         method: 'POST', // Specify the HTTP method
@@ -18,9 +18,19 @@ chrome.runtime.onMessage.addListener(async function(message, sender, sendRespons
         }
         return response.json(); // Convert the response to JSON
         })
+      .then(data => {
+          //console.log('Response Data:', JSON.stringify(data, null, 2));
+
+          chrome.runtime.sendMessage( { action: 'loadData', data: data });
+
+
+
+      })
       .catch((error) => {
         console.error('There was a problem with the fetch operation:', error);
       });
+
+      
 
 
       
@@ -28,7 +38,9 @@ chrome.runtime.onMessage.addListener(async function(message, sender, sendRespons
       // Optionally send a response back
       sendResponse({ status: "Data received" });
     }
-    return true; // Required if you want to send an asynchronous response
+
+  }
+  return true; // Required if you want to send an asynchronous response
 
 
 

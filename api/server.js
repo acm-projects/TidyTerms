@@ -5,28 +5,34 @@ import cors from 'cors';
 import mongoose from 'mongoose'; // Import mongoose
 import { auth } from 'express-openid-connect';
 import Document from './models/documentModel.js'; // Import the MongoDB model
-
-dotenv.config();
-
-// Log environment variables to check if they're loaded correctly
-console.log('Mongo URI:', process.env.MONGO_URI);
-
+import path from 'path';
+import { fileURLToPath } from 'url'; // To get the current file's path
+import { dirname } from 'path'; // To get the directory name
+dotenv.config(); // Load environment variables
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 // Auth0 config
 const config = {
   authRequired: false,
   auth0Logout: true,
   secret: process.env.AUTH0_SECRET,
-  baseURL: 'http://localhost:5000',
+  baseURL: 'http://localhost:5000', // Base URL of your server
   clientID: process.env.AUTH0_CLIENT_ID,
   issuerBaseURL: process.env.AUTH0_ISSUER_BASE_URL
 };
-
-// Initialize express and middleware
+// Initialize express
 const app = express();
-app.use(express.json()); // Ensure JSON bodies are parsed
-app.use(cors());
+// Enable JSON parsing
+app.use(express.json());
+// CORS setup (allowing your frontend at 127.0.0.1:5500)
+app.use(cors({
+  origin: 'http://127.0.0.1:5500', // Allow requests from this frontend URL
+  credentials: true, // Allow credentials (like cookies, tokens)
+}));
+// Auth0 middleware
 app.use(auth(config));
-
+// Serve static files from your frontend directory
+app.use(express.static(path.join(__dirname, '../Website')));
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
@@ -34,8 +40,7 @@ mongoose.connect(process.env.MONGO_URI, {
 })
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.error('MongoDB connection error:', err));
-
-// Route to check if user is logged in
+// Root route to check authentication
 app.get('/', (req, res) => {
   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
 });
@@ -60,7 +65,7 @@ app.post('/summarize', async (req, res) => {
     // const paragraph = (text[4].textContent);
     // console.log(paragraph);
 
-    const highlights = ["personal data, data colection, third-party sharing, data protection"];
+    const highlights = ["personal data", "data colection", "third-party sharing", "data protection"];
 
     let summaries = "Summaries: ";
 
@@ -86,7 +91,7 @@ app.post('/summarize', async (req, res) => {
         
             const summary = response.choices[0].message;
             //console.log(summary.content);
-            summaries = summaries.concat(`\n\n`, summary.content);
+            summaries = summaries.concat("\n\n", summary.content);
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Failed to summarize text' });
@@ -94,24 +99,28 @@ app.post('/summarize', async (req, res) => {
 
 
     }
-  
-  
+
     // Save the document summary to MongoDB
     const newDocument = new Document({ 
       title: title,
       summary: summaries, 
     });
-    await newDocument.save();
+    await newDocument.save();    
 
 
-    try {
+    let key_highlights = {}
+
+
+    for(let i = 0; i < highlights.length; i++){
+
+      try {
         const response = await openai.chat.completions.create({
           model: 'gpt-4o-mini',
           messages: [
                 { role: 'system', content: "You are a helpful assitant whose task is to extract key information from texts"},
                 { 
                     role: 'user', 
-                    content:  `Extracat and rephrase key information based on the following keywords: ${highlights.join(', ')} from the following text\n\n ${summaries}, Be as concise as possible in your response` },
+                    content:  `Extracat and rephrase key information based on the following keyword: ${highlights[i]} from the following text\n\n ${summaries}, Respond in at most 2 sentences` },
 
         
             ],
@@ -120,6 +129,7 @@ app.post('/summarize', async (req, res) => {
         });
     
         const key_points = response.choices[0].message;
+        key_highlights[highlights[i]] = key_points.content;
         console.log(key_points.content);
 
     } catch (error) {
@@ -128,16 +138,12 @@ app.post('/summarize', async (req, res) => {
     }
 
 
-    
+    }
+  
+  
+    return res.status(200).json({ key_highlights  });
 
-
-    res.status(200).json({ summaries  });
-
-    
-
- 
-    
-
+  
 });
 
 // GET /documents - to retrieve all saved documents

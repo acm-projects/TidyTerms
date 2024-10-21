@@ -271,4 +271,5 @@ input[type="url"]:focus {
     font-weight: 400;
     border-radius: 13px;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color:#00477A;
 }

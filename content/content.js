@@ -32,7 +32,7 @@ function parsePageContent() {
   let jsonString = JSON.stringify(jsonObject, null, 4);
   console.log(jsonString);
 
-  chrome.runtime.sendMessage({ data: jsonString }, function(response) {
+  chrome.runtime.sendMessage({ action: "call summarize endpoint", data: jsonString }, function(response) {
     console.log("Response from background:", response);
   });
 

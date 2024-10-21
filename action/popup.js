@@ -1,6 +1,8 @@
+
 document.addEventListener('DOMContentLoaded', function() {
     const tabButtons = document.querySelectorAll('.tab-button');
     const tabContent = document.getElementById('tab-content');
+    // Function to load content from an external HTML file
     // Function to load content from an external HTML file
     function loadTabContent(file) {
         fetch(file)
@@ -10,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(err => console.error('Error loading tab content:', err));
     }
+ 
     // Load the first tab content by default
     loadTabContent('home.html');
     // Add event listeners to all tab buttons
@@ -42,6 +45,9 @@ function loadContent(url) {
             if (url === 'home.html') {
                 setupScanButtonListener();
             }
+            if(url === 'summary.html'){
+                summaryGenerator();
+            }
         })
         .catch(err => {
             contentDiv.innerHTML = `<p>Error loading the content: ${err.message}</p>`;
@@ -60,12 +66,41 @@ function setupScanButtonListener() {
                     target: { tabId: tabs[0].id },
                     files: ["content/content.js"]
                 });
+                loadContent('summary.html');
             });
         });
     } else {
         console.error('scanButton not found!');
     }
 
+}
+
+
+function summaryGenerator(){
+
+
+    const summaryBox = document.getElementById("summaryBox");
+
+    if(summaryBox){
+        chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+            if (message.action === 'loadData') {
+
+                const data = message.data['key_highlights'];
+                 // Start with a header
+
+                // Iterate over the object using for...in
+                for (var key in data) {
+                    if (data.hasOwnProperty(key)) {
+                        // Append key and value to the content variable with newlines
+                        summaryBox.innerHTML += key + ": " + data[key] + "<br><br>";
+                    }
+                }
+    
+                // Set the paragraph's textContent to the assembled content
+          
+            }
+        });
+    }
 }
 
 tabs.forEach(tab => {

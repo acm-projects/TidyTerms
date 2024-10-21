@@ -24,7 +24,8 @@ body, html {
     box-shadow: 20px 20px 10px rgba(0.5,0,0,0.5);
     display: inline-block; 
     animation: float 6s ease-in-out infinite; 
-    z-index: 100; 
+    z-index: 100;  /* Increase this z-index to ensure it's above the words */
+    position: relative; /* Ensure z-index works within stacking context */
 }
 
 @keyframes float {
@@ -105,6 +106,8 @@ p {
     color: white;
     background-color: rgba(0, 71, 122, 0.5);
     border-radius: 20px;
+    position: relative; 
+    z-index: 75; 
 }
 
 .tab {
@@ -117,8 +120,8 @@ p {
     height: 100vh; 
     margin-top: 10px; 
     position: relative;
+    z-index: 75; 
     overflow: hidden; /* Hide overflowing content */
-    z-index: 90; 
 }
 
 .image-container {
@@ -168,7 +171,7 @@ h1, p {
     top: 50%; /* Center the buttons vertically */
     left: 48.5%;
     transform: translate(-50%, -50%); /* Center horizontally and vertically */
-    z-index: 101; 
+    z-index: 100; 
 }
 
 .button {
@@ -181,7 +184,7 @@ h1, p {
     margin: 10px 0; /* Space between buttons */
     cursor: pointer; /* Pointer on hover */
     transition: background-color 0.3s; /* Smooth background color transition */
-    z-index: 101; 
+    z-index: 100; 
 }
 
 .button:hover {
@@ -194,10 +197,10 @@ h1, p {
 /* Words appear between background and main content */
 .word {
     position: absolute;
-    font-size: 30px;
+    font-size: 25px;
     color: white;
-    opacity: 0;
-    z-index: 10; /* In front of the background, behind the main content */
+    opacity: 0.3; 
+    z-index: 50; /* Lower than .box, so words appear behind the box */
     animation: fadeInOut 5s ease-in-out forwards;
 }
 

@@ -146,14 +146,53 @@ app.post('/summarize', async (req, res) => {
   
 });
 
+
+app.post('compare', async(req, res) => {
+
+  const {text1, text2} = req.body;
+
+  if(!text1 || !text2) {
+    return res.status(400).json({ error: 'Both text1 and text2 are required' });
+  }
+
+  try {
+
+    const response = await openai.chat.completions.create({
+      model: 'gpt-4o-mini',
+      messages: [
+            { 
+              role: 'user', 
+              content:  `Compare the following two pieces of text and explain the similarities and differences in easy to understand bullet points:\n\nText 1: ${text1}\n\nText 2: ${text2}`
+            },
+
+    
+        ],
+        temperature: 0.7,
+    });
+
+    const comparison = response.data.choices[0].message.content;
+    return res.status(200).json({ comparision });;
+
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Failed to compare texts' });
+  }
+
+})
+
+
+
+
+
+
 // GET /documents - to retrieve all saved documents
 app.get('/documents', async (req, res) => {
   try {
     const documents = await Document.find(); // Fetch all documents from MongoDB
-    res.status(200).json(documents);
+    return res.status(200).json(documents);
   } catch (error) {
     console.error('Error retrieving documents:', error);
-    res.status(500).json({ error: 'Failed to retrieve documents' });
+    return res.status(500).json({ error: 'Failed to retrieve documents' });
   }
 });
 

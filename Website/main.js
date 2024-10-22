@@ -1,6 +1,20 @@
+
+//import { text} from 'express';
+
+loadSummaries();
+
 const tabs = document.querySelectorAll('[data-tab-target]')
 const tabContents = document.querySelectorAll('[data-tab-content]')
+
+
 tabs.forEach(tab => {
+
+    const currentTab = document.querySelectorAll(tab.dataset.tabTarget);
+
+    if (currentTab.id === 'mySummaries'){
+        loadSummaries();
+    }
+
     tab.addEventListener('click',() => {
         const target = document.querySelector(tab.dataset.tabTarget)
         tabContents.forEach(tabContent => {
@@ -15,8 +29,65 @@ tabs.forEach(tab => {
 
 
         target.classList.add('active')
+
+        console.log(target.id);
+
+        if (target.id === 'mySummaries'){
+            loadSummaries();
+        }
+
+
     })
 })
+
+
+
+async function loadSummaries() {
+    const apiUrl = 'http://localhost:5000/documents'; // Your API endpoint
+
+
+    try {
+        const response = await fetch(apiUrl);
+        const summaries = await response.json();
+
+        // Get the container where the summaries will be displayed
+        var summaryContainer = document.getElementById(id='summaryContainer');
+        summaryContainer.innerHTML = '<div></div>';  // Clear previous content
+
+        // Add the "Add New Summary" button
+        const addButton = document.createElement('button');
+        addButton.id = 'newSummary';
+        addButton.classList.add('styled-button', 'zen-kaku-gothic-new-regular');
+        addButton.innerHTML = `Add New Summary <i class="fas fa-folder-plus"></i>`;
+        addButton.addEventListener('click', () => {
+            const content = {title: 'add new summary', text: 'add new summary'};
+            loadNewContent(content);
+        });
+        summaryContainer.appendChild(addButton);
+
+        // Loop through the summaries and generate buttons for each
+        summaries.forEach(summary => {
+            console.log(summary.toString());
+            
+            const summaryButton = document.createElement('button');
+            summaryButton.classList.add('styled-button', 'zen-kaku-gothic-new-regular');
+            //summaryButton.id = "summaryOne"
+            summaryButton.innerHTML = `
+                ${summary.title} 
+                <div class="icon-container">
+                    <i class="fas fa-share"></i>
+                </div>
+            `;
+            summaryButton.addEventListener('click', () => {
+                const content = {title: "Summary loaded", text: summary.summary}
+                loadNewContent(content);
+            });
+            summaryContainer.appendChild(summaryButton);
+        });
+    } catch (error) {
+        console.error('Error fetching summaries:', error);
+    }
+}
 
 
 // // Get the button and main content container
@@ -120,13 +191,13 @@ loadButtons.forEach(button => {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-    const logo = document.querySelector('.logo'); // Select the logo element
-    const chatBox = document.getElementById('chatBox'); // Select the chat box
+// document.addEventListener('DOMContentLoaded', function () {
+//     const logo = document.querySelector('.logo'); // Select the logo element
+//     const chatBox = document.getElementById('chatBox'); // Select the chat box
 
-    // Add event listener to the logo
-    logo.addEventListener('click', function () {
-        chatBox.classList.toggle('active'); // Toggle the chat box visibility
-    });
+//     // Add event listener to the logo
+//     logo.addEventListener('click', function () {
+//         chatBox.classList.toggle('active'); // Toggle the chat box visibility
+//     });
     
-});
+// });

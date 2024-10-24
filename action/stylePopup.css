@@ -259,22 +259,16 @@ input[type="url"]:focus {
 }
 
 .summary-box {
-    text-align: justify;
-    font-weight: bold;
     display: flex;
     margin-top: 13px;
-    justify-content: center;   /* Center the search bar horizontally */         /* Add some padding around the container */
+    justify-content: center;   /* Center the search bar horizontally */
+    padding: 75px;             /* Add some padding around the container */
     background-color: white;
     /* position: sticky;          Stick the search bar to the top */
     top: 0;                    /* Ensure it's at the top of the page */
     z-index: 3;             /* Keep the search bar above other content */
-    height: 165px;
     font-family: 'Zen Kaku Gothic New';
     font-weight: 400;
     border-radius: 13px;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    color:#00477A;
-    overflow-y: auto;
-
-
 }

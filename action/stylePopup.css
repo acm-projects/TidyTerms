@@ -1,0 +1,280 @@
+@font-face {
+    font-family: 'LTInstitute';
+    src: url('fonts/LTInstitute-1.otf') format('opentype'); /* Specify the format as 'opentype' */
+    font-weight: normal;
+    font-style: normal;
+}
+.zen-kaku-gothic-new-light {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+  
+.zen-kaku-gothic-new-regular {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+.zen-kaku-gothic-new-medium {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+  
+.zen-kaku-gothic-new-bold {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+  
+.zen-kaku-gothic-new-black {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 1000;
+    font-style: normal;
+}
+
+body {
+    width: 450px; 
+    height: 300px; 
+    margin: 0; 
+    background-color: #C6D9E6; 
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://i.pinimg.com/originals/d5/62/93/d562931e7d93e7162d1af2c955d5f283.jpg'); 
+    background-size: cover;
+    opacity: 0.5; /* 50% transparency */
+    z-index: 1;
+}
+.logo {
+    margin-right: 20px;                     /* Space between logo and tabs */
+    cursor: pointer;                        /* Cursor style for logo */
+    width: 28px;
+    height: 28px;
+    z-index: 4;
+}
+.content {
+    position: relative;
+    z-index: 2; /* Ensure content is above the overlay */
+    /* padding: 20px; */
+}
+h1 {
+    font-size: 48px; 
+    text-align: center;
+    margin-top: 0; 
+    color: #00477A; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.tabs {
+    display: flex; 
+    justify-content: center;
+    background-color: white;
+    padding: 0;
+    width: 100%; 
+    position: relative; 
+}
+.tab {
+    font-family: 'Zen Kaku Gothic New';
+    font-weight: 1000;
+    padding: 5px 15px; 
+    cursor:pointer; 
+    background-color: transparent; 
+    color: gray;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    margin-right: 20px; 
+    margin-left: 20px;
+    display: flex;
+    justify-content: flex-start; /* Center icon and text horizontally */
+    align-items: center;
+}
+.tab i {
+    font-size:12px;
+    color: gray;
+    margin-right: 15px;
+}
+.tab-text {
+    /*margin-left: 5px;  Space between icon and text */
+    font-size: 12px;                   /* Set font size for tab text */
+    color: #00477A;                       /* Default text color */
+    display: none;                     /* Hide by default */
+}
+.tab.active i {
+    color: #00477A; /* Change icon color when active */
+}
+.tab.active 
+{
+    background-color: #C6D9E6; 
+    /* margin-top: 10px;  */
+    border: 2px #C6D9E6;
+    color: #00477A; /* The color of the active tab's text */
+    border-radius: 12px; /* Rounded corners for the active tab */
+    width: 120px; /* Fixed width for the active tab */
+    text-align: center; /* Centers the text inside the tab */
+}
+/* .tab.summary-active {
+    background-color: #00477A; 
+    color: white;  
+} */
+.tab.active .tab-text {
+    display: inline;                   /* Show text for active tab */
+}
+.chat-box {
+    display: none;                          /*  Hide by default */ 
+    position: absolute;                     /* Position relative to logo */
+    top: 30px;                              /* Adjust to position below logo */
+    left: 0;                                /* Align with left edge of logo */
+    width: 100px;                           /* Set width of chat box */
+    height: 200px;                          /* Set height of chat box */
+    background-color: white;                /* Background color of chat box */
+    border: 1px solid #ccc;                 /* Border for chat box */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    z-index: 3;                             /* Above other elements */
+    padding: 10px;                          /* Padding inside chat box */
+}
+.chat-box.active {
+    display: block;   /* Show chat box when active */
+}
+.tab-content {
+    padding: 20px; 
+    margin-top: 10px; 
+}
+footer {
+    width: 100%;                         /* Full width */
+    background-color: white;          /* Light background color */
+    padding: 1.5px 0;                     /* Vertical padding for height */
+    position: absolute;                   /* Position at the bottom */
+    bottom: 0;                           /* Align to the bottom of the page */
+    text-align: center;                  /* Center the text */
+    font-size: 12px;                     /* Font size */
+    color: black;                         /* Text color */
+    z-index: 5;
+    font-family: 'Zen Kaku Gothic New';
+    font-weight: 500;
+}
+.scan-button {
+    width: 170px;
+    padding: 10px 15px; 
+    background-color: #00477A;
+    color: white;
+    border: none;
+    border-radius: 13px;
+    cursor: pointer;
+    font-family: 'Zen Kaku Gothic New';
+    font-weight: 1000;
+    z-index:3;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.scan-button:hover {
+    background-color: #00375f; 
+}
+.white-button {
+    width: 170px;
+    padding: 10px 15px; 
+    background-color: white;
+    color: #00477A;
+    border: none;
+    border-radius: 13px;
+    cursor: pointer;
+    font-family: 'Zen Kaku Gothic New';
+    font-weight: 1000;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.white-button:hover {
+    background-color: rgb(233, 233, 233); 
+}
+.center-container {
+    display: flex;            /* Align buttons in a row */
+    gap: 10px; 
+    justify-content: center;
+}
+.link-input-container {
+    margin-top: 10px;          /* Adds space between buttons and the link input field */
+    text-align: center;        /* Centers the link input field */
+}
+
+input[type="url"] {
+    padding: 8px;
+    width: 300px;              /* Set a fixed width for the input field */
+    border: 1px solid #C6D9E6;
+    border-radius: 4px;
+    font-family: 'Zen Kaku Gothic New';
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+label {
+    font-family: 'Zen Kaku Gothic New';
+    margin-right: 10px;
+}
+input[type="url"]:focus {
+    outline: none;               /* Removes the default outline */
+    border-color: #00477A;       /* Change to your desired border color */
+    border-width: 1.2px;
+}
+.search-bar-container {
+    display: flex;
+    justify-content: center;   /* Center the search bar horizontally */
+    align-items: center;       /* Align the search bar items vertically */
+    padding: 0px;             /* Add some padding around the container */
+    background-color: white;
+    position: sticky;          /* Stick the search bar to the top */
+    top: 0;                    /* Ensure it's at the top of the page */
+    z-index: 3;             /* Keep the search bar above other content */
+    font-family: 'Zen Kaku Gothic New';
+    font-weight: 300;
+    border-radius: 13px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#search-bar {
+    padding: 8px;
+    width: 300px;              /* Set the width of the search bar */
+    border: 1px solid white;     /* Default border */
+    border-radius: 13px; /* Rounded corners for the left side */
+    font-family: 'Zen Kaku Gothic New';
+    font-weight: 400;
+    background-color: white;
+    color: #00477A;
+    flex: 1;
+     
+}
+
+.search-button {
+    /* width: 170px; */
+    margin-right: 5px;
+    padding: 5px 5px; 
+    color: #00477A;
+    border: none;
+    border-radius: 13px;
+    cursor: pointer;
+    font-family: 'Zen Kaku Gothic New';
+    font-weight: 1000;
+}
+.search-button:hover {
+    background-color: #bbceda; 
+}
+
+.summary-box {
+    text-align: justify;
+    font-weight: bold;
+    display: flex;
+    margin-top: 13px;
+    justify-content: center;   /* Center the search bar horizontally */         /* Add some padding around the container */
+    background-color: white;
+    /* position: sticky;          Stick the search bar to the top */
+    top: 0;                    /* Ensure it's at the top of the page */
+    z-index: 3;             /* Keep the search bar above other content */
+    height: 165px;
+    font-family: 'Zen Kaku Gothic New';
+    font-weight: 400;
+    border-radius: 13px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color:#00477A;
+    overflow-y: auto;
+
+
+}

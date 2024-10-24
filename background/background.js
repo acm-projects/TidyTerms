@@ -19,9 +19,13 @@ chrome.runtime.onMessage.addListener(async function(message, sender, sendRespons
         return response.json(); // Convert the response to JSON
         })
       .then(data => {
-          //console.log('Response Data:', JSON.stringify(data, null, 2));
 
-          chrome.runtime.sendMessage( { action: 'loadData', data: data });
+        
+          console.log('Response Data:', JSON.stringify(data, null, 2));
+
+          
+
+          chrome.runtime.sendMessage( { action: 'display summaries', data: data });
 
 
 

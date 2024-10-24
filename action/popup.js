@@ -82,8 +82,13 @@ function summaryGenerator(){
     const summaryBox = document.getElementById("summaryBox");
 
     if(summaryBox){
+
+        console.log("summary box exists");
+
         chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-            if (message.action === 'loadData') {
+            if (message.action === 'display summaries') {
+
+                console.log("load data message recieved");
 
                 const data = message.data['key_highlights'];
                  // Start with a header
@@ -102,6 +107,39 @@ function summaryGenerator(){
         });
     }
 }
+
+
+// function summaryGenerator() {
+//     const summaryBox = document.getElementById("summaryBox");
+
+//     if (summaryBox) {
+//         const handleMessage = (message, sender, sendResponse) => {
+//             if (message.action === 'loadData') {
+//                 const data = message.data['key_highlights'];
+                
+//                 // Clear the summaryBox before appending new content
+//                 summaryBox.innerHTML = ''; 
+                
+//                 // Iterate over the object and create elements dynamically
+//                 for (let key in data) {
+//                     if (data.hasOwnProperty(key)) {
+//                         // Create a new div for each key-value pair
+//                         const item = document.createElement('div');
+//                         item.textContent = `${key}: ${data[key]}`;
+//                         summaryBox.appendChild(item);
+//                     }
+//                 }
+//             }
+//         };
+
+//         // Remove any existing listeners to avoid adding multiple identical ones
+//         chrome.runtime.onMessage.removeListener(handleMessage);
+        
+//         // Add the message listener
+//         chrome.runtime.onMessage.addListener(handleMessage);
+//     }
+// }
+
 
 tabs.forEach(tab => {
     tab.addEventListener('click', () => {

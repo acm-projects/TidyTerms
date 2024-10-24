@@ -25,10 +25,11 @@ const app = express();
 // Enable JSON parsing
 app.use(express.json());
 // CORS setup (allowing your frontend at 127.0.0.1:5500)
-app.use(cors({
-  origin: 'http://127.0.0.1:5500', // Allow requests from this frontend URL
-  credentials: true, // Allow credentials (like cookies, tokens)
-}));
+// app.use(cors({
+//   //origin: 'http://127.0.0.1:5500', // Allow requests from this frontend URL
+//   credentials: true, // Allow credentials (like cookies, tokens)
+// }));
+app.use(cors());
 // Auth0 middleware
 app.use(auth(config));
 // Serve static files from your frontend directory

@@ -22,7 +22,8 @@
     "scripting",
     "activeTab",
     "windows",
-    "tabs"
+    "tabs",
+    "alarms"
   ],
 
   "content_scripts": [

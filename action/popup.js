@@ -76,7 +76,7 @@ function setupScanButtonListener() {
 }
 
 
-function summaryGenerator(){
+function summaryGenerator(data){
 
 
     const summaryBox = document.getElementById("summaryBox");
@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-function parsePageContent() {
+async function parsePageContent() {
 
 
     let data = {}
@@ -212,10 +212,31 @@ function parsePageContent() {
     // Convert to a JSON string
     let jsonString = JSON.stringify(jsonObject, null, 4);
     console.log(jsonString);
+
+    try {
+        const response = await fetch('http://localhost:5000/summarize', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: jsonString,
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok: ' + response.statusText);
+        }
+
+        const data = await response.json(); // Await the response properly
+        chrome.runtime.sendMessage( {action: "display summaries", data: data}) // Pass the fetched data to summaryGenerator
+
+    } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+    }
+
+
+ 
   
-    chrome.runtime.sendMessage({ action: "call summarize endpoint", data: jsonString }, function(response) {
-      console.log("Response from background:", response);
-    });
+
   
     // Output JSON string
   

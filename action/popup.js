@@ -76,37 +76,137 @@ function setupScanButtonListener() {
 }
 
 
-function summaryGenerator(data){
+let currentIndex = -1; // Track the current index of highlighted text
+let highlights = []; // Array to store highlighted elements
 
-
+function summaryGenerator() {
     const summaryBox = document.getElementById("summaryBox");
+    const searchBar = document.getElementById('search-bar');
+    const prevButton = document.getElementById('prev-button');
+    const nextButton = document.getElementById('next-button');
+    const indexDisplay = document.getElementById('index-display'); // Element to display current index and count
 
-    if(summaryBox){
+    if (summaryBox) {
+        console.log("Summary box exists");
 
-        console.log("summary box exists");
+        // Clear previous content
+        summaryBox.innerHTML = '';
 
         chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             if (message.action === 'display summaries') {
-
-                console.log("load data message recieved");
+                console.log("Load data message received");
 
                 const data = message.data['key_highlights'];
-                 // Start with a header
 
-                // Iterate over the object using for...in
+                // Start with a header
                 for (var key in data) {
                     if (data.hasOwnProperty(key)) {
-                        // Append key and value to the content variable with newlines
-                        summaryBox.innerHTML += key + ": " + data[key] + "<br><br>";
+                        // Append key and value to the summary box
+                        summaryBox.innerHTML += "<p><strong>" + key  + ":" + data[key] + "</strong> "  + "<br> <br>" + "</p>";
                     }
                 }
-    
-                // Set the paragraph's textContent to the assembled content
-          
+
+                // Now set up the search functionality
+                setupSearchFunctionality(summaryBox, searchBar, prevButton, nextButton, indexDisplay);
             }
         });
     }
 }
+
+function setupSearchFunctionality(summaryBox, searchBar, prevButton, nextButton, indexDisplay) {
+    searchBar.addEventListener('input', function() {
+        const query = this.value.trim().toLowerCase(); // Normalize input for case-insensitive search
+        resetHighlights(summaryBox, indexDisplay); // Clear previous highlights
+
+        if (query) {
+            const text = summaryBox.innerText.toLowerCase();
+            highlights = []; // Reset highlights array
+            let match;
+            const regex = new RegExp(`(${query})`, 'gi');
+            const originalHTML = summaryBox.innerHTML; // Store original HTML
+
+            // Find all matches and highlight them
+            summaryBox.innerHTML = originalHTML.replace(regex, (match) => {
+                highlights.push(match); // Store each highlight
+                return `<span class="highlight">${match}</span>`; // Wrap matches in a span
+            });
+
+            // If there are matches, enable buttons
+            if (highlights.length > 0) {
+                currentIndex = 0; // Reset current index to the first match
+                highlightCurrent(summaryBox, currentIndex, indexDisplay);
+                prevButton.disabled = false; // Enable previous button
+                nextButton.disabled = false; // Enable next button
+            } else {
+                prevButton.disabled = true; // Disable previous button if no match
+                nextButton.disabled = true; // Disable next button if no match
+                indexDisplay.textContent = ''; // Clear index display
+            }
+        } else {
+            // If the input is empty, reset to original text
+            resetHighlights(summaryBox, indexDisplay);
+            prevButton.disabled = true; // Disable previous button
+            nextButton.disabled = true; // Disable next button
+        }
+    });
+
+    prevButton.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+        } else {
+            currentIndex = highlights.length - 1; // Wrap around to the last match
+        }
+        highlightCurrent(summaryBox, currentIndex, indexDisplay);
+    });
+
+    nextButton.addEventListener('click', () => {
+        if (currentIndex < highlights.length - 1) {
+            currentIndex++;
+        } else {
+            currentIndex = 0; // Wrap around to the first match
+        }
+        highlightCurrent(summaryBox, currentIndex, indexDisplay);
+    });
+}
+
+function highlightCurrent(summaryBox, index, indexDisplay) {
+    // Remove existing highlight
+    const highlightedElements = summaryBox.querySelectorAll('.highlight');
+    highlightedElements.forEach((el, i) => {
+        el.classList.remove('current-highlight');
+        if (i === index) {
+            el.classList.add('current-highlight'); // Highlight the current index
+        }
+    });
+
+    // Update index display
+    indexDisplay.textContent = `Result ${index + 1} of ${highlights.length}`; // Show current index and total matches
+
+    // Scroll to the current highlight
+    summaryBox.scrollTop = highlightedElements[index].offsetTop - summaryBox.offsetTop; 
+}
+
+function resetHighlights(summaryBox, indexDisplay) {
+    const originalText = summaryBox.innerText; // Get original text
+    summaryBox.innerHTML = originalText; // Reset to original text
+    highlights = []; // Clear highlights array
+    currentIndex = -1; // Reset current index
+    indexDisplay.textContent = ''; // Clear index display
+}
+
+// Inside your DOMContentLoaded or appropriate event
+document.addEventListener('DOMContentLoaded', function() {
+    const indexDisplay = document.createElement('div');
+    indexDisplay.id = 'index-display'; // Create an element to display index info
+    indexDisplay.style.marginTop = '10px'; // Add some margin for visual separation
+    document.body.appendChild(indexDisplay); // Append to body or a specific container
+
+    // Load default content
+    loadContent('home.html');
+});
+
+
+
 
 
 // function summaryGenerator() {
@@ -242,9 +342,5 @@ async function parsePageContent() {
   
 }
 
-
-
-
 // Load default content
 loadContent('home.html');
-

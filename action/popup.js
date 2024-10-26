@@ -54,26 +54,83 @@ function loadContent(url) {
         });
 }
 
-function setupScanButtonListener() {
+function unloadContent() {
+    const contentArea = document.getElementById('content');
+    contentArea.innerHTML = ''; // Clear existing content
+}
+
+async function setupScanButtonListener() {
     const scanButton = document.getElementById('scanButton');
 
     if (scanButton) {
-        console.log('Button exists!');
-        scanButton.addEventListener('click', () => {
+        scanButton.addEventListener('click', async () => {
             console.log('Button clicked!');
-            chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-                chrome.scripting.executeScript({
-                    target: { tabId: tabs[0].id },
-                    function: parsePageContent,
-                });
-                loadContent('summary.html');
+            const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
+            await chrome.scripting.executeScript({
+                target: { tabId: tabs[0].id },
+                function: parsePageContent,
             });
+            loadContent('loadContent.html'); // Ensure this runs after parsePageContent completes
         });
     } else {
         console.error('scanButton not found!');
     }
-
 }
+
+async function parsePageContent() {
+    loadContent('loadContent.html'); // Load the loading screen initially
+
+    let data = {};
+
+    const htmlContent = document.documentElement.outerHTML;
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlContent, "text/html");
+
+    const title = doc.querySelector('h1'); // Query the title
+
+    console.log(title);
+
+    let jsonObject = {
+        'title': title ? title.innerText : null
+    };
+
+    const paragraphs = doc.querySelectorAll('p');
+
+    jsonObject['content'] = Array.from(paragraphs).map(paragraph => ({
+        textContent: paragraph.textContent.trim(),
+    }));
+
+    // Convert to a JSON string
+    let jsonString = JSON.stringify(jsonObject, null, 4);
+    console.log(jsonString);
+
+    try {
+        const response = await fetch('http://localhost:5000/summarize', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: jsonString,
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok: ' + response.statusText);
+        }
+
+        const data = await response.json(); // Await the response properly
+        unloadContent(); // Unload the loading content
+
+        // Load the summary content again
+        loadContent('summary.html'); // Call loadContent to load summary.html
+
+        // You may also want to send data to the summary generator
+        chrome.runtime.sendMessage({ action: "display summaries", data: data });
+
+    } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+    }
+}
+
 
 
 function summaryGenerator(data){
@@ -182,6 +239,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 async function parsePageContent() {
 
+    loadContent("loadContent.html"); 
 
     let data = {}
   
@@ -227,6 +285,7 @@ async function parsePageContent() {
         }
 
         const data = await response.json(); // Await the response properly
+        unloadContent(); 
         chrome.runtime.sendMessage( {action: "display summaries", data: data}) // Pass the fetched data to summaryGenerator
 
     } catch (error) {
@@ -247,4 +306,3 @@ async function parsePageContent() {
 
 // Load default content
 loadContent('home.html');
-

@@ -1,3 +1,15 @@
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.action === "getLoadingData") {
+        const letters = document.querySelectorAll('.letter');
+        const loadingMessages = document.querySelectorAll('.loading-message');
+
+        sendResponse({
+            lettersCount: letters.length,
+            loadingMessagesCount: loadingMessages.length
+        });
+    }
+});
+
 document.addEventListener("DOMContentLoaded", function () {
     const letters = document.querySelectorAll('.letter');
     const loadingMessages = document.querySelectorAll('.loading-message');
@@ -107,3 +119,4 @@ function animateBroom() {
         broomContainer.style.animation = 'sweep 4s linear forwards'; // Restart
     });
 }
+

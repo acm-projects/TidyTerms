@@ -1,13 +1,12 @@
 body {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f0f0f0;
+    width: 450px; 
+    height: 300px; 
+    margin: 0; 
+    background-color: #C6D9E6; 
 }
 
 
+  
 .loading-container {
     position: relative;
     text-align: center;
@@ -93,46 +92,4 @@ body {
     opacity: 0;
     margin: 0 10px;
     transition: opacity 0.5s;
-}
-
-
-/* Existing styles for tabs, etc. */
-.tabs {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-
-.logo {
-    width: 50px;
-    margin-bottom: 20px;
-}
-
-
-.tab {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    cursor: pointer;
-}
-
-
-.tab i {
-    margin-right: 10px;
-}
-
-
-.tab.active {
-    background-color: #ddd;
-}
-
-
-.tab-content {
-    margin-top: 20px;
-}
-
-
-.chat-box {
-    margin-top: 30px;
 }

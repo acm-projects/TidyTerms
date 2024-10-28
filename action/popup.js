@@ -183,7 +183,25 @@ function parsePageContent() {
   
 }
 
+const titleElement = document.querySelector('h1'); // Adjust the selector as needed
 
+if (titleElement) {
+    const text = titleElement.textContent;
+    titleElement.textContent = ''; // Clear the original text
+
+    // Create span for each letter and apply a random animation delay
+    text.split('').forEach(letter => {
+        const span = document.createElement('span');
+        span.textContent = letter === ' ' ? '\u00A0' : letter; // Preserve spaces
+        span.classList.add('floating-letter');
+
+        // Set a random animation delay for each letter
+        const delay = Math.random() * 2; // Random delay between 0 and 2 seconds
+        span.style.animationDelay = `${delay}s`;
+
+        titleElement.appendChild(span);
+    });
+}
 
 
 // Load default content

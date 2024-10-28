@@ -138,3 +138,55 @@ function displayRandomWord() {
 
 // Display words at random intervals
 setInterval(displayRandomWord, 1000); // New word every second
+
+// const words = ["Privacy", "Terms", "Data", "Security", "Agreements", "Contracts", "Confidentiality", "Usage", "Consent", "Encryption"]; // Add more words as needed
+
+// function getRandomPosition() {
+//     const x = Math.random() * (window.innerWidth - 100); // Random X position
+//     const y = 75 + Math.random() * (window.innerHeight - 125); // Random Y position (adjusted for margin)
+//     return { x, y };
+// }
+
+// function typeWord(word, wordElement) {
+//     let currentCharIndex = 0;
+
+//     function type() {
+//         if (currentCharIndex < word.length) {
+//             wordElement.textContent += word.charAt(currentCharIndex);
+//             currentCharIndex++;
+//             setTimeout(type, 150); // Typing speed
+//         } else {
+//             setTimeout(untype, 1000); // Pause before untyping
+//         }
+//     }
+
+//     function untype() {
+//         if (currentCharIndex > 0) {
+//             wordElement.textContent = wordElement.textContent.slice(0, -1);
+//             currentCharIndex--;
+//             setTimeout(untype, 150); // Un-typing speed
+//         } else {
+//             wordElement.remove(); // Remove the element when done
+//         }
+//     }
+
+//     type(); // Start typing
+// }
+
+// function createWordElement(word) {
+//     const wordElement = document.createElement('div');
+//     wordElement.classList.add('word');
+
+//     // Get a random position for the word
+//     const { x, y } = getRandomPosition();
+//     wordElement.style.left = `${x}px`;
+//     wordElement.style.top = `${y}px`;
+
+//     document.body.appendChild(wordElement);
+
+//     // Call the typing function with the word and word element
+//     typeWord(word, wordElement);
+// }
+
+// // Display words at random intervals
+// setInterval(displayRandomWord, 2000); // New word every 2 seconds

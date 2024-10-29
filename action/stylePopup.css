@@ -191,19 +191,7 @@ footer {
     display: flex;            /* Align buttons in a row */
     gap: 10px; 
     justify-content: center;
-}
-.link-input-container {
-    margin-top: 10px;          /* Adds space between buttons and the link input field */
-    text-align: center;        /* Centers the link input field */
-}
-
-input[type="url"] {
-    padding: 8px;
-    width: 300px;              /* Set a fixed width for the input field */
-    border: 1px solid #C6D9E6;
-    border-radius: 4px;
-    font-family: 'Zen Kaku Gothic New';
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    align-items:center;
 }
 
 label {

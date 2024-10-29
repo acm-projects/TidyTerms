@@ -8,7 +8,6 @@ import Document from './models/documentModel.js'; // Import the MongoDB model
 import path from 'path';
 import { fileURLToPath } from 'url'; // To get the current file's path
 import { dirname } from 'path'; // To get the directory name
-import { error } from 'console';
 dotenv.config(); // Load environment variables
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -149,30 +148,38 @@ app.post('/summarize', async (req, res) => {
 });
 
 
+app.post('compare', async(req, res) => {
 
+  const {text1, text2} = req.body;
 
-app.post('/save', async (req, res) =>{
-
-  const {title, content} = req.body;
-
-  if(!title || !content){
-    res.sendStatus(400).json({ error: 'Text and Title Required'});
+  if(!text1 || !text2) {
+    return res.status(400).json({ error: 'Both text1 and text2 are required' });
   }
 
-  const newDocument = new Document({
-    title: title,
-    summary: content,
-  })
-  await newDocument.save();
+  try {
 
-  res.sendStatus(200).json({"message": "documents saved successfully"});
+    const response = await openai.chat.completions.create({
+      model: 'gpt-4o-mini',
+      messages: [
+            { 
+              role: 'user', 
+              content:  `Compare the following two pieces of text and explain the similarities and differences in easy to understand bullet points:\n\nText 1: ${text1}\n\nText 2: ${text2}`
+            },
 
+    
+        ],
+        temperature: 0.7,
+    });
 
+    const comparison = response.data.choices[0].message.content;
+    return res.status(200).json({ comparision });;
 
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Failed to compare texts' });
+  }
 
-});
-
-
+})
 
 
 

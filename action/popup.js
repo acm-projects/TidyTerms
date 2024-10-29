@@ -1,275 +1,141 @@
-
 document.addEventListener('DOMContentLoaded', function() {
     const tabButtons = document.querySelectorAll('.tab-button');
     const tabContent = document.getElementById('tab-content');
+    const tabs = document.querySelectorAll('.tab');
+    const contentDiv = document.getElementById('content');
+    const overlay = document.querySelector('.overlay');
+    const loadingScreen = document.getElementById('loading-screen');
+    const homeContent = document.getElementById('home-content');
+    const letters = document.querySelectorAll('.letter');
+    const loadingMessages = document.querySelectorAll('.loading-message');
+    const logo = document.querySelector('.logo');
+    const chatBox = document.getElementById('chatBox');
 
-    // Function to load content from an external HTML file
-    // Function to load content from an external HTML file
-    function loadTabContent(file) {
-        fetch(file)
-            .then(response => response.text())
-            .then(data => {
-                tabContent.innerHTML = data;  // Load the HTML content into the container
-            })
-            .catch(err => console.error('Error loading tab content:', err));
-    }
- 
-    // Load the first tab content by default
-    loadTabContent('home.html');
+    // Load home page by default on extension load
+    loadContent('home.html');
+
     // Add event listeners to all tab buttons
     tabButtons.forEach(button => {
         button.addEventListener('click', function() {
-            // Remove 'active' class from all buttons
             tabButtons.forEach(btn => btn.classList.remove('active'));
-            // Add 'active' class to the clicked button
             this.classList.add('active');
-            // Load the content for the clicked tab
-            const tabFile = this.getAttribute('data-tab');
-            loadTabContent(tabFile);
+            loadTabContent(this.getAttribute('data-tab'));
         });
     });
-});
-const tabs = document.querySelectorAll('.tab');
-const contentDiv = document.getElementById('content');
-//const chatBox = document.getElementById('chatBox');
-const overlay = document.querySelector('.overlay');
-const loadingScreen = document.getElementById('loading-screen'); // Ensure this element exists in DOM
-const homeContent = document.getElementById('home-content'); // Home content element
 
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            loadContent(tab.getAttribute('data-target'));
 
-function loadContent(url) {
-    fetch(url)
-        .then(response => {
-            if (!response.ok) throw new Error('Network response is not okay.');
-            return response.text();
-        })
-        .then(data => {
-            console.log('content is loaded!'); 
-            contentDiv.innerHTML = data;
-            if (url === 'home.html') {
-                setupScanButtonListener();
-            }
-            if(url === 'summary.html'){
-                summaryGenerator();
-            }
-        })
-        .catch(err => {
-            contentDiv.innerHTML = `<p>Error loading the content: ${err.message}</p>`;
+            document.body.style.backgroundColor = (tab.dataset.target === 'summary.html' || tab.dataset.target === 'share.html') ? '#00477A' : '';
         });
-}
+    });
 
-// function setupScanButtonListener() {
-//     const scanButton = document.getElementById('scanButton');
+    // Logo click event to toggle chat box
+    logo.addEventListener('click', function() {
+        chatBox.classList.toggle('active');
+    });
 
-//     if (scanButton) {
-//         console.log('Button exists!');
-//         scanButton.addEventListener('click', () => {
-//             console.log('Button clicked!');
-//             chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-//                 chrome.scripting.executeScript({
-//                     target: { tabId: tabs[0].id },
-//                     function: parsePageContent,
-//                 });
-//                 loadContent('summary.html'); 
-//             });
-//         });
-//     } else {
-//         console.error('scanButton not found!');
-//     }
+    // Content loading function
+    function loadTabContent(file) {
+        fetch(file)
+            .then(response => response.text())
+            .then(data => { tabContent.innerHTML = data; })
+            .catch(err => console.error('Error loading tab content:', err));
+    }
 
-// }
+    function loadContent(url) {
+        fetch(url)
+            .then(response => {
+                if (!response.ok) throw new Error('Network response is not okay.');
+                return response.text();
+            })
+            .then(data => {
+                contentDiv.innerHTML = data;
+                if (url === 'home.html') setupScanButtonListener();
+                if (url === 'summary.html') summaryGenerator();
+            })
+            .catch(err => { contentDiv.innerHTML = `<p>Error loading the content: ${err.message}</p>`; });
+    }
 
-function setupScanButtonListener() {
-    const scanButton = document.getElementById('scanButton');
-    if (scanButton) {
-        scanButton.addEventListener('click', () => {
-            showLoadingScreen(); // Show loading screen
-            chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-                chrome.scripting.executeScript({
-                    target: { tabId: tabs[0].id },
-                    function: parsePageContent,
-                }).then(() => {
-                    hideLoadingScreen(); // Hide loading screen after parsing
-                    loadContent('summary.html');
-                }).catch(err => console.error('Error executing script:', err));
+    // Loading screen control
+    function showLoadingScreen() {
+        if (loadingScreen && homeContent) {
+            loadingScreen.style.display = 'block';
+            homeContent.style.display = 'none';
+            startAnimations();
+        } else {
+            console.error('Loading screen or home content element not found!');
+        }
+    }
+
+    function hideLoadingScreen() {
+        if (loadingScreen && homeContent) {
+            stopAnimations();
+            loadingScreen.style.display = 'none';
+            homeContent.style.display = 'block';
+        } else {
+            console.error('Loading screen or home content element not found!');
+        }
+    }
+
+    // Scan button functionality
+    function setupScanButtonListener() {
+        const scanButton = document.getElementById('scanButton');
+        if (scanButton) {
+            scanButton.addEventListener('click', () => {
+                showLoadingScreen();
+                chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+                    chrome.scripting.executeScript({
+                        target: { tabId: tabs[0].id },
+                        function: parsePageContent,
+                    }).then(() => {
+
+                        hideLoadingScreen();
+                        loadContent('summary.html');
+                    }).catch(err => console.error('Error executing script:', err));
+                });
             });
-        });
-    } else {
-        console.error('scanButton not found!');
-    }
-}
-
-function showLoadingScreen() {
-    if (loadingScreen && homeContent) {
-        loadingScreen.style.display = 'block'; // Show loading screen
-        homeContent.style.display = 'none'; // Hide home content
-    } else {
-        console.error('Loading screen or home content element not found!');
-    }
-}
-
-function hideLoadingScreen() {
-    if (loadingScreen && homeContent) {
-        loadingScreen.style.display = 'none'; // Hide loading screen
-        homeContent.style.display = 'block'; // Show home content
-    } else {
-        console.error('Loading screen or home content element not found!');
-    }
-}
-
-async function parsePageContent() {
-    let data = {}
-    const htmlContent = document.documentElement.outerHTML;
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(htmlContent, "text/html");
-
-    const title = doc.querySelector(['h1']);
-    console.log(title);
-
-    let jsonObject = {
-        'title': title ? title.innerText : null
-    };
-
-    const paragraphs = doc.querySelectorAll(['p']);
-    jsonObject['content'] = Array.from(paragraphs).map(paragraph => ({
-        textContent: paragraph.textContent.trim(),
-    }));
-
-    let jsonString = JSON.stringify(jsonObject, null, 4);
-    console.log(jsonString);
-
-    try {
-        const response = await fetch('http://localhost:5000/summarize', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: jsonString,
-        });
-
-        if (!response.ok) {
-            throw new Error('Network response was not ok: ' + response.statusText);
+        } else {
+            console.error('scanButton not found!');
         }
-
-        const data = await response.json();
-        chrome.runtime.sendMessage({ action: "display summaries", data: data }); // Pass the fetched data to summaryGenerator
-
-    } catch (error) {
-        console.error('There was a problem with the fetch operation:', error);
     }
-}
 
-
-
-function summaryGenerator(data){
-
-
-    const summaryBox = document.getElementById("summaryBox");
-
-    if(summaryBox){
-
-        console.log("summary box exists");
-
-        chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-            if (message.action === 'display summaries') {
-
-                console.log("load data message recieved");
-
-                const data = message.data['key_highlights'];
-                 // Start with a header
-
-                // Iterate over the object using for...in
-                for (var key in data) {
-                    if (data.hasOwnProperty(key)) {
-                        // Append key and value to the content variable with newlines
-                        summaryBox.innerHTML += key + ": " + data[key] + "<br><br>";
-                    }
-                }
+    function showAlmostReadyMessage() {
+        const almostReadyMessage = document.querySelector('.loading-message');
+        almostReadyMessage.textContent = "Almost Ready";
+        almostReadyMessage.style.opacity = 1; // Make it visible
     
-                // Set the paragraph's textContent to the assembled content
-          
-            }
-        });
+        // Optionally, you can add a timeout to fade it out after a few seconds
+        setTimeout(() => {
+            almostReadyMessage.style.opacity = 0; // Fade it out after a delay
+        }, 2000); // Adjust the timing as needed
     }
-}
-
-
-// function summaryGenerator() {
-//     const summaryBox = document.getElementById("summaryBox");
-
-//     if (summaryBox) {
-//         const handleMessage = (message, sender, sendResponse) => {
-//             if (message.action === 'loadData') {
-//                 const data = message.data['key_highlights'];
-                
-//                 // Clear the summaryBox before appending new content
-//                 summaryBox.innerHTML = ''; 
-                
-//                 // Iterate over the object and create elements dynamically
-//                 for (let key in data) {
-//                     if (data.hasOwnProperty(key)) {
-//                         // Create a new div for each key-value pair
-//                         const item = document.createElement('div');
-//                         item.textContent = `${key}: ${data[key]}`;
-//                         summaryBox.appendChild(item);
-//                     }
-//                 }
-//             }
-//         };
-
-//         // Remove any existing listeners to avoid adding multiple identical ones
-//         chrome.runtime.onMessage.removeListener(handleMessage);
-        
-//         // Add the message listener
-//         chrome.runtime.onMessage.addListener(handleMessage);
-//     }
-// }
-
-
-tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-        tabs.forEach(t => {
-            t.classList.remove('active');
-            //t.classList.remove('summary-active');
-        });
-        tab.classList.add('active');
-        // if (tab.dataset.target === 'summary.html') {
-        //     tab.classList.add('summary-active'); // Add home-active class to Home tab
-        // }
-
-        loadContent(tab.getAttribute('data-target'));
-
-        if(tab.dataset.target === 'summary.html')
-        {
-            document.body.style.backgroundColor = '#00477A';
-        }
-        else if(tab.dataset.target === 'share.html')
-        {
-            document.body.style.backgroundColor = '#00477A';
-        }
-        // document.body.style.backgroundColor = (tab.dataset.target === 'summary.html') ? '#00477A' : ''; // Example: Change color based on active tab
-        // document.body.style.backgroundColor = (tab.dataset.target === 'share.html') ? '#00477A' : ''; // Example: Change color based on active tab
-        //overlay.style.opacity = (tab.dataset.target === 'summary.html') ? '0.4' : '0.5'; 
-    });
-});
-document.addEventListener('DOMContentLoaded', function () {
-    const logo = document.querySelector('.logo'); // Select the logo element
-    const chatBox = document.getElementById('chatBox'); // Select the chat box
-
-    // Add event listener to the logo
-    logo.addEventListener('click', function () {
-        chatBox.classList.toggle('active'); // Toggle the chat box visibility
-    });
     
-});
 
-document.addEventListener("DOMContentLoaded", function () {
-    const letters = document.querySelectorAll('.letter');
-    const loadingMessages = document.querySelectorAll('.loading-message');
-    const loadingScreen = document.getElementById('loadingScreen');
-    const mainContent = document.getElementById('mainContent');
+    // Animation functions
+    let mainAnimationInterval, loadingMessageInterval;
 
-    // Function to randomize initial positions for letters
+    function startAnimations() {
+        randomizeLetters();
+        showLoadingMessages();
+       // animateBroom();
+        tidyLetters();
+        mainAnimationInterval = setInterval(() => {
+            randomizeLetters();
+           // animateBroom();
+            tidyLetters();
+        }, 4000);
+    }
+
+    function stopAnimations() {
+        clearInterval(mainAnimationInterval);
+        clearInterval(loadingMessageInterval);
+        tidyLetters();
+    }
+
     function randomizeLetters() {
         letters.forEach(letter => {
             letter.style.opacity = 1;
@@ -281,165 +147,110 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Show loading messages gradually
     function showLoadingMessages() {
-        loadingMessages.forEach((message, index) => {
+        const messages = ["Loading", "Please Wait"];
+        let currentIndex = 0;
+    
+        loadingMessageInterval = setInterval(() => {
+            // Set the text for both messages
+            loadingMessages.forEach((messageElement, index) => {
+                // Show both messages for the current index
+                if (index === currentIndex) {
+                    messageElement.style.opacity = 1; // Show current message
+                } else {
+                    messageElement.style.opacity = 0; // Hide other messages
+                }
+            });
+    
+            // Gradually transition to the next index after a delay
             setTimeout(() => {
-                message.style.opacity = 1;
-            }, index * 2000);
-        });
+                // Switch to the next index after showing the current messages
+                currentIndex = (currentIndex + 1) % messages.length;
+            }, 1000); // Time to show the current messages before switching
+        }, 2000); // Interval for switching messages (total cycle duration)
     }
+    
+    
 
-    // Tidy letters back to original positions
+    
+    
+
     function tidyLetters() {
         letters.forEach((letter, index) => {
             setTimeout(() => {
                 letter.style.transform = `rotate(0deg) translate(0, 0)`;
-            }, index * 250); // No delay between letters
+            }, index * 250);
         });
     }
 
-    // Start summarization process
-    function startSummarization() {
-        // Show loading screen
-        loadingScreen.style.display = 'block';
-        mainContent.style.display = 'none';
+    // function animateBroom() {
+    //     const broomContainer = document.querySelector('.broom-container');
+    //     broomContainer.style.animation = 'sweep 2s linear forwards';
 
-        // Simulate the summarization process (e.g., an API call or processing)
-        setTimeout(() => {
-            // Tidy up letters before hiding the loading screen
-            tidyLetters();
-            // Set a delay to allow tidy animation to complete
-            setTimeout(() => {
-                loadingScreen.style.display = 'none';
-                mainContent.style.display = 'block';
+    //     broomContainer.addEventListener('animationend', () => {
+    //         broomContainer.style.animation = 'none';
+    //         broomContainer.offsetHeight;
+    //         broomContainer.style.animation = 'sweep 2s linear forwards';
+    //     });
+    // }
 
-                // Here you can dynamically insert the summary content
-                const contentDiv = document.getElementById('content');
-                contentDiv.innerHTML = '<h2>Summary complete!</h2><p>This is the summarized content.</p>'; // Simulated content
-            }, letters.length * 250 + 1000); // Wait for all letters to tidy + 1 second
-        }, 2000); // Adjust this to your initial loading time
+    // Parse content and summarize
+    async function parsePageContent() {
+        const htmlContent = document.documentElement.outerHTML;
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlContent, "text/html");
+        const title = doc.querySelector('h1');
+        let jsonObject = {
+            title: title ? title.innerText : null,
+            content: Array.from(doc.querySelectorAll('p')).map(p => ({ textContent: p.textContent.trim() }))
+        };
+
+        try {
+            const response = await fetch('http://localhost:5000/summarize', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(jsonObject, null, 4),
+            });
+
+            if (!response.ok) throw new Error('Network response was not ok: ' + response.statusText);
+
+            const data = await response.json();
+            chrome.runtime.sendMessage({ action: "display summaries", data: data });
+        } catch (error) {
+            console.error('Fetch operation problem:', error);
+        }
     }
 
-    // Set the looping animation
-    setInterval(() => {
-        randomizeLetters(); // Randomize positions before tidying
-        animateBroom(); 
-        tidyLetters(); // Tidy up letters
-    }, 4000); // Change this timing based on how long you want the randomization to last
-
-    // Start the animation
-    randomizeLetters();
-    showLoadingMessages();
-    animateBroom();
-    tidyLetters(); // Initial tidy to ensure letters are in place
-
-    // Show loading screen and simulate summarization when tab for 'summary' is clicked
-    const summaryTab = document.querySelector('.tab[data-target="summary.html"]');
-    summaryTab.addEventListener('click', function () {
-        startSummarization(); // Trigger summarization process
-    });
-
-    // Handle other tabs (e.g., home, share)
-    const tabs = document.querySelectorAll('.tab');
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            tabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-            if (tab.getAttribute('data-target') !== 'summary.html') {
-                loadContent(tab.getAttribute('data-target'));
-            }
-        });
-    });
-
-    // Function to load content for other tabs (home, share)
-    function loadContent(page) {
-        const contentDiv = document.getElementById('content');
-        contentDiv.innerHTML = `<h2>Loading ${page}...</h2>`; // Simulated content
-    }
-});
+    function summaryGenerator(data){
 
 
-// Function to animate the broom sweeping across the letters
-function animateBroom() {
-    const broomContainer = document.querySelector('.broom-container');
-    broomContainer.style.animation = 'sweep 4s linear forwards'; // Adjust duration as needed
-
-    // Reset the animation after it completes
-    broomContainer.addEventListener('animationend', () => {
-        broomContainer.style.animation = 'none'; // Reset animation
-        broomContainer.offsetHeight; // Trigger reflow
-        broomContainer.style.animation = 'sweep 4s linear forwards'; // Restart
-    });
-}
-
-
-
-// async function parsePageContent() {
-
-
-//     let data = {}
-  
-//     const htmlContent = document.documentElement.outerHTML;
-//     const parser = new DOMParser();
-//     const doc = parser.parseFromString(htmlContent, "text/html");
-  
-   
-  
-//     const title = doc.querySelector(['h1']);
-  
-//     console.log(title);
-  
-//     let jsonObject = {
-//       'title': title ? title.innerText : null
-//     };
-  
-  
-//     const paragraphs = doc.querySelectorAll(['p']);
-  
+        const summaryBox = document.getElementById("summaryBox");
     
-  
-//     jsonObject['content'] = Array.from(paragraphs).map(paragraph => ({
-//       textContent: paragraph.textContent.trim(),
-  
-//     }));
-  
-//     // Convert to a JSON string
-//     let jsonString = JSON.stringify(jsonObject, null, 4);
-//     console.log(jsonString);
-
-//     try {
-//         const response = await fetch('http://localhost:5000/summarize', {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             },
-//             body: jsonString,
-//         });
-
-//         if (!response.ok) {
-//             throw new Error('Network response was not ok: ' + response.statusText);
-//         }
-
-//         console.log('herenoe'); 
-//         const data = await response.json(); // Await the response properly
-//         chrome.runtime.sendMessage( {action: "display summaries", data: data}) // Pass the fetched data to summaryGenerator
-
-//     } catch (error) {
-//         console.error('There was a problem with the fetch operation:', error);
-//     }
-
-
- 
-  
-
-  
-//     // Output JSON string
-  
-// }
-
-
-
-
-// Load default content
-loadContent('home.html'); 
+        if(summaryBox){
+    
+            console.log("summary box exists");
+    
+            chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+                if (message.action === 'display summaries') {
+    
+                    console.log("load data message recieved");
+    
+                    const data = message.data['key_highlights'];
+                     // Start with a header
+    
+                    // Iterate over the object using for...in
+                    for (var key in data) {
+                        if (data.hasOwnProperty(key)) {
+                            // Append key and value to the content variable with newlines
+                            summaryBox.innerHTML += key + ": " + data[key] + "<br><br>";
+                        }
+                    }
+        
+                    // Set the paragraph's textContent to the assembled content
+              
+                }
+            });
+        }
+    }
+    
+});

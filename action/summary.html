@@ -6,6 +6,22 @@
     </button>
 </div>
 <div class="summary-box">
-    <p id="summaryBox"></p>
-    
+    <p id="summaryBox"></p>   
+</div>
+<div class="button-container">
+    <button id="saveSummaryButton" class="action-button">Save Summary</button>
+    <button id="scanNewButton" class="action-button">Scan New</button>
+</div>
+<div id="popupModal" class="popup-modal">
+    <div class="popup-content">
+        <p id="loginPrompt">Do you want to log in to save?</p>
+        <button id="confirmLogin" class="popup-button">Yes, log in</button>
+        <button id="cancelPopup" class="popup-button">Cancel</button>
+    </div>
+
+    <div id="titleInputContainer" style="display: none; margin-top: 15px;">
+        <label for="summaryTitle">Enter a title for the summary:</label>
+        <input type="text" id="summaryTitle" placeholder="Summary Title" />
+        <button id="submitTitle" class="popup-button">Submit</button>
+    </div>
 </div>

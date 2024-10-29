@@ -1,3 +1,4 @@
+
 @font-face {
     font-family: 'LTInstitute';
     src: url('fonts/LTInstitute-1.otf') format('opentype'); /* Specify the format as 'opentype' */
@@ -72,6 +73,7 @@ h1 {
 }
 .tabs {
     display: flex; 
+    flex-direction: row; /* Ensure tabs are horizontal */
     justify-content: center;
     background-color: white;
     padding: 0;
@@ -279,22 +281,106 @@ input[type="url"]:focus {
     text-align: justify;
     font-weight: bold;
     display: flex;
-    margin-top: 13px;
     justify-content: center;   /* Center the search bar horizontally */         /* Add some padding around the container */
     background-color: white;
     /* position: sticky;          Stick the search bar to the top */
     top: 0;                    /* Ensure it's at the top of the page */
     z-index: 3;             /* Keep the search bar above other content */
-    height: 165px;
+    height: 130px;
     font-family: 'Zen Kaku Gothic New';
     font-weight: 400;
     border-radius: 13px;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     color:#00477A;
     overflow-y: auto;
+    padding-right: 10px;
+    padding-left: 10px;
+
+
 
 
 }
+
+
+.highlight {
+  background-color:  #C6D9E6;
+}
+
+.current-highlight {
+  background-color: #AEAFF2;
+}
+
+.navigation-buttons {
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.loading-container {
+    position: relative;
+    text-align: center;
+    width: 450px;
+    height:300px; 
+}
+
+.center {
+     margin: auto;
+   /* width: 50%; */
+    height: 50%; /* Give the element some height to allow vertical centering */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.terms-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+
+.broom-container {
+    position: absolute;
+    top: 50%; /* Adjust as necessary */
+    left: 0; /* Starting position */
+    transform: translateY(-70%); /* Center vertically */
+    z-index: 10; /* Make sure it's above the letters */
+}
+
+.broom {
+    width: 100px; /* Adjust broom size */
+    height: auto; /* Keep aspect ratio */
+}
+
+/* Animation for sweeping */
+@keyframes sweep {
+    0% {
+        left: -100px; /* Start off-screen */
+    }
+    100% {
+        left: 100%; /* Move to the right off-screen */
+    }
+}
+
+
+@keyframes sweeping {
+    0%, 100% {
+        transform: translateX(0) rotate(0deg);
+    }
+    50% {
+        transform: translateX(-10px) rotate(-5deg);
+    }
+}
+
 .popup-modal {
     display: none; /* Hide by default */
     position: fixed; /* Fix it over the entire page */
@@ -330,3 +416,49 @@ input[type="url"]:focus {
     font-weight: 1000;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
+
+
+
+@keyframes letter {
+    0% {
+        opacity: 0;
+        transform: rotate(-15deg);
+    }
+    50% {
+        opacity: 1;
+        transform: rotate(0);
+    }
+    100% {
+        opacity: 0;
+        transform: rotate(15deg); /* Ending for loop restart */
+    }
+}
+
+.letter {
+    color: black;
+    font-size:50px; 
+    margin: 0 5px;
+    opacity: 0;
+    animation: tidyLetterAnimation 1s ease-in-out infinite; /* Keep looping */
+    z-index: 10; 
+}
+
+
+ .loading-messages {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    z-index:10; 
+} 
+
+
+.loading-message {
+    color:black;
+    font-size: 20px;
+    font-weight: bold;
+    opacity: 0;
+    margin: 0 10px;
+    transition: opacity 0.5s;
+    z-index:10;
+}
+

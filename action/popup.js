@@ -51,6 +51,7 @@ function loadContent(url) {
             }
             if(url === 'summary.html'){
                 summaryGenerator();
+                saveButtons();
             }
         })
         .catch(err => {
@@ -473,6 +474,72 @@ function animateBroom() {
     });
 }
 
+const titleElement = document.querySelector('h1'); // Adjust the selector as needed
+
+if (titleElement) {
+    const text = titleElement.textContent;
+    titleElement.textContent = ''; // Clear the original text
+
+    // Create span for each letter and apply a random animation delay
+    text.split('').forEach(letter => {
+        const span = document.createElement('span');
+        span.textContent = letter === ' ' ? '\u00A0' : letter; // Preserve spaces
+        span.classList.add('floating-letter');
+
+        // Set a random animation delay for each letter
+        const delay = Math.random() * 2; // Random delay between 0 and 2 seconds
+        span.style.animationDelay = `${delay}s`;
+
+        titleElement.appendChild(span);
+    });
+}
+
+
+function saveButtons(){
+    const popupModal = document.getElementById('popupModal');
+    const saveSummaryButton = document.getElementById('saveSummaryButton');
+    const confirmLoginButton = document.getElementById('confirmLogin');
+    const cancelPopupButton = document.getElementById('cancelPopup');
+    const titleInputContainer = document.getElementById('titleInputContainer');
+    const submitTitleButton = document.getElementById('submitTitle');
+
+    // Show popup when "Save Summary" is clicked
+    saveSummaryButton.addEventListener('click', () => {
+        //console.log('Summary Saving Button clicked!');
+        popupModal.style.display = 'flex';
+        titleInputContainer.style.display = 'none';
+        
+    });
+
+    // Confirm login action
+    confirmLoginButton.addEventListener('click', () => {
+        //popupModal.style.display = 'none';
+        document.getElementById('loginPrompt').textContent = "Enter a title for the summary:";
+        confirmLoginButton.style.display = 'none'; // Hide the login button
+        titleInputContainer.style.display = 'block'; // Show title input
+    });
+
+    submitTitleButton.addEventListener('click', () => {
+        const title = document.getElementById('summaryTitle').value;
+        if (title) {
+            popupModal.style.display = 'none';
+            alert(`Summary titled "${title}" has been saved!`); // Replace with save functionality
+        } else {
+            alert("Please enter a title.");
+        }
+    });
+
+    // Close popup without action
+    cancelPopupButton.addEventListener('click', () => {
+        popupModal.style.display = 'none';
+    });
+
+    // Close popup if user clicks outside the content area
+    window.addEventListener('click', (event) => {
+        if (event.target === popupModal) {
+            popupModal.style.display = 'none';
+        }
+    });
 
 
 // async function parsePageContent() {
@@ -538,6 +605,13 @@ function animateBroom() {
   
 // }
 
+    document.getElementById('scanNewButton').addEventListener('click', function() {
+        //alert("Starting a new scan..."); // Replace with actual scan logic
+        loadContent('home.html');
+    });
+
+
+}
 // Load default content
 
 loadContent('home.html'); 

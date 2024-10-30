@@ -151,21 +151,32 @@ app.post('/summarize', async (req, res) => {
 
 
 
-app.post('/save', async (req, res) =>{
+app.post('/save', (req, res) =>{
+
 
   const {title, content} = req.body;
 
-  if(!title || !content){
-    res.sendStatus(400).json({ error: 'Text and Title Required'});
-  }
+  console.log(content);
+
+  // if(!title || !content){
+  //   res.sendStatus(400).json({ error: 'Text and Title Required'});
+  // }
 
   const newDocument = new Document({
     title: title,
     summary: content,
   })
-  await newDocument.save();
+  try   {
+    newDocument.save();
 
-  res.sendStatus(200).json({"message": "documents saved successfully"});
+    return res.status(200).json({"message": "Document saved successfully"});
+   }
+   catch (error){
+    return res.status(500).json({ error: 'Failed to save document' });
+   }
+  
+
+  
 
 
 

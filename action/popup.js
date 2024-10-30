@@ -198,86 +198,75 @@ function summaryGenerator() {
     }
 }
 
+let originalHTML; // Declare it in the global scope
+
+
 function setupSearchFunctionality(summaryBox, searchBar, prevButton, nextButton, indexDisplay) {
+    originalHTML = summaryBox.innerHTML; // Store original HTML once
+
     searchBar.addEventListener('input', function() {
-        const query = this.value.trim().toLowerCase(); // Normalize input for case-insensitive search
+        const query = this.value.trim().toLowerCase();
         resetHighlights(summaryBox, indexDisplay); // Clear previous highlights
 
         if (query) {
-            const text = summaryBox.innerText.toLowerCase();
             highlights = []; // Reset highlights array
-            let match;
             const regex = new RegExp(`(${query})`, 'gi');
-            const originalHTML = summaryBox.innerHTML; // Store original HTML
 
-            // Find all matches and highlight them
+            // Highlight matches without losing other styling
             summaryBox.innerHTML = originalHTML.replace(regex, (match) => {
-                highlights.push(match); // Store each highlight
-                return `<span class="highlight">${match}</span>`; // Wrap matches in a span
+                highlights.push(match);
+                return `<span class="highlight">${match}</span>`;
             });
 
-            // If there are matches, enable buttons
+            // Enable or disable buttons based on match count
             if (highlights.length > 0) {
-                currentIndex = 0; // Reset current index to the first match
+                currentIndex = 0; // Start with the first match
                 highlightCurrent(summaryBox, currentIndex, indexDisplay);
-                prevButton.disabled = false; // Enable previous button
-                nextButton.disabled = false; // Enable next button
+                prevButton.disabled = false;
+                nextButton.disabled = false;
             } else {
-                prevButton.disabled = true; // Disable previous button if no match
-                nextButton.disabled = true; // Disable next button if no match
-                indexDisplay.textContent = ''; // Clear index display
+                prevButton.disabled = true;
+                nextButton.disabled = true;
+                indexDisplay.textContent = '';
             }
         } else {
-            // If the input is empty, reset to original text
-            resetHighlights(summaryBox, indexDisplay);
-            prevButton.disabled = true; // Disable previous button
-            nextButton.disabled = true; // Disable next button
+            resetHighlights(summaryBox, indexDisplay); // Restore original state
+            prevButton.disabled = true;
+            nextButton.disabled = true;
         }
     });
 
     prevButton.addEventListener('click', () => {
-        if (currentIndex > 0) {
-            currentIndex--;
-        } else {
-            currentIndex = highlights.length - 1; // Wrap around to the last match
-        }
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : highlights.length - 1; // Wrap around
         highlightCurrent(summaryBox, currentIndex, indexDisplay);
     });
 
     nextButton.addEventListener('click', () => {
-        if (currentIndex < highlights.length - 1) {
-            currentIndex++;
-        } else {
-            currentIndex = 0; // Wrap around to the first match
-        }
+        currentIndex = (currentIndex < highlights.length - 1) ? currentIndex + 1 : 0; // Wrap around
         highlightCurrent(summaryBox, currentIndex, indexDisplay);
     });
 }
 
 function highlightCurrent(summaryBox, index, indexDisplay) {
-    // Remove existing highlight
     const highlightedElements = summaryBox.querySelectorAll('.highlight');
     highlightedElements.forEach((el, i) => {
         el.classList.remove('current-highlight');
         if (i === index) {
-            el.classList.add('current-highlight'); // Highlight the current index
+            el.classList.add('current-highlight'); // Mark current index
         }
     });
 
-    // Update index display
-    indexDisplay.textContent = `Result ${index + 1} of ${highlights.length}`; // Show current index and total matches
-
-    // Scroll to the current highlight
-    summaryBox.scrollTop = highlightedElements[index].offsetTop - summaryBox.offsetTop; 
+    indexDisplay.textContent = `Result ${index + 1} of ${highlights.length}`; // Update index info
+    summaryBox.scrollTop = highlightedElements[index].offsetTop - summaryBox.offsetTop; // Scroll to current highlight
 }
 
 function resetHighlights(summaryBox, indexDisplay) {
-    const originalText = summaryBox.innerText; // Get original text
-    summaryBox.innerHTML = originalText; // Reset to original text
-    highlights = []; // Clear highlights array
-    currentIndex = -1; // Reset current index
-    indexDisplay.textContent = ''; // Clear index display
+    summaryBox.innerHTML = originalHTML; // Restore original HTML
+    highlights = [];
+    currentIndex = -1; 
+    indexDisplay.textContent = '';
 }
+
 
 // Inside your DOMContentLoaded or appropriate event
 document.addEventListener('DOMContentLoaded', function() {

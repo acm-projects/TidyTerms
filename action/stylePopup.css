@@ -65,12 +65,67 @@ body {
     /* padding: 20px; */
 }
 h1 {
-    font-size: 48px; 
+    font-family:'zen-kaku-gothic-new-black'; 
+    font-size: 55px; 
     text-align: center;
     margin-top: 0; 
-    color: #00477A; 
+    color: #180B62; 
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px; 
 }
+
+.moving-title {
+    display: flex; /* Ensure letters are in a line */
+    align-items: center; /* Center vertically */
+}
+
+.letterTitle {
+    display: inline-block; /* Allows for independent animation */
+    animation: moveUpDown 1s ease-in-out infinite; /* Animation applied to each letter */
+}
+
+/* Keyframes for moving up and down */
+@keyframes moveUpDown {
+    0%, 100% {
+        transform: translateY(0); /* Original position */
+    }
+    50% {
+        transform: translateY(-1px); /* Move up 10px */
+    }
+}
+
+.letterTitle:nth-child(1) {
+    animation-delay: 0s; /* No delay */
+}
+
+.letterTitle:nth-child(2) {
+    animation-delay: 0.1s; /* Delay for 0.1s */
+}
+
+.letterTitle:nth-child(3) {
+    animation-delay: 0.2s; /* Delay for 0.2s */
+}
+
+.letterTitle:nth-child(4) {
+    animation-delay: 0.3s; /* Delay for 0.3s */
+}
+
+.letterTitle:nth-child(6) {
+    animation-delay: 0.4s; /* Delay for 0.4s */
+}
+.letterTitle:nth-child(7) {
+    animation-delay: 0.5s; /* Delay for 0.5s */
+}
+.letterTitle:nth-child(8) {
+    animation-delay: 0.6s; /* Delay for 0.6s */
+}
+.letterTitle:nth-child(9) {
+    animation-delay: 0.7s; /* Delay for 0.7s */
+}
+.letterTitle:nth-child(10) {
+    animation-delay: 0.8s; /* Delay for 0.8s */
+}
+
 .tabs {
     display: flex; 
     flex-direction: row; /* Ensure tabs are horizontal */
@@ -168,32 +223,49 @@ footer {
     cursor: pointer;
     font-family: 'Zen Kaku Gothic New';
     font-weight: 1000;
-    z-index:3;
+    z-index: 3;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: width 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
 }
-.scan-button:hover {
+
+.scan-button:hover,
+.scan-button:focus {
     background-color: #00375f; 
+    width: 200px;
+    box-shadow: 0 0 20px rgba(0, 71, 122, 0.8), 0 0 40px rgba(0, 71, 122, 0.6);
 }
+
 .white-button {
     width: 170px;
     padding: 10px 15px; 
     background-color: white;
-    color: #00477A;
+    color: #180B62;
     border: none;
     border-radius: 13px;
     cursor: pointer;
     font-family: 'Zen Kaku Gothic New';
     font-weight: 1000;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: width 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
 }
-.white-button:hover {
+
+.white-button:hover,
+.white-button:focus {
     background-color: rgb(233, 233, 233); 
+    width: 200px; 
+    box-shadow: 0 0 20px rgba(24, 11, 98, 0.8), 0 0 40px rgba(24, 11, 98, 0.6);
 }
+
+
+
 .center-container {
     display: flex;            /* Align buttons in a row */
-    gap: 10px; 
-    justify-content: center;
+    gap:10px; 
+    align-items: center; 
+    justify-content:center;
+    flex-direction: column; /* Align children vertically */
 }
+
 .link-input-container {
     margin-top: 10px;          /* Adds space between buttons and the link input field */
     text-align: center;        /* Centers the link input field */

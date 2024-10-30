@@ -523,6 +523,31 @@ function saveButtons(){
         const title = document.getElementById('summaryTitle').value;
         if (title) {
             popupModal.style.display = 'none';
+
+            const saveObject = {
+                "title": title,
+                "content": document.getElementById("summaryBox").textContent,
+            }
+            saveString = JSON.stringify(saveObject, null, 2);
+
+            try {
+                const response = fetch('http://localhost:5000/save', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: saveString,
+                })
+
+                console.log(response);
+
+
+            } catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+            
+            
+
             alert(`Summary titled "${title}" has been saved!`); // Replace with save functionality
         } else {
             alert("Please enter a title.");

@@ -158,9 +158,9 @@ app.post('/save', (req, res) =>{
 
   console.log(content);
 
-  // if(!title || !content){
-  //   res.sendStatus(400).json({ error: 'Text and Title Required'});
-  // }
+  if(!title || !content){
+    res.sendStatus(400).json({ error: 'Text and Title Required'});
+  }
 
   const newDocument = new Document({
     title: title,

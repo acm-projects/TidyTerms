@@ -277,6 +277,9 @@ input[type="url"]:focus {
     font-weight: 1000;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
+.action-button:hover{
+    background-color: rgb(233, 233, 233); 
+}
 .summary-box {
     text-align: justify;
     font-weight: bold;
@@ -415,6 +418,9 @@ button {
     font-family: 'Zen Kaku Gothic New';
     font-weight: 1000;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.popup-button:hover{
+    background-color: #558bb3;
 }
 
 

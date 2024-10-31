@@ -495,51 +495,54 @@ if (titleElement) {
 }
 
 
-function saveButtons(){
-    const popupModal = document.getElementById('popupModal');
-    const saveSummaryButton = document.getElementById('saveSummaryButton');
-    const confirmLoginButton = document.getElementById('confirmLogin');
-    const cancelPopupButton = document.getElementById('cancelPopup');
-    const titleInputContainer = document.getElementById('titleInputContainer');
-    const submitTitleButton = document.getElementById('submitTitle');
-
-    // Show popup when "Save Summary" is clicked
-    saveSummaryButton.addEventListener('click', () => {
-        //console.log('Summary Saving Button clicked!');
-        popupModal.style.display = 'flex';
-        titleInputContainer.style.display = 'none';
-        
-    });
-
-    // Confirm login action
-    confirmLoginButton.addEventListener('click', () => {
-        //popupModal.style.display = 'none';
-        document.getElementById('loginPrompt').textContent = "Enter a title for the summary:";
-        confirmLoginButton.style.display = 'none'; // Hide the login button
-        titleInputContainer.style.display = 'block'; // Show title input
-    });
-
-    submitTitleButton.addEventListener('click', () => {
-        const title = document.getElementById('summaryTitle').value;
-        if (title) {
-            popupModal.style.display = 'none';
-            alert(`Summary titled "${title}" has been saved!`); // Replace with save functionality
-        } else {
-            alert("Please enter a title.");
-        }
-    });
-
-    // Close popup without action
-    cancelPopupButton.addEventListener('click', () => {
-        popupModal.style.display = 'none';
-    });
-
-    // Close popup if user clicks outside the content area
-    window.addEventListener('click', (event) => {
-        if (event.target === popupModal) {
-            popupModal.style.display = 'none';
-        }
-    });
+    function saveButtons(){
+        const loginPopup = document.getElementById('loginPopup');
+        const titlePopup = document.getElementById('titlePopup');
+        const saveSummaryButton = document.getElementById('saveSummaryButton');
+        const confirmLoginButton = document.getElementById('confirmLogin');
+        const cancelLoginPopupButton = document.getElementById('cancelLoginPopup');
+        const submitTitleButton = document.getElementById('submitTitle');
+        const cancelTitlePopupButton = document.getElementById('cancelTitlePopup');
+        // Show popup when "Save Summary" is clicked
+        saveSummaryButton.addEventListener('click', () => {
+            //console.log('Summary Saving Button clicked!');
+            loginPopup.style.display = 'flex';
+        });
+        // Confirm login action
+        confirmLoginButton.addEventListener('click', () => {
+            loginPopup.style.display = 'none';
+            titlePopup.style.display = 'flex';
+            //titleInputContainer.style.display = 'block'; // Show title input
+        });
+        submitTitleButton.addEventListener('click', () => {
+            const title = document.getElementById('summaryTitle').value;
+            if (title) {
+            titlePopup.style.display = 'none';
+                alert(`Summary titled "${title}" has been saved!`); // Replace with save functionality
+            } else {
+                alert("Please enter a title.");
+            }
+        });
+        // Close popup without action
+        cancelLoginPopupButton.addEventListener('click', () => {
+            loginPopup.style.display = 'none';
+        });
+        cancelTitlePopupButton.addEventListener('click', () => {
+            titlePopup.style.display = 'none';
+        });
+        // Close popup if user clicks outside the content area
+        window.addEventListener('click', (event) => {
+            if (event.target === loginPopup) {
+                loginPopup.style.display = 'none';
+            } else if (event.target === titlePopup) {
+                titlePopup.style.display = 'none';
+            }
+        });
+        document.getElementById('scanNewButton').addEventListener('click', function() {
+            //alert("Starting a new scan..."); // Replace with actual scan logic
+            loadContent('home.html');
+        });
+    }
 
 
 // async function parsePageContent() {
@@ -605,13 +608,7 @@ function saveButtons(){
   
 // }
 
-    document.getElementById('scanNewButton').addEventListener('click', function() {
-        //alert("Starting a new scan..."); // Replace with actual scan logic
-        loadContent('home.html');
-    });
 
-
-}
 // Load default content
 
 loadContent('home.html'); 

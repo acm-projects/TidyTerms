@@ -108,15 +108,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 // Function to animate the broom sweeping across the letters
-function animateBroom() {
-    const broomContainer = document.querySelector('.broom-container');
-    broomContainer.style.animation = 'sweep 4s linear forwards'; // Adjust duration as needed
+// function animateBroom() {
+//     const broomContainer = document.querySelector('.broom-container');
+//     broomContainer.style.animation = 'sweep 4s linear forwards'; // Adjust duration as needed
 
-    // Reset the animation after it completes
-    broomContainer.addEventListener('animationend', () => {
-        broomContainer.style.animation = 'none'; // Reset animation
-        broomContainer.offsetHeight; // Trigger reflow
-        broomContainer.style.animation = 'sweep 4s linear forwards'; // Restart
-    });
-}
+//     // Reset the animation after it completes
+//     broomContainer.addEventListener('animationend', () => {
+//         broomContainer.style.animation = 'none'; // Reset animation
+//         broomContainer.offsetHeight; // Trigger reflow
+//         broomContainer.style.animation = 'sweep 4s linear forwards'; // Restart
+//     });
+// }
 

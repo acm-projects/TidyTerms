@@ -85,13 +85,14 @@ function setupScanButtonListener() {
     if (scanButton) {
         scanButton.addEventListener('click', () => {
             showLoadingScreen(); // Show loading screen
+            loadContent('summary.html');
             chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
                 chrome.scripting.executeScript({
                     target: { tabId: tabs[0].id },
                     function: parsePageContent,
                 }).then(() => {
                     hideLoadingScreen(); // Hide loading screen after parsing
-                    loadContent('summary.html');
+                    //loadContent('summary.html');
                 }).catch(err => console.error('Error executing script:', err));
             });
         });
@@ -153,6 +154,7 @@ async function parsePageContent() {
         }
 
         const data = await response.json();
+        console.log(JSON.stringify(data, 2, null));
         chrome.runtime.sendMessage({ action: "display summaries", data: data }); // Pass the fetched data to summaryGenerator
 
     } catch (error) {
@@ -517,7 +519,31 @@ if (titleElement) {
         submitTitleButton.addEventListener('click', () => {
             const title = document.getElementById('summaryTitle').value;
             if (title) {
-            titlePopup.style.display = 'none';
+                titlePopup.style.display = 'none';
+
+                const saveObject = {
+                    "title": title,
+                    "content": document.getElementById("summaryBox").textContent,
+                }
+                saveString = JSON.stringify(saveObject, null, 2);
+    
+                try {
+                    const response = fetch('http://localhost:5000/save', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: saveString,
+                    })
+    
+                    console.log(response);
+    
+    
+                } catch (error) {
+                    console.error('There was a problem with the fetch operation:', error);
+                }
+
+                
                 alert(`Summary titled "${title}" has been saved!`); // Replace with save functionality
             } else {
                 alert("Please enter a title.");

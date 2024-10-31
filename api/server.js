@@ -157,11 +157,6 @@ app.post('/save', (req, res) =>{
    }
   
 
-  
-
-
-
-
 });
 
 
@@ -173,14 +168,10 @@ app.post('/save', (req, res) =>{
 
 // GET /documents - to retrieve all documents for authenticated user
 app.get('/documents', async (req, res) => {
-  // Check if user is authenticated
-  if (!req.oidc.isAuthenticated()) {
-    return res.status(401).json({ error: 'User is not authenticated' });
-  }
 
-  const userId = req.oidc.user.sub; // Get the authenticated user's ID
+
   try {
-    const documents = await Document.find({ userId }); // Fetch documents by userId
+    const documents = await Document.find(); // Fetch documents by userId
     return res.status(200).json(documents);
   } catch (error) {
     console.error('Error retrieving documents:', error);

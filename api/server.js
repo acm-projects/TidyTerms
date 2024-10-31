@@ -6,10 +6,12 @@ import mongoose from 'mongoose';
 import { auth } from 'express-openid-connect';
 import Document from './models/documentModel.js';
 import path from 'path';
+
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
 dotenv.config();
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -132,6 +134,7 @@ app.post('/summarize', async (req, res) => {
 
 
 
+
 app.post('/save', (req, res) =>{
 
 
@@ -157,9 +160,8 @@ app.post('/save', (req, res) =>{
    }
   
 
-});
 
-
+})
 
 
 

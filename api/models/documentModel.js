@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-
 // Define the document schema
 const documentSchema = new mongoose.Schema({
   title: {
@@ -15,7 +14,6 @@ const documentSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
-
 // Create and export the model
 const Document = mongoose.model('Document', documentSchema);
 export default Document;

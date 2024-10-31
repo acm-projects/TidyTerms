@@ -16,28 +16,35 @@
 </head>
 <body>
 
+    
+    <div id="loading-screen" class="loading-container center" style="display: none;">
+        <div class="broom-container">
+            <img src="broom.gif" alt="Broom" class="broom">
+        </div>
+        <div class="terms-container" style = "margin-right:30px;">
+            <span class="letter">T</span>
+            <span class="letter">I</span>
+            <span class="letter">D</span>
+            <span class="letter">Y</span>
+            <span class="letter"> </span>
+            <span class="letter">T</span>
+            <span class="letter">E</span>
+            <span class="letter">R</span>
+            <span class="letter">M</span>
+            <span class="letter">S</span>
+        </div>
+        <div class="loading-message-container">
+            <div class="loading-message">Loading</div>
+            <div class="loading-message">Please Wait</div>
+        </div>
+    </div>
+    
 
         <!-- <div class="overlay"></div> -->
 
         <!-- makes sure that the information isn't behind the image overlay -->
-    <div class="content">
+    <div class="content" id = "home-content">
         <!-- Coding for the tabs-->
-        <div class="tabs">
-            <!-- <div class="overlay2"></div> -->
-            <img src="TTLogo 128.png" alt="Logo" class="logo"> 
-            <div class="tab active" data-target="home.html">
-                <i class="fas fa-home"></i> <!-- Home icon -->
-                <span class="tab-text">home</span>
-            </div>
-            <div class="tab" data-target="summary.html">
-                <i class="fa-solid fa-file-lines"></i><!-- Summary icon -->
-                <span class="tab-text">summary</span>
-            </div>
-            <div class="tab" data-target="share.html">
-                <i class="fa-solid fa-share-nodes"></i> <!-- Share icon -->
-                <span class="tab-text">share</span>
-            </div>
-        </div>
         <div id="content" class = "tab-content">
             <!--Home content will load here?-->
         </div>

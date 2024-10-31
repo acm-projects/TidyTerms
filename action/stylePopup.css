@@ -225,14 +225,12 @@ footer {
     font-weight: 1000;
     z-index: 3;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    transition: width 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+    transition: width 0.3s ease, padding 0.3s ease;
 }
 
-.scan-button:hover,
-.scan-button:focus {
+.scan-button:hover {
     background-color: #00375f; 
     width: 200px;
-    box-shadow: 0 0 20px rgba(0, 71, 122, 0.8), 0 0 40px rgba(0, 71, 122, 0.6);
 }
 
 .white-button {
@@ -406,8 +404,8 @@ button {
 .broom-container {
     position: absolute;
     top: 50%; /* Adjust as necessary */
-    left: 0; /* Starting position */
-    transform: translateY(-70%); /* Center vertically */
+    left: 360px; /* Starting position */
+    transform: translateY(-80%); /* Center vertically */
     z-index: 10; /* Make sure it's above the letters */
 }
 
@@ -462,20 +460,20 @@ button {
 }
 
 
- .loading-messages {
-    display: flex;
+.loading-message-container {
+    display: column;
     justify-content: center;
     margin-top: 10px;
-    z-index:10; 
-} 
-
+}
 
 .loading-message {
-    color:black;
-    font-size: 20px;
-    font-weight: bold;
-    opacity: 0;
-    margin: 0 10px;
-    transition: opacity 0.5s;
-    z-index:10;
+    color: black; /* Change to your desired color */
+    font-size: 30px; /* Change to your desired size */
+    font-weight: bold; /* Keep bold for emphasis */
+    opacity: 0; /* Start invisible */
+    transition: opacity 0.5s; /* Smooth transition */
+    font-family: 'Zen Kaku Gothic New', sans-serif; /* Use the imported font */
 }
+
+
+

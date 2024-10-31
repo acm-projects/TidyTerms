@@ -1,35 +1,35 @@
 
-document.addEventListener('DOMContentLoaded', function() {
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const tabContent = document.getElementById('tab-content');
+// document.addEventListener('DOMContentLoaded', function() {
+//     const tabButtons = document.querySelectorAll('.tab-button');
+//     const tabContent = document.getElementById('tab-content');
 
-    // Function to load content from an external HTML file
-    // Function to load content from an external HTML file
-    function loadTabContent(file) {
-        fetch(file)
-            .then(response => response.text())
-            .then(data => {
-                tabContent.innerHTML = data;  // Load the HTML content into the container
-            })
-            .catch(err => console.error('Error loading tab content:', err));
-    }
+//     // Function to load content from an external HTML file
+//     // Function to load content from an external HTML file
+//     function loadTabContent(file) {
+//         fetch(file)
+//             .then(response => response.text())
+//             .then(data => {
+//                 tabContent.innerHTML = data;  // Load the HTML content into the container
+//             })
+//             .catch(err => console.error('Error loading tab content:', err));
+//     }
  
-    // Load the first tab content by default
-    loadTabContent('home.html');
-    // Add event listeners to all tab buttons
-    tabButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Remove 'active' class from all buttons
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            // Add 'active' class to the clicked button
-            this.classList.add('active');
-            // Load the content for the clicked tab
-            const tabFile = this.getAttribute('data-tab');
-            loadTabContent(tabFile);
-        });
-    });
-});
-const tabs = document.querySelectorAll('.tab');
+//     // Load the first tab content by default
+//     loadTabContent('home.html');
+//     // Add event listeners to all tab buttons
+//     tabButtons.forEach(button => {
+//         button.addEventListener('click', function() {
+//             // Remove 'active' class from all buttons
+//             tabButtons.forEach(btn => btn.classList.remove('active'));
+//             // Add 'active' class to the clicked button
+//             this.classList.add('active');
+//             // Load the content for the clicked tab
+//             const tabFile = this.getAttribute('data-tab');
+//             loadTabContent(tabFile);
+//         });
+//     });
+// });
+// const tabs = document.querySelectorAll('.tab');
 const contentDiv = document.getElementById('content');
 //const chatBox = document.getElementById('chatBox');
 const overlay = document.querySelector('.overlay');
@@ -187,7 +187,7 @@ function summaryGenerator() {
                 for (var key in data) {
                     if (data.hasOwnProperty(key)) {
                         // Append key and value to the summary box
-                        summaryBox.innerHTML += "<p><strong>" + key  + ":" + data[key] + "</strong> "  + "<br> <br>" + "</p>";
+                        summaryBox.innerHTML += "<p><strong>" + key  + ": " + data[key] + "</strong> "  + "<br> <br>" + "</p>";
                     }
                 }
 
@@ -315,32 +315,32 @@ document.addEventListener('DOMContentLoaded', function() {
 // }
 
 
-tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-        tabs.forEach(t => {
-            t.classList.remove('active');
-            //t.classList.remove('summary-active');
-        });
-        tab.classList.add('active');
-        // if (tab.dataset.target === 'summary.html') {
-        //     tab.classList.add('summary-active'); // Add home-active class to Home tab
-        // }
+// tabs.forEach(tab => {
+//     tab.addEventListener('click', () => {
+//         tabs.forEach(t => {
+//             t.classList.remove('active');
+//             //t.classList.remove('summary-active');
+//         });
+//         tab.classList.add('active');
+//         // if (tab.dataset.target === 'summary.html') {
+//         //     tab.classList.add('summary-active'); // Add home-active class to Home tab
+//         // }
 
-        loadContent(tab.getAttribute('data-target'));
+//         loadContent(tab.getAttribute('data-target'));
 
-        if(tab.dataset.target === 'summary.html')
-        {
-            document.body.style.backgroundColor = '#00477A';
-        }
-        else if(tab.dataset.target === 'share.html')
-        {
-            document.body.style.backgroundColor = '#00477A';
-        }
-        // document.body.style.backgroundColor = (tab.dataset.target === 'summary.html') ? '#00477A' : ''; // Example: Change color based on active tab
-        // document.body.style.backgroundColor = (tab.dataset.target === 'share.html') ? '#00477A' : ''; // Example: Change color based on active tab
-        //overlay.style.opacity = (tab.dataset.target === 'summary.html') ? '0.4' : '0.5'; 
-    });
-});
+//         if(tab.dataset.target === 'summary.html')
+//         {
+//             document.body.style.backgroundColor = '#00477A';
+//         }
+//         else if(tab.dataset.target === 'share.html')
+//         {
+//             document.body.style.backgroundColor = '#00477A';
+//         }
+//         // document.body.style.backgroundColor = (tab.dataset.target === 'summary.html') ? '#00477A' : ''; // Example: Change color based on active tab
+//         // document.body.style.backgroundColor = (tab.dataset.target === 'share.html') ? '#00477A' : ''; // Example: Change color based on active tab
+//         //overlay.style.opacity = (tab.dataset.target === 'summary.html') ? '0.4' : '0.5'; 
+//     });
+// });
 document.addEventListener('DOMContentLoaded', function () {
     const logo = document.querySelector('.logo'); // Select the logo element
     const chatBox = document.getElementById('chatBox'); // Select the chat box
@@ -370,14 +370,25 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Show loading messages gradually
+    let currentIndex = 0;
+    const messages = ["Loading", "Please Wait"];
+    
     function showLoadingMessages() {
-        loadingMessages.forEach((message, index) => {
-            setTimeout(() => {
-                message.style.opacity = 1;
-            }, index * 2000);
+        loadingMessages.forEach((messageElement, index) => {
+            if (index === currentIndex) {
+                messageElement.style.opacity = 1; // Show current message
+            } else {
+                messageElement.style.opacity = 0; // Hide other messages
+            }
         });
+
+        currentIndex = (currentIndex + 1) % messages.length; // Cycle through messages
     }
+
+    // Start the loading messages loop
+    setInterval(showLoadingMessages, 2000); // Update every 2 seconds
+
+
 
     // Tidy letters back to original positions
     function tidyLetters() {
@@ -389,39 +400,40 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Start summarization process
-    function startSummarization() {
-        // Show loading screen
-        loadingScreen.style.display = 'block';
-        mainContent.style.display = 'none';
+    // function startSummarization() {
+    //     // Show loading screen
+    //     loadingScreen.style.display = 'block';
+    //     mainContent.style.display = 'none';
 
-        // Simulate the summarization process (e.g., an API call or processing)
-        setTimeout(() => {
-            // Tidy up letters before hiding the loading screen
-            tidyLetters();
-            // Set a delay to allow tidy animation to complete
-            setTimeout(() => {
-                loadingScreen.style.display = 'none';
-                mainContent.style.display = 'block';
+    //     // Simulate the summarization process (e.g., an API call or processing)
+    //     setTimeout(() => {
+    //         // Tidy up letters before hiding the loading screen
+    //         tidyLetters();
+    //         // Set a delay to allow tidy animation to complete
+    //         setTimeout(() => {
+    //             loadingScreen.style.display = 'none';
+    //             mainContent.style.display = 'block';
 
-                // Here you can dynamically insert the summary content
-                const contentDiv = document.getElementById('content');
-                contentDiv.innerHTML = '<h2>Summary complete!</h2><p>This is the summarized content.</p>'; // Simulated content
-            }, letters.length * 250 + 1000); // Wait for all letters to tidy + 1 second
-        }, 2000); // Adjust this to your initial loading time
-    }
+    //             // Here you can dynamically insert the summary content
+    //             const contentDiv = document.getElementById('content');
+    //             contentDiv.innerHTML = '<h2>Summary complete!</h2><p>This is the summarized content.</p>'; // Simulated content
+    //         }, letters.length * 250 + 1000); // Wait for all letters to tidy + 1 second
+    //     }, 2000); // Adjust this to your initial loading time
+    // }
 
     // Set the looping animation
     setInterval(() => {
         randomizeLetters(); // Randomize positions before tidying
         animateBroom(); 
         tidyLetters(); // Tidy up letters
+        showLoadingMessages();
     }, 4000); // Change this timing based on how long you want the randomization to last
 
     // Start the animation
     randomizeLetters();
-    showLoadingMessages();
     animateBroom();
-    tidyLetters(); // Initial tidy to ensure letters are in place
+    tidyLetters();
+    showLoadingMessages(); // Initial tidy to ensure letters are in place
 
     // Show loading screen and simulate summarization when tab for 'summary' is clicked
     const summaryTab = document.querySelector('.tab[data-target="summary.html"]');
@@ -449,16 +461,17 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+
 // Function to animate the broom sweeping across the letters
 function animateBroom() {
     const broomContainer = document.querySelector('.broom-container');
-    broomContainer.style.animation = 'sweep 4s linear forwards'; // Adjust duration as needed
+    //broomContainer.style.animation = 'sweep 4s linear forwards'; // Adjust duration as needed
 
     // Reset the animation after it completes
     broomContainer.addEventListener('animationend', () => {
         broomContainer.style.animation = 'none'; // Reset animation
         broomContainer.offsetHeight; // Trigger reflow
-        broomContainer.style.animation = 'sweep 4s linear forwards'; // Restart
+       // broomContainer.style.animation = 'sweep 4s linear forwards'; // Restart
     });
 }
 

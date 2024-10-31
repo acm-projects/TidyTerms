@@ -65,7 +65,7 @@ app.post('/summarize', async (req, res) => {
   }
   // const paragraph = (text[4].textContent);
   // console.log(paragraph);
-  const highlights = ["personal data", "data colection", "third-party sharing", "data protection"];
+  const highlights = ["Personal Data", "Data Collection", "Third-Party Sharing", "Data Protection"];
   let summaries = "Summaries: ";
   for(let paragraph of content){
       if(paragraph.textContent === "")

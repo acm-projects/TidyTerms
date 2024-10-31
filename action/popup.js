@@ -1,35 +1,35 @@
 
-document.addEventListener('DOMContentLoaded', function() {
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const tabContent = document.getElementById('tab-content');
+// document.addEventListener('DOMContentLoaded', function() {
+//     const tabButtons = document.querySelectorAll('.tab-button');
+//     const tabContent = document.getElementById('tab-content');
 
-    // Function to load content from an external HTML file
-    // Function to load content from an external HTML file
-    function loadTabContent(file) {
-        fetch(file)
-            .then(response => response.text())
-            .then(data => {
-                tabContent.innerHTML = data;  // Load the HTML content into the container
-            })
-            .catch(err => console.error('Error loading tab content:', err));
-    }
+//     // Function to load content from an external HTML file
+//     // Function to load content from an external HTML file
+//     function loadTabContent(file) {
+//         fetch(file)
+//             .then(response => response.text())
+//             .then(data => {
+//                 tabContent.innerHTML = data;  // Load the HTML content into the container
+//             })
+//             .catch(err => console.error('Error loading tab content:', err));
+//     }
  
-    // Load the first tab content by default
-    loadTabContent('home.html');
-    // Add event listeners to all tab buttons
-    tabButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Remove 'active' class from all buttons
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            // Add 'active' class to the clicked button
-            this.classList.add('active');
-            // Load the content for the clicked tab
-            const tabFile = this.getAttribute('data-tab');
-            loadTabContent(tabFile);
-        });
-    });
-});
-const tabs = document.querySelectorAll('.tab');
+//     // Load the first tab content by default
+//     loadTabContent('home.html');
+//     // Add event listeners to all tab buttons
+//     tabButtons.forEach(button => {
+//         button.addEventListener('click', function() {
+//             // Remove 'active' class from all buttons
+//             tabButtons.forEach(btn => btn.classList.remove('active'));
+//             // Add 'active' class to the clicked button
+//             this.classList.add('active');
+//             // Load the content for the clicked tab
+//             const tabFile = this.getAttribute('data-tab');
+//             loadTabContent(tabFile);
+//         });
+//     });
+// });
+// const tabs = document.querySelectorAll('.tab');
 const contentDiv = document.getElementById('content');
 //const chatBox = document.getElementById('chatBox');
 const overlay = document.querySelector('.overlay');
@@ -190,7 +190,7 @@ function summaryGenerator() {
                 for (var key in data) {
                     if (data.hasOwnProperty(key)) {
                         // Append key and value to the summary box
-                        summaryBox.innerHTML += "<p><strong>" + key  + ":" + data[key] + "</strong> "  + "<br> <br>" + "</p>";
+                        summaryBox.innerHTML += "<p><strong>" + key  + ": " + data[key] + "</strong> "  + "<br> <br>" + "</p>";
                     }
                 }
 
@@ -201,86 +201,75 @@ function summaryGenerator() {
     }
 }
 
+let originalHTML; // Declare it in the global scope
+
+
 function setupSearchFunctionality(summaryBox, searchBar, prevButton, nextButton, indexDisplay) {
+    originalHTML = summaryBox.innerHTML; // Store original HTML once
+
     searchBar.addEventListener('input', function() {
-        const query = this.value.trim().toLowerCase(); // Normalize input for case-insensitive search
+        const query = this.value.trim().toLowerCase();
         resetHighlights(summaryBox, indexDisplay); // Clear previous highlights
 
         if (query) {
-            const text = summaryBox.innerText.toLowerCase();
             highlights = []; // Reset highlights array
-            let match;
             const regex = new RegExp(`(${query})`, 'gi');
-            const originalHTML = summaryBox.innerHTML; // Store original HTML
 
-            // Find all matches and highlight them
+            // Highlight matches without losing other styling
             summaryBox.innerHTML = originalHTML.replace(regex, (match) => {
-                highlights.push(match); // Store each highlight
-                return `<span class="highlight">${match}</span>`; // Wrap matches in a span
+                highlights.push(match);
+                return `<span class="highlight">${match}</span>`;
             });
 
-            // If there are matches, enable buttons
+            // Enable or disable buttons based on match count
             if (highlights.length > 0) {
-                currentIndex = 0; // Reset current index to the first match
+                currentIndex = 0; // Start with the first match
                 highlightCurrent(summaryBox, currentIndex, indexDisplay);
-                prevButton.disabled = false; // Enable previous button
-                nextButton.disabled = false; // Enable next button
+                prevButton.disabled = false;
+                nextButton.disabled = false;
             } else {
-                prevButton.disabled = true; // Disable previous button if no match
-                nextButton.disabled = true; // Disable next button if no match
-                indexDisplay.textContent = ''; // Clear index display
+                prevButton.disabled = true;
+                nextButton.disabled = true;
+                indexDisplay.textContent = '';
             }
         } else {
-            // If the input is empty, reset to original text
-            resetHighlights(summaryBox, indexDisplay);
-            prevButton.disabled = true; // Disable previous button
-            nextButton.disabled = true; // Disable next button
+            resetHighlights(summaryBox, indexDisplay); // Restore original state
+            prevButton.disabled = true;
+            nextButton.disabled = true;
         }
     });
 
     prevButton.addEventListener('click', () => {
-        if (currentIndex > 0) {
-            currentIndex--;
-        } else {
-            currentIndex = highlights.length - 1; // Wrap around to the last match
-        }
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : highlights.length - 1; // Wrap around
         highlightCurrent(summaryBox, currentIndex, indexDisplay);
     });
 
     nextButton.addEventListener('click', () => {
-        if (currentIndex < highlights.length - 1) {
-            currentIndex++;
-        } else {
-            currentIndex = 0; // Wrap around to the first match
-        }
+        currentIndex = (currentIndex < highlights.length - 1) ? currentIndex + 1 : 0; // Wrap around
         highlightCurrent(summaryBox, currentIndex, indexDisplay);
     });
 }
 
 function highlightCurrent(summaryBox, index, indexDisplay) {
-    // Remove existing highlight
     const highlightedElements = summaryBox.querySelectorAll('.highlight');
     highlightedElements.forEach((el, i) => {
         el.classList.remove('current-highlight');
         if (i === index) {
-            el.classList.add('current-highlight'); // Highlight the current index
+            el.classList.add('current-highlight'); // Mark current index
         }
     });
 
-    // Update index display
-    indexDisplay.textContent = `Result ${index + 1} of ${highlights.length}`; // Show current index and total matches
-
-    // Scroll to the current highlight
-    summaryBox.scrollTop = highlightedElements[index].offsetTop - summaryBox.offsetTop; 
+    indexDisplay.textContent = `Result ${index + 1} of ${highlights.length}`; // Update index info
+    summaryBox.scrollTop = highlightedElements[index].offsetTop - summaryBox.offsetTop; // Scroll to current highlight
 }
 
 function resetHighlights(summaryBox, indexDisplay) {
-    const originalText = summaryBox.innerText; // Get original text
-    summaryBox.innerHTML = originalText; // Reset to original text
-    highlights = []; // Clear highlights array
-    currentIndex = -1; // Reset current index
-    indexDisplay.textContent = ''; // Clear index display
+    summaryBox.innerHTML = originalHTML; // Restore original HTML
+    highlights = [];
+    currentIndex = -1; 
+    indexDisplay.textContent = '';
 }
+
 
 // Inside your DOMContentLoaded or appropriate event
 document.addEventListener('DOMContentLoaded', function() {
@@ -329,32 +318,32 @@ document.addEventListener('DOMContentLoaded', function() {
 // }
 
 
-tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-        tabs.forEach(t => {
-            t.classList.remove('active');
-            //t.classList.remove('summary-active');
-        });
-        tab.classList.add('active');
-        // if (tab.dataset.target === 'summary.html') {
-        //     tab.classList.add('summary-active'); // Add home-active class to Home tab
-        // }
+// tabs.forEach(tab => {
+//     tab.addEventListener('click', () => {
+//         tabs.forEach(t => {
+//             t.classList.remove('active');
+//             //t.classList.remove('summary-active');
+//         });
+//         tab.classList.add('active');
+//         // if (tab.dataset.target === 'summary.html') {
+//         //     tab.classList.add('summary-active'); // Add home-active class to Home tab
+//         // }
 
-        loadContent(tab.getAttribute('data-target'));
+//         loadContent(tab.getAttribute('data-target'));
 
-        if(tab.dataset.target === 'summary.html')
-        {
-            document.body.style.backgroundColor = '#00477A';
-        }
-        else if(tab.dataset.target === 'share.html')
-        {
-            document.body.style.backgroundColor = '#00477A';
-        }
-        // document.body.style.backgroundColor = (tab.dataset.target === 'summary.html') ? '#00477A' : ''; // Example: Change color based on active tab
-        // document.body.style.backgroundColor = (tab.dataset.target === 'share.html') ? '#00477A' : ''; // Example: Change color based on active tab
-        //overlay.style.opacity = (tab.dataset.target === 'summary.html') ? '0.4' : '0.5'; 
-    });
-});
+//         if(tab.dataset.target === 'summary.html')
+//         {
+//             document.body.style.backgroundColor = '#00477A';
+//         }
+//         else if(tab.dataset.target === 'share.html')
+//         {
+//             document.body.style.backgroundColor = '#00477A';
+//         }
+//         // document.body.style.backgroundColor = (tab.dataset.target === 'summary.html') ? '#00477A' : ''; // Example: Change color based on active tab
+//         // document.body.style.backgroundColor = (tab.dataset.target === 'share.html') ? '#00477A' : ''; // Example: Change color based on active tab
+//         //overlay.style.opacity = (tab.dataset.target === 'summary.html') ? '0.4' : '0.5'; 
+//     });
+// });
 document.addEventListener('DOMContentLoaded', function () {
     const logo = document.querySelector('.logo'); // Select the logo element
     const chatBox = document.getElementById('chatBox'); // Select the chat box
@@ -384,14 +373,25 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Show loading messages gradually
+    let currentIndex = 0;
+    const messages = ["Loading", "Please Wait"];
+    
     function showLoadingMessages() {
-        loadingMessages.forEach((message, index) => {
-            setTimeout(() => {
-                message.style.opacity = 1;
-            }, index * 2000);
+        loadingMessages.forEach((messageElement, index) => {
+            if (index === currentIndex) {
+                messageElement.style.opacity = 1; // Show current message
+            } else {
+                messageElement.style.opacity = 0; // Hide other messages
+            }
         });
+
+        currentIndex = (currentIndex + 1) % messages.length; // Cycle through messages
     }
+
+    // Start the loading messages loop
+    setInterval(showLoadingMessages, 2000); // Update every 2 seconds
+
+
 
     // Tidy letters back to original positions
     function tidyLetters() {
@@ -403,39 +403,40 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Start summarization process
-    function startSummarization() {
-        // Show loading screen
-        loadingScreen.style.display = 'block';
-        mainContent.style.display = 'none';
+    // function startSummarization() {
+    //     // Show loading screen
+    //     loadingScreen.style.display = 'block';
+    //     mainContent.style.display = 'none';
 
-        // Simulate the summarization process (e.g., an API call or processing)
-        setTimeout(() => {
-            // Tidy up letters before hiding the loading screen
-            tidyLetters();
-            // Set a delay to allow tidy animation to complete
-            setTimeout(() => {
-                loadingScreen.style.display = 'none';
-                mainContent.style.display = 'block';
+    //     // Simulate the summarization process (e.g., an API call or processing)
+    //     setTimeout(() => {
+    //         // Tidy up letters before hiding the loading screen
+    //         tidyLetters();
+    //         // Set a delay to allow tidy animation to complete
+    //         setTimeout(() => {
+    //             loadingScreen.style.display = 'none';
+    //             mainContent.style.display = 'block';
 
-                // Here you can dynamically insert the summary content
-                const contentDiv = document.getElementById('content');
-                contentDiv.innerHTML = '<h2>Summary complete!</h2><p>This is the summarized content.</p>'; // Simulated content
-            }, letters.length * 250 + 1000); // Wait for all letters to tidy + 1 second
-        }, 2000); // Adjust this to your initial loading time
-    }
+    //             // Here you can dynamically insert the summary content
+    //             const contentDiv = document.getElementById('content');
+    //             contentDiv.innerHTML = '<h2>Summary complete!</h2><p>This is the summarized content.</p>'; // Simulated content
+    //         }, letters.length * 250 + 1000); // Wait for all letters to tidy + 1 second
+    //     }, 2000); // Adjust this to your initial loading time
+    // }
 
     // Set the looping animation
     setInterval(() => {
         randomizeLetters(); // Randomize positions before tidying
         animateBroom(); 
         tidyLetters(); // Tidy up letters
+        showLoadingMessages();
     }, 4000); // Change this timing based on how long you want the randomization to last
 
     // Start the animation
     randomizeLetters();
-    showLoadingMessages();
     animateBroom();
-    tidyLetters(); // Initial tidy to ensure letters are in place
+    tidyLetters();
+    showLoadingMessages(); // Initial tidy to ensure letters are in place
 
     // Show loading screen and simulate summarization when tab for 'summary' is clicked
     const summaryTab = document.querySelector('.tab[data-target="summary.html"]');
@@ -463,16 +464,17 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+
 // Function to animate the broom sweeping across the letters
 function animateBroom() {
     const broomContainer = document.querySelector('.broom-container');
-    broomContainer.style.animation = 'sweep 4s linear forwards'; // Adjust duration as needed
+    //broomContainer.style.animation = 'sweep 4s linear forwards'; // Adjust duration as needed
 
     // Reset the animation after it completes
     broomContainer.addEventListener('animationend', () => {
         broomContainer.style.animation = 'none'; // Reset animation
         broomContainer.offsetHeight; // Trigger reflow
-        broomContainer.style.animation = 'sweep 4s linear forwards'; // Restart
+       // broomContainer.style.animation = 'sweep 4s linear forwards'; // Restart
     });
 }
 

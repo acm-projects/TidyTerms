@@ -102,17 +102,6 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('scanButton not found!');
         }
     }
-
-    function showAlmostReadyMessage() {
-        const almostReadyMessage = document.querySelector('.loading-message');
-        almostReadyMessage.textContent = "Almost Ready";
-        almostReadyMessage.style.opacity = 1; // Make it visible
-    
-        // Optionally, you can add a timeout to fade it out after a few seconds
-        setTimeout(() => {
-            almostReadyMessage.style.opacity = 0; // Fade it out after a delay
-        }, 2000); // Adjust the timing as needed
-    }
     
 
     // Animation functions

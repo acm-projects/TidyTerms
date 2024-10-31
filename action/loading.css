@@ -7,6 +7,10 @@ body {
 
 
   
+.loading-container {
+    position: relative;
+    text-align: center;
+}
 
 
 .terms-container {
@@ -75,21 +79,17 @@ body {
 }
 
 
-.loading-container {
-    position: relative;
-    text-align: center;
-    width: 450px;
-    height:300px; 
-}
-.loading-message-container {
-    display: flex;            /* Use flexbox to arrange items in a row */
-    justify-content: center;  /* Center items horizontally */
-    align-items: center;      /* Center items vertically */
+.loading-messages {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
 }
 
+
 .loading-message {
-    position: absolute; /* Position messages on top of each other */
-    transition: opacity 0.5s ease; /* Smooth transition for opacity */
-    opacity: 0; /* Start invisible */
-    font-size: 30px; 
+    font-size: 24px;
+    font-weight: bold;
+    opacity: 0;
+    margin: 0 10px;
+    transition: opacity 0.5s;
 }

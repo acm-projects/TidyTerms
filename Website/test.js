@@ -1,6 +1,57 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleButton = document.getElementById('toggleButton');
+    const exitButton = document.getElementById('exitButton');
+    const tabContainer = document.querySelector('.tab-container');
+    const tabs = document.querySelectorAll('[data-tab-target]');
+    const tabContents = document.querySelectorAll('[data-tab-content]');
+
+    // Show the tabs when the toggle button is clicked
+    toggleButton.addEventListener('click', () => {
+        tabContainer.classList.remove('hidden'); // Show tabs
+        toggleButton.classList.add('hidden'); // Hide toggle button
+        exitButton.classList.remove('hidden'); // Show exit button
+    });
+
+    // Hide the tabs and show the toggle button when exit is clicked
+    exitButton.addEventListener('click', () => {
+        tabContainer.classList.add('hidden'); // Hide tabs
+        toggleButton.classList.remove('hidden'); // Show toggle button
+        exitButton.classList.add('hidden'); // Hide exit button
+    });
+
+    // Tab switching functionality
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const target = document.querySelector(tab.dataset.tabTarget);
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            tabs.forEach(t => {
+                t.classList.remove('active');
+            });
+            tab.classList.add('active');
+            target.classList.add('active');
+        });
+    });
+});
+
+
+//import { text} from 'express';
+
+loadSummaries();
+
 const tabs = document.querySelectorAll('[data-tab-target]')
 const tabContents = document.querySelectorAll('[data-tab-content]')
+
+
 tabs.forEach(tab => {
+
+    const currentTab = document.querySelectorAll(tab.dataset.tabTarget);
+
+    if (currentTab.id === 'mySummaries'){
+        loadSummaries();
+    }
+
     tab.addEventListener('click',() => {
         const target = document.querySelector(tab.dataset.tabTarget)
         tabContents.forEach(tabContent => {
@@ -15,116 +66,165 @@ tabs.forEach(tab => {
 
 
         target.classList.add('active')
+
+        console.log(target.id);
+
+        if (target.id === 'mySummaries'){
+            loadSummaries();
+        }
+
+
     })
 })
 
 
-// Content and image data
-const data = [
-    {
-        image: "image1.jpg",
-        title: "Content Title 1",
-        text: "This is the first content section. It describes Image 1."
-    },
-    {
-        image: "image2.jpg",
-        title: "Content Title 2",
-        text: "This is the second content section. It describes Image 2."
-    },
-    {
-        image: "image3.jpg",
-        title: "Content Title 3",
-        text: "This is the third content section. It describes Image 3."
-    },
-    {
-        image: "image4.jpg",
-        title: "Content Title 4",
-        text: "This is the fourth content section. It describes Image 4."
-    },
-    {
-        image: "image5.jpg",
-        title: "Content Title 5",
-        text: "This is the fifth content section. It describes Image 5."
+
+async function loadSummaries() {
+    const apiUrl = 'http://localhost:5000/documents'; // Your API endpoint
+
+
+    try {
+        const response = await fetch(apiUrl);
+        const summaries = await response.json();
+
+        // Get the container where the summaries will be displayed
+        var summaryContainer = document.getElementById(id='summaryContainer');
+        summaryContainer.innerHTML = '<div></div>';  // Clear previous content
+
+
+        // Loop through the summaries and generate buttons for each
+        summaries.forEach(summary => {
+            console.log(summary.toString());
+            
+            const summaryButton = document.createElement('button');
+            summaryButton.classList.add('styled-button', 'zen-kaku-gothic-new-regular');
+            //summaryButton.id = "summaryOne"
+            summaryButton.innerHTML = `
+                ${summary.title} 
+                <div class="icon-container">
+                    <i class="fas fa-share"></i>
+                </div>
+            `;
+            summaryButton.addEventListener('click', () => {
+                const content = {title: "Summary loaded", text: summary.summary}
+                loadNewContent(content);
+            });
+            summaryContainer.appendChild(summaryButton);
+        });
+    } catch (error) {
+        console.error('Error fetching summaries:', error);
     }
-];
-
-const mainImage = document.getElementById('mainImage');
-const mainContentTitle = document.getElementById('mainContentTitle');
-const mainContentText = document.getElementById('mainContentText');
-const buttons = document.querySelectorAll('.button');
-
-// Function to update content and image with smooth scroll effect
-function updateContent(index) {
-    // Slide out the current image and content
-    mainImage.style.transform = 'translateY(-100%)'; // Move image up
-    mainContentTitle.style.transform = 'translateY(100%)'; // Move title down
-    mainContentText.style.transform = 'translateY(100%)'; // Move text down
-
-    // Wait for the transition to complete
-    setTimeout(() => {
-        // Update the image and content
-        mainImage.src = data[index].image;
-        mainContentTitle.textContent = data[index].title;
-        mainContentText.textContent = data[index].text;
-
-        // Reset the transform for new content
-        mainImage.style.transform = 'translateY(0)';
-        mainContentTitle.style.transform = 'translateY(0)';
-        mainContentText.style.transform = 'translateY(0)';
-
-        // // Scroll down to show the new content
-        // const scrollToY = window.innerHeight * index; // Calculate scroll position
-        // window.scrollTo({
-        //     top: scrollToY,
-        //     behavior: 'smooth' // Smooth scrolling
-        // });
-    }, 500); // Match timeout duration with CSS transition duration
 }
 
-// Event listener for button images
-buttons.forEach(button => {
-    button.addEventListener('click', (event) => {
-        const index = event.target.dataset.index; // Get the index from the data attribute
-        updateContent(index);
+
+// // Get the button and main content container
+// const loadButton = document.getElementById("loadContentButton");
+// const mainContent = document.getElementById("mainContent");
+
+// // Function to load the new content and show a back button
+// function loadNewContent() {
+//     // Populate the empty content div with new content
+//     mainContent.innerHTML = `
+//         <h2>New Content Loaded</h2>
+//         <p>This is the new content that was dynamically added.</p>
+//         <button id="backButton" class="styled-button">Back to Main Content</button>
+//     `;
+
+//     // Hide the load button
+//     loadButton.style.display = "none";
+
+//     // Add event listener for the back button
+//     const backButton = document.getElementById("backButton");
+//     backButton.addEventListener("click", resetContent);
+// }
+
+// // Function to reset content (back to the empty state)
+// function resetContent() {
+//     // Clear the main content
+//     mainContent.innerHTML = "";
+
+//     // Show the load button again
+//     loadButton.style.display = "block";
+// }
+
+// // Add event listener to load content when the button is clicked
+// loadButton.addEventListener("click", loadNewContent);
+
+// Get references to the buttons and overlay elements
+const overlay = document.getElementById("overlay");
+const overlayContent = document.getElementById("overlayContent");
+const loadButtons = document.querySelectorAll(".styled-button");
+
+// Function to load new content based on button clicked
+function loadNewContent(content) {
+    // Hide main content
+    document.getElementById("mainContent").style.display = "none";
+    
+    // Show overlay
+    overlay.style.display = "flex";
+    
+    // Populate overlay with new content and back button
+    overlayContent.innerHTML = `
+        <h2>${content.title}</h2>
+        <p>${content.text}</p>
+        <button id="backButton" class="styled-button">Back to Main Content</button>
+    `;
+    
+    // Add event listener for back button
+    document.getElementById("backButton").addEventListener("click", function() {
+        resetContent();
+    });
+}
+
+// Function to reset content and show main content
+function resetContent() {
+    // Hide overlay
+    overlay.style.display = "none";
+    
+    // Show main content again
+    document.getElementById("mainContent").style.display = "block";
+}
+
+// Add event listeners to buttons
+loadButtons.forEach(button => {
+    button.addEventListener("click", function() {
+        const buttonId = this.id;
+        
+        // Define content based on which button was pressed
+        let content;
+        switch(buttonId) {
+            case "loadContent1":
+                content = { title: "Content 1 Loaded", text: "This is the content for button 1." };
+                break;
+            case "loadContent2":
+                content = { title: "Content 2 Loaded", text: "This is the content for button 2." };
+                break;
+            case "loadContent3":
+                content = { title: "Content 3 Loaded", text: "This is the content for button 3." };
+                break;
+            case "newSummary":
+                content = { title: "New Summary Loaded", text: "This is the content for new summary." };
+                break;
+
+            case "summaryOne": 
+                content = { title: "Summary One Loaded", text: "This is the content for summary one." };
+                break;
+            default:
+                content = { title: "Unknown", text: "No content available." };
+        }
+        
+        // Load the new content into the overlay
+        loadNewContent(content);
     });
 });
 
-// Initialize with the first image and content
-updateContent(0);
+// document.addEventListener('DOMContentLoaded', function () {
+//     const logo = document.querySelector('.logo'); // Select the logo element
+//     const chatBox = document.getElementById('chatBox'); // Select the chat box
 
-
-const words = ["Privacy", "Terms", "Data", "Security", "Agreements", "Contracts", "Confidentiality", "Usage", "Consent", "Encryption"]; // Add more words as needed
-
-function getRandomPosition() {
+//     // Add event listener to the logo
+//     logo.addEventListener('click', function () {
+//         chatBox.classList.toggle('active'); // Toggle the chat box visibility
+//     });
     
-    const x = Math.random() * (window.innerWidth - 100); // Random X position
-    const y = Math.random() * (window.innerHeight - 50); // Random Y position
-    return { x, y };
-}
-
-function createWordElement(word) {
-    const wordElement = document.createElement('div');
-    wordElement.classList.add('word');
-    wordElement.textContent = word;
-
-    // Get a random position for the word
-    const { x, y } = getRandomPosition();
-    wordElement.style.left = `${x}px`;
-    wordElement.style.top = `${y}px`;
-
-    document.body.appendChild(wordElement);
-
-    // Remove the word after the animation is done (5s)
-    setTimeout(() => {
-        wordElement.remove();
-    }, 5000);
-}
-
-function displayRandomWord() {
-    const randomIndex = Math.floor(Math.random() * words.length);
-    const randomWord = words[randomIndex];
-    createWordElement(randomWord);
-}
-
-// Display words at random intervals
-setInterval(displayRandomWord, 1000); // New word every second
+// });

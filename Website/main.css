@@ -300,3 +300,54 @@ input[type="url"]:focus {
     align-items: center; /* Center buttons horizontally */
     margin-top: 20px; /* Add space above the container */
 }
+
+.toggle-button-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+}
+
+.toggle-button
+{
+    background-color: #00477A;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 145px;
+    margin-top: 10px; 
+}
+
+.toggle-button i {
+    font-size: 24px; 
+}
+
+.exit-button {
+    background-color: #00477A;
+    color: white;
+    border: none;
+    padding: 10px; 
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px; 
+}
+
+.exit-button i {
+    font-size: 24px; /* Adjust this value to your desired size */
+}
+
+.toggle-button:hover,
+.exit-button:hover {
+    background-color: #24608a;
+}
+
+.tab-container {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+}

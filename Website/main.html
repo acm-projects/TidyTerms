@@ -14,6 +14,12 @@
 </head>
 <body>
    <div class = "container"> <!-- used to help align the tabs and content-->
+    <div class="toggle-button-container">
+        <button id="toggleButton" class="toggle-button"><i class="fa-solid fa-bars"></i></button>
+        <button id="exitButton" class="exit-button hidden"><i class="fas fa-window-close"></i></button> 
+    </div>
+    <div class = "tab-container hidden">
+
    <div class = "tab-container"> 
    <div class = "containerTwo"> 
 
@@ -25,17 +31,17 @@
             <i class="fa-solid fa-file-lines"></i>
             My Summaries 
         </li>
-        <li data-tab-target="#trash"  class = "tab zen-kaku-gothic-new-black" > 
+        <!-- <li data-tab-target="#trash"  class = "tab zen-kaku-gothic-new-black" > 
             <i class="fa-solid fa-trash"></i>
-            Trash </li>
+            Trash </li> -->
         <li data-tab-target="#settings"  class = "tab zen-kaku-gothic-new-black">
             <i class="fa-solid fa-gear"></i>
              Settings</li>
 
         
-        <li data-tab-target="#support"  class = "tab zen-kaku-gothic-new-black">
+        <!-- <li data-tab-target="#support"  class = "tab zen-kaku-gothic-new-black">
         <i class="fa-solid fa-circle-exclamation"></i>
-            Support</li>
+            Support</li> -->
             
         <li data-tab-target="#signOut"  class = "tab zen-kaku-gothic-new-black">
             <i class="fa-solid fa-sign-out"></i>
@@ -43,6 +49,10 @@
 
         </ul>
    </div>
+
+   
+
+</div> 
 
 
         <div class="tab-content">
@@ -70,22 +80,20 @@
             </div> <!--end of inner div for tabSummary -content-->
 
 
-            <div id="trash" data-tab-content>
+            <!-- <div id="trash" data-tab-content>
                <div class = "box"> 
                 <div class="search-bar-container">
                     <input type="search" id="search-bar" placeholder="Search Summaries" />
                     <button class="search-button" type="submit" >
                         <i class="fas fa-search"></i>
                     </button>    
-                </div> <!-- end of search bar -->
+                </div> 
                 <h2 style = "color:#00477A" class="zen-kaku-gothic-new-black"> 
                     Summaries will automatically be deleted 30 days.
 
-                </h2>
-        <!-- Initially empty content section -->
-        <div id="mainContent"></div>
-
-        <!-- Button to load content -->
+                </h2> -->
+      
+        <!-- <div id="mainContent"></div>
         <div class="button-container">
             <button id="loadContent1" class="styled-button zen-kaku-gothic-new-regular">
                 Deleted Summary Three
@@ -110,8 +118,8 @@
             </button>
         </div>
 
-               </div> <!--end of the div for the box-->
-            </div> <!--end of div for trash-->
+               </div> 
+            </div>  -->
             <div id="settings" data-tab-content>
                 <h1> Settings </h1>
             </div><!--end of div for settings-->

@@ -114,6 +114,7 @@ p {
     background-color:#180B62; 
     border-radius: 20px;
     width: 80px; /* Set a fixed width for the tabs container */
+    z-index:100; 
 }
 
 .tab {
@@ -124,10 +125,21 @@ p {
 .split-screen {
     display: flex;
     height: 100vh; 
-    margin-top: 10px; 
+    margin-top: -50px; 
+    margin-bottom: 0px;
     position: relative;
     overflow: hidden; /* Hide overflowing content */
     z-index: 90; 
+    opacity: 0; /* Start hidden */
+    transform: translateY(-50px); /* Start above the final position */
+    animation: fadeInDown 0.8s forwards; /* Apply animation */
+}
+
+@keyframes fadeInDown {
+    to {
+        opacity: 1; /* End fully visible */
+        transform: translateY(0); /* End at normal position */
+    }
 }
 
 .image-container {

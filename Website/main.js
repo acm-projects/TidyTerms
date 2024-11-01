@@ -3,42 +3,51 @@
 
 loadSummaries();
 
-const tabs = document.querySelectorAll('[data-tab-target]')
-const tabContents = document.querySelectorAll('[data-tab-content]')
-
+const tabs = document.querySelectorAll('[data-tab-target]');
+const tabContents = document.querySelectorAll('[data-tab-content]');
+const toggleButton = document.getElementById('toggleButton');
+const exitButton = document.getElementById('exitButton');
+const tabContainer = document.querySelector('.tab-container');
 
 tabs.forEach(tab => {
-
-    const currentTab = document.querySelectorAll(tab.dataset.tabTarget);
-
-    if (currentTab.id === 'mySummaries'){
+    const currentTab = document.querySelector(tab.dataset.tabTarget);
+    if (currentTab.id === 'mySummaries') {
         loadSummaries();
     }
 
-    tab.addEventListener('click',() => {
-        const target = document.querySelector(tab.dataset.tabTarget)
+    tab.addEventListener('click', () => {
+        const target = document.querySelector(tab.dataset.tabTarget);
         tabContents.forEach(tabContent => {
-            tabContent.classList.remove('active')
-        })
+            tabContent.classList.remove('active');
+        });
 
-
-        tabs.forEach(tab => {
-            tab.classList.remove('active')
-        })
-        tab.classList.add('active')
-
-
-        target.classList.add('active')
+        tabs.forEach(t => {
+            t.classList.remove('active');
+        });
+        tab.classList.add('active');
+        target.classList.add('active');
 
         console.log(target.id);
-
-        if (target.id === 'mySummaries'){
+        if (target.id === 'mySummaries') {
             loadSummaries();
         }
+    });
+});
 
+// Toggle button functionality
+toggleButton.addEventListener('click', () => {
+    tabContainer.classList.remove('hidden'); // Show tabs
+    toggleButton.classList.add('hidden'); // Hide toggle button
+    exitButton.classList.remove('hidden'); // Show exit button
+});
 
-    })
-})
+// Exit button functionality
+exitButton.addEventListener('click', () => {
+    tabContainer.classList.add('hidden'); // Hide tabs
+    toggleButton.classList.remove('hidden'); // Show toggle button
+    exitButton.classList.add('hidden'); // Hide exit button
+});
+
 
 
 

@@ -137,8 +137,9 @@ p {
     align-items: center;
     background-color: #00477A; /* Container background color */
     background-image: url(imagesWebsite/backgroundWebsite.png);
-    position: relative;
-    overflow: hidden; /* Hide overflowing content */
+    background-size: cover; /* Ensure the background image covers the entire container */
+    background-position: center; 
+     position: relative; 
     
 }
 

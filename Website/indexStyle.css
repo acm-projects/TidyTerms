@@ -97,15 +97,23 @@ p {
     display: block;
 }
 
+.tab-container {
+    width: 100%; /* Full width of the page */
+    display: flex; /* Use flexbox */
+    justify-content: flex-end; /* Align tabs to the right */
+}
+
 .tabs {
     display: flex;
-    justify-content: flex-end; /* spreads things around */
-    list-style-type: none; /* removes period */
+    justify-content: flex-end; /* Align tabs to the right */
+    list-style-type: none; /* Removes period */
     margin: 0;
     padding: 0;
     color: white;
-    background-color: rgba(0, 71, 122, 0.5);
+    /* background-color: rgba(0, 71, 122, 0.5); */
+    background-color:#180B62; 
     border-radius: 20px;
+    width: 80px; /* Set a fixed width for the tabs container */
 }
 
 .tab {
@@ -195,7 +203,7 @@ h1, p {
 /* Words appear between background and main content */
 .word {
     position: absolute;
-    font-size: 28px;
+    font-size: 25px;
     font-family: 'Courier New';
     color: white;
     opacity: 0;

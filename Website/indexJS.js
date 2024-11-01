@@ -107,7 +107,7 @@ const words = ["Privacy", "Information", "Security", "Agreements", "Contracts", 
 
 function getRandomPosition() {
     const x = Math.random() * (window.innerWidth - 100); // Random X position
-    const y = 100 + Math.random() * (window.innerHeight - 150); // Random Y position
+    const y = 25 + Math.random() * (window.innerHeight - 150); // Random Y position
     return { x, y };
 }
 
@@ -162,7 +162,7 @@ function displayRandomWord() {
 }
 
 // Display words at random intervals
-setInterval(displayRandomWord, 2000);
+setInterval(displayRandomWord, 800);
 
 // const words = ["Privacy", "Terms", "Data", "Security", "Agreements", "Contracts", "Confidentiality", "Usage", "Consent", "Encryption"]; // Add more words as needed
 

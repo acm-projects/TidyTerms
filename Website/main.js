@@ -54,16 +54,6 @@ async function loadSummaries() {
         var summaryContainer = document.getElementById(id='summaryContainer');
         summaryContainer.innerHTML = '<div></div>';  // Clear previous content
 
-        // Add the "Add New Summary" button
-        const addButton = document.createElement('button');
-        addButton.id = 'newSummary';
-        addButton.classList.add('styled-button', 'zen-kaku-gothic-new-regular');
-        addButton.innerHTML = `Add New Summary <i class="fas fa-folder-plus"></i>`;
-        addButton.addEventListener('click', () => {
-            const content = {title: 'add new summary', text: 'add new summary'};
-            loadNewContent(content);
-        });
-        summaryContainer.appendChild(addButton);
 
         // Loop through the summaries and generate buttons for each
         summaries.forEach(summary => {

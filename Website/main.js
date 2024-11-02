@@ -1,67 +1,68 @@
 
-//import { text} from 'express';
+// Initialize Auth0
+const auth0 = new Auth0Client({
+    domain: 'YOUR_AUTH0_DOMAIN',
+    client_id: 'YOUR_AUTH0_CLIENT_ID'
+});
 
+// Load summaries on page load
 loadSummaries();
 
 const tabs = document.querySelectorAll('[data-tab-target]')
 const tabContents = document.querySelectorAll('[data-tab-content]')
 
-
+// Event listeners for tab changes
 tabs.forEach(tab => {
+    const currentTab = document.querySelector(tab.dataset.tabTarget);
 
-    const currentTab = document.querySelectorAll(tab.dataset.tabTarget);
-
-    if (currentTab.id === 'mySummaries'){
+    if (currentTab.id === 'mySummaries') {
         loadSummaries();
     }
 
-    tab.addEventListener('click',() => {
-        const target = document.querySelector(tab.dataset.tabTarget)
+    tab.addEventListener('click', () => {
+        const target = document.querySelector(tab.dataset.tabTarget);
         tabContents.forEach(tabContent => {
-            tabContent.classList.remove('active')
-        })
-
+            tabContent.classList.remove('active');
+        });
 
         tabs.forEach(tab => {
-            tab.classList.remove('active')
-        })
-        tab.classList.add('active')
-
-
-        target.classList.add('active')
+            tab.classList.remove('active');
+        });
+        tab.classList.add('active');
+        target.classList.add('active');
 
         console.log(target.id);
 
-        if (target.id === 'mySummaries'){
+        if (target.id === 'mySummaries') {
             loadSummaries();
         }
+    });
+});
 
-
-    })
-})
-
-
-
+// Function to load summaries
 async function loadSummaries() {
     const apiUrl = 'http://localhost:5000/documents'; // Your API endpoint
 
-
+    // Get the access token
     try {
-        const response = await fetch(apiUrl);
+        const token = await auth0.getTokenSilently();
+        
+        const response = await fetch(apiUrl, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        
         const summaries = await response.json();
 
         // Get the container where the summaries will be displayed
-        var summaryContainer = document.getElementById(id='summaryContainer');
+        var summaryContainer = document.getElementById('summaryContainer');
         summaryContainer.innerHTML = '<div></div>';  // Clear previous content
-
 
         // Loop through the summaries and generate buttons for each
         summaries.forEach(summary => {
-            console.log(summary.toString());
-            
             const summaryButton = document.createElement('button');
             summaryButton.classList.add('styled-button', 'zen-kaku-gothic-new-regular');
-            //summaryButton.id = "summaryOne"
             summaryButton.innerHTML = `
                 ${summary.title} 
                 <div class="icon-container">
@@ -69,7 +70,7 @@ async function loadSummaries() {
                 </div>
             `;
             summaryButton.addEventListener('click', () => {
-                const content = {title: "Summary loaded", text: summary.summary}
+                const content = { title: "Summary loaded", text: summary.summary };
                 loadNewContent(content);
             });
             summaryContainer.appendChild(summaryButton);
@@ -79,76 +80,32 @@ async function loadSummaries() {
     }
 }
 
-
-// // Get the button and main content container
-// const loadButton = document.getElementById("loadContentButton");
-// const mainContent = document.getElementById("mainContent");
-
-// // Function to load the new content and show a back button
-// function loadNewContent() {
-//     // Populate the empty content div with new content
-//     mainContent.innerHTML = `
-//         <h2>New Content Loaded</h2>
-//         <p>This is the new content that was dynamically added.</p>
-//         <button id="backButton" class="styled-button">Back to Main Content</button>
-//     `;
-
-//     // Hide the load button
-//     loadButton.style.display = "none";
-
-//     // Add event listener for the back button
-//     const backButton = document.getElementById("backButton");
-//     backButton.addEventListener("click", resetContent);
-// }
-
-// // Function to reset content (back to the empty state)
-// function resetContent() {
-//     // Clear the main content
-//     mainContent.innerHTML = "";
-
-//     // Show the load button again
-//     loadButton.style.display = "block";
-// }
-
-// // Add event listener to load content when the button is clicked
-// loadButton.addEventListener("click", loadNewContent);
-
-// Get references to the buttons and overlay elements
+// Overlay functionality for content display
 const overlay = document.getElementById("overlay");
 const overlayContent = document.getElementById("overlayContent");
-const loadButtons = document.querySelectorAll(".styled-button");
 
 // Function to load new content based on button clicked
 function loadNewContent(content) {
-    // Hide main content
-    document.getElementById("mainContent").style.display = "none";
-    
-    // Show overlay
-    overlay.style.display = "flex";
-    
-    // Populate overlay with new content and back button
+    document.getElementById("mainContent").style.display = "none"; // Hide main content
+    overlay.style.display = "flex"; // Show overlay
     overlayContent.innerHTML = `
         <h2>${content.title}</h2>
         <p>${content.text}</p>
         <button id="backButton" class="styled-button">Back to Main Content</button>
     `;
-    
+
     // Add event listener for back button
-    document.getElementById("backButton").addEventListener("click", function() {
-        resetContent();
-    });
+    document.getElementById("backButton").addEventListener("click", resetContent);
 }
 
 // Function to reset content and show main content
 function resetContent() {
-    // Hide overlay
-    overlay.style.display = "none";
-    
-    // Show main content again
-    document.getElementById("mainContent").style.display = "block";
+    overlay.style.display = "none"; // Hide overlay
+    document.getElementById("mainContent").style.display = "block"; // Show main content again
 }
 
 // Add event listeners to buttons
+const loadButtons = document.querySelectorAll(".styled-button");
 loadButtons.forEach(button => {
     button.addEventListener("click", function() {
         const buttonId = this.id;
@@ -168,7 +125,6 @@ loadButtons.forEach(button => {
             case "newSummary":
                 content = { title: "New Summary Loaded", text: "This is the content for new summary." };
                 break;
-
             case "summaryOne": 
                 content = { title: "Summary One Loaded", text: "This is the content for summary one." };
                 break;
@@ -181,6 +137,8 @@ loadButtons.forEach(button => {
     });
 });
 
+        
+   
 // document.addEventListener('DOMContentLoaded', function () {
 //     const logo = document.querySelector('.logo'); // Select the logo element
 //     const chatBox = document.getElementById('chatBox'); // Select the chat box

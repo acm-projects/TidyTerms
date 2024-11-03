@@ -25,12 +25,15 @@ const config = {
   baseURL: 'http://localhost:5000',
   clientID: process.env.AUTH0_CLIENT_ID,
   issuerBaseURL: process.env.AUTH0_ISSUER_BASE_URL,
-  routes: {
-    callback: '/callback',
-  },
-  afterCallback: (req, res) => {
-    res.redirect('http://127.0.0.1:5500/Website/main.html');
-  },
+  // routes: {
+  //   callback: '/callback',
+  // },
+  // afterCallback: (req, res) => {
+  //   //res.redirect('http://127.0.0.1:5500/Website/main.html');
+  //   if (!res.headersSent) {
+  //     res.redirect('http://127.0.0.1:5500/Website/main.html');
+  //   }
+  // },
 };
 
 // Initialize express
@@ -53,8 +56,17 @@ mongoose.connect(process.env.MONGO_URI)
 
 // Root route
 app.get('/', (req, res) => {
-  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+
+  console.log(req.oidc.isAuthenticated());
+
+  const path_name = req.oidc.isAuthenticated() ? 'main.html' : 'home.html';
+
+  res.sendFile(path.join(__dirname, '../Website', path_name));
+
+  //res.send(req.oidc.isAuthenticated() ? 'Logged in ' : 'Logged out');
 });
+
+
 
 // OpenAI initialization
 const openai = new OpenAI({
@@ -90,7 +102,7 @@ app.post('/summarize', async (req, res) => {
           summaries = summaries.concat("\n\n", summary.content);
       } catch (error) {
           console.error(error);
-          res.status(500).json({ error: 'Failed to summarize text' });
+          return res.status(500).json({ error: 'Failed to summarize text' });
       }
   }
   // Save the document summary to MongoDB
@@ -117,7 +129,7 @@ app.post('/summarize', async (req, res) => {
       console.log(key_points.content);
   } catch (error) {
       console.error(error);
-      res.status(500).json({ error: 'Failed to extract info' });
+      return res.status(500).json({ error: 'Failed to extract info' });
   }
   }
   return res.status(200).json({ key_highlights  });
@@ -126,33 +138,21 @@ app.post('/summarize', async (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-app.post('/save',  (req, res) =>{
-
-
+app.post('/save', async (req, res) =>{
 
   const {title, content} = req.body;
 
-
-
   if(!title || !content){
-    res.sendStatus(400).json({ error: 'Text and Title Required'});
+    return res.status(400).json({ error: 'Text and Title Required'});
   }
 
   const newDocument = new Document({
     title: title,
     summary: content,
   })
+
+
+
   try   {
     newDocument.save();
 
@@ -183,6 +183,11 @@ app.get('/documents', async (req, res) => {
     return res.status(500).json({ error: 'Failed to retrieve documents' });
   }
 });
+
+
+
+
+
 
 
 

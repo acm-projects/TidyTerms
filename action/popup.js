@@ -48,6 +48,7 @@ function loadContent(url) {
             contentDiv.innerHTML = data;
             if (url === 'home.html') {
                 setupScanButtonListener();
+                setupWebsiteButtonListener();
             }
             if(url === 'summary.html'){
                 summaryGenerator();
@@ -80,7 +81,27 @@ function loadContent(url) {
 
 // }
 
+function setupWebsiteButtonListener() {
+    const websiteButton = document.getElementById("websiteButton");
+    console.log("website function called");
+
+
+    if(websiteButton){
+        console.log("website button exists");
+        websiteButton.addEventListener('click', () => {
+
+            console.log("website button clicked");
+            window.open('http://localhost:5000/', '_blank');
+        });
+    }
+    else {
+        console.error("website button not found");
+    }
+
+}
+
 function setupScanButtonListener() {
+
     const scanButton = document.getElementById('scanButton');
     if (scanButton) {
         scanButton.addEventListener('click', () => {
@@ -286,64 +307,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-// function summaryGenerator() {
-//     const summaryBox = document.getElementById("summaryBox");
 
-//     if (summaryBox) {
-//         const handleMessage = (message, sender, sendResponse) => {
-//             if (message.action === 'loadData') {
-//                 const data = message.data['key_highlights'];
-                
-//                 // Clear the summaryBox before appending new content
-//                 summaryBox.innerHTML = ''; 
-                
-//                 // Iterate over the object and create elements dynamically
-//                 for (let key in data) {
-//                     if (data.hasOwnProperty(key)) {
-//                         // Create a new div for each key-value pair
-//                         const item = document.createElement('div');
-//                         item.textContent = `${key}: ${data[key]}`;
-//                         summaryBox.appendChild(item);
-//                     }
-//                 }
-//             }
-//         };
-
-//         // Remove any existing listeners to avoid adding multiple identical ones
-//         chrome.runtime.onMessage.removeListener(handleMessage);
-        
-//         // Add the message listener
-//         chrome.runtime.onMessage.addListener(handleMessage);
-//     }
-// }
-
-
-// tabs.forEach(tab => {
-//     tab.addEventListener('click', () => {
-//         tabs.forEach(t => {
-//             t.classList.remove('active');
-//             //t.classList.remove('summary-active');
-//         });
-//         tab.classList.add('active');
-//         // if (tab.dataset.target === 'summary.html') {
-//         //     tab.classList.add('summary-active'); // Add home-active class to Home tab
-//         // }
-
-//         loadContent(tab.getAttribute('data-target'));
-
-//         if(tab.dataset.target === 'summary.html')
-//         {
-//             document.body.style.backgroundColor = '#00477A';
-//         }
-//         else if(tab.dataset.target === 'share.html')
-//         {
-//             document.body.style.backgroundColor = '#00477A';
-//         }
-//         // document.body.style.backgroundColor = (tab.dataset.target === 'summary.html') ? '#00477A' : ''; // Example: Change color based on active tab
-//         // document.body.style.backgroundColor = (tab.dataset.target === 'share.html') ? '#00477A' : ''; // Example: Change color based on active tab
-//         //overlay.style.opacity = (tab.dataset.target === 'summary.html') ? '0.4' : '0.5'; 
-//     });
-// });
 document.addEventListener('DOMContentLoaded', function () {
     const logo = document.querySelector('.logo'); // Select the logo element
     const chatBox = document.getElementById('chatBox'); // Select the chat box
@@ -507,6 +471,8 @@ if (titleElement) {
         const cancelLoginPopupButton = document.getElementById('cancelLoginPopup');
         const submitTitleButton = document.getElementById('submitTitle');
         const cancelTitlePopupButton = document.getElementById('cancelTitlePopup');
+
+        
         // Show popup when "Save Summary" is clicked
         saveSummaryButton.addEventListener('click', () => {
             //console.log('Summary Saving Button clicked!');
@@ -573,71 +539,7 @@ if (titleElement) {
     }
 
 
-// async function parsePageContent() {
 
-
-//     let data = {}
-  
-//     const htmlContent = document.documentElement.outerHTML;
-//     const parser = new DOMParser();
-//     const doc = parser.parseFromString(htmlContent, "text/html");
-  
-   
-  
-//     const title = doc.querySelector(['h1']);
-  
-//     console.log(title);
-  
-//     let jsonObject = {
-//       'title': title ? title.innerText : null
-//     };
-  
-  
-//     const paragraphs = doc.querySelectorAll(['p']);
-  
-    
-  
-//     jsonObject['content'] = Array.from(paragraphs).map(paragraph => ({
-//       textContent: paragraph.textContent.trim(),
-  
-//     }));
-  
-//     // Convert to a JSON string
-//     let jsonString = JSON.stringify(jsonObject, null, 4);
-//     console.log(jsonString);
-
-//     try {
-//         const response = await fetch('http://localhost:5000/summarize', {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             },
-//             body: jsonString,
-//         });
-
-//         if (!response.ok) {
-//             throw new Error('Network response was not ok: ' + response.statusText);
-//         }
-
-//         console.log('herenoe'); 
-//         const data = await response.json(); // Await the response properly
-//         chrome.runtime.sendMessage( {action: "display summaries", data: data}) // Pass the fetched data to summaryGenerator
-
-//     } catch (error) {
-//         console.error('There was a problem with the fetch operation:', error);
-//     }
-
-
- 
-  
-
-  
-//     // Output JSON string
-  
-// }
-
-
-// Load default content
 
 loadContent('home.html'); 
 

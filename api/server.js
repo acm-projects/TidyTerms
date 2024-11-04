@@ -3,7 +3,8 @@ import dotenv from 'dotenv';
 import OpenAI from 'openai';
 import cors from 'cors';
 import mongoose from 'mongoose';
-import { auth } from 'express-openid-connect';
+import expressOpenIdConnect from 'express-openid-connect';
+
 import Document from './models/documentModel.js';
 import path from 'path';
 
@@ -14,6 +15,7 @@ dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+const { auth, requiresAuth} = expressOpenIdConnect;
 
 // Auth0 config
 const config = {
@@ -135,12 +137,13 @@ app.post('/summarize', async (req, res) => {
 
 
 
-app.post('/save', (req, res) =>{
+app.post('/save',  (req, res) =>{
+
 
 
   const {title, content} = req.body;
 
-  console.log(content);
+
 
   if(!title || !content){
     res.sendStatus(400).json({ error: 'Text and Title Required'});
@@ -180,6 +183,9 @@ app.get('/documents', async (req, res) => {
     return res.status(500).json({ error: 'Failed to retrieve documents' });
   }
 });
+
+
+
 
 // Server listening
 const PORT = process.env.PORT || 5000;

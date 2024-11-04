@@ -423,10 +423,14 @@ input[type="url"]:focus {
 #summaryContainer {
     display: flex;
     flex-wrap: wrap;
+    
 }
 
 .styled-button {
     flex: 1 1 calc(33.333% - 10px); /* 1/3 width minus margin */
     margin: 5px; /* Adjust space between buttons */
     box-sizing: border-box; /* Ensure padding and border are included in width */
+    overflow-y: auto; /* Enable vertical scrolling */
+    
 }
+

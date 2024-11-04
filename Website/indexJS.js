@@ -32,29 +32,29 @@ setupLoginButtonListener();
 // Content and image data
 const data = [
     {
-        image: "image1.jpg",
-        title: "Content Title 1",
-        text: "This is the first content section. It describes Image 1."
+        image: "ShreyaPicture.jpg",
+        title: "Shreya Ramani",
+        text: "My name is Shreya and I am currently a junior majoring in Computer Science with a minor in finance. I'm the Project Manager for Tidy Terms."
     },
     {
-        image: "image2.jpg",
-        title: "Content Title 2",
-        text: "This is the second content section. It describes Image 2."
+        image: "NityaPicture.jpg",
+        title: "Nitya Chirravuri",
+        text: "My name is Nitya and I am currently a freshman majoring in Computer Science. I'm one of the frontend developers for Tidy Terms."
     },
     {
-        image: "image3.jpg",
-        title: "Content Title 3",
-        text: "This is the third content section. It describes Image 3."
+        image: "VivianPicture.jpg",
+        title: "Vivian Nguyen",
+        text: "My name is Vivian and I am currently a sophmore majoring in Computer Science. I'm one of the frontend developers for Tidy Terms."
     },
     {
-        image: "image4.jpg",
-        title: "Content Title 4",
-        text: "This is the fourth content section. It describes Image 4."
+        image: "ArshiaPicture.jpg",
+        title: "Arshia Puri",
+        text: "My name is Arshia and I am currently a sophmore majoring in Computer Science. I'm one of the backend developers for Tidy Terms."
     },
     {
-        image: "image5.jpg",
-        title: "Content Title 5",
-        text: "This is the fifth content section. It describes Image 5."
+        image: "AtreyaPicture.jpg",
+        title: "Atreya Ghosh",
+        text: "My name is Atreya and I am currently a sophmore majoring in Computer Science. I'm one of the backend developers for Tidy Terms."
     }
 ];
 
@@ -103,31 +103,56 @@ buttons.forEach(button => {
 updateContent(0);
 
 
-const words = ["Privacy", "Terms", "Data", "Security", "Agreements", "Contracts", "Confidentiality", "Usage", "Consent", "Encryption"]; // Add more words as needed
+const words = ["Privacy", "Information", "Security", "Agreements", "Contracts", "Confidentiality", "Usage", "Consent", "Encryption", "Permissions", "Policies", "Disclosure", "Anonymity", "Rights", "Regulations", "Transparency", "Ownership"]; // Add more words as needed
 
 function getRandomPosition() {
-    
     const x = Math.random() * (window.innerWidth - 100); // Random X position
-    const y = Math.random() * (window.innerHeight - 50); // Random Y position
+    const y = 25 + Math.random() * (window.innerHeight - 150); // Random Y position
     return { x, y };
+}
+
+function typeAndErase(word, element) {
+    let index = 0;
+    let typing = true;
+    
+    function type() {
+        if (typing) {
+            if (index < word.length) {
+                element.textContent += word[index];
+                index++;
+                setTimeout(type, 200); // Typing speed
+            } else {
+                typing = false;
+                setTimeout(type, 1000); // Pause before erasing
+            }
+        } else {
+            if (index > 0) {
+                element.textContent = element.textContent.slice(0, -1);
+                index--;
+                setTimeout(type, 100); // Erasing speed
+            } else {
+                element.remove(); // Remove the word element after erasing
+            }
+        }
+    }
+    
+    type();
 }
 
 function createWordElement(word) {
     const wordElement = document.createElement('div');
     wordElement.classList.add('word');
-    wordElement.textContent = word;
-
+    
     // Get a random position for the word
     const { x, y } = getRandomPosition();
+    wordElement.style.position = 'absolute';
     wordElement.style.left = `${x}px`;
     wordElement.style.top = `${y}px`;
-
+    
     document.body.appendChild(wordElement);
-
-    // Remove the word after the animation is done (5s)
-    setTimeout(() => {
-        wordElement.remove();
-    }, 5000);
+    
+    // Start typing and erasing effect
+    typeAndErase(word, wordElement);
 }
 
 function displayRandomWord() {
@@ -137,7 +162,7 @@ function displayRandomWord() {
 }
 
 // Display words at random intervals
-setInterval(displayRandomWord, 1000); // New word every second
+setInterval(displayRandomWord, 800);
 
 // const words = ["Privacy", "Terms", "Data", "Security", "Agreements", "Contracts", "Confidentiality", "Usage", "Consent", "Encryption"]; // Add more words as needed
 

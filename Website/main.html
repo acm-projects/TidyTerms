@@ -16,7 +16,7 @@
    <div class = "container"> <!-- used to help align the tabs and content-->
     <div class="toggle-button-container">
         <button id="toggleButton" class="toggle-button"><i class="fa-solid fa-bars"></i></button>
-        <button id="exitButton" class="exit-button hidden"><i class="fas fa-window-close"></i></button> 
+        <button id="exitButton" class="exit-button hidden" style = ><i class="fas fa-window-close"></i></button> 
     </div>
     <div class = "tab-container hidden">
 
@@ -34,9 +34,9 @@
         <!-- <li data-tab-target="#trash"  class = "tab zen-kaku-gothic-new-black" > 
             <i class="fa-solid fa-trash"></i>
             Trash </li> -->
-        <li data-tab-target="#settings"  class = "tab zen-kaku-gothic-new-black">
-            <i class="fa-solid fa-gear"></i>
-             Settings</li>
+        <li data-tab-target="#profile"  class = "tab zen-kaku-gothic-new-black">
+            <i class="fa-solid fa-user"></i>
+             Profile</li>
 
         
         <!-- <li data-tab-target="#support"  class = "tab zen-kaku-gothic-new-black">
@@ -120,13 +120,29 @@
 
                </div> 
             </div>  -->
-            <div id="settings" data-tab-content>
-                <h1> Settings </h1>
-            </div><!--end of div for settings-->
+            <div id="profile" data-tab-content>
+                <div class="box"> 
+                    <div class="profile-center"> 
+                        <img src="icon-profile.png" width="400" height="350" alt="Profile Image"> 
+                        <div class="small-box"> 
+                            <h1 id="profileName">Name: Fill in Name</h1>
+                            <p id="profileEmail">Email: _____@gmail.com</p>
+                            <p id="profilePassword">Password: *****</p>
+                            <button id="editButton">Edit Profile</button>
+                        </div>
+                        <div class="edit-form" style="display: none;">
+                            <input type="text" id="nameInput" placeholder="New Name">
+                            <input type="email" id="emailInput" placeholder="New Email">
+                            <input type="password" id="passwordInput" placeholder="New Password">
+                            <button id="updateButton">Update Profile</button>
+                            <button id="cancelButton">Cancel</button>
+                        </div>
+                    </div> 
+                </div> 
+            </div><!--end of div for profile-->
+            
+            
 
-            <div id="support" data-tab-content> 
-                <h1> Support</h1>
-            </div><!--end of div for support-->
 
             <div id="signOut" data-tab-content> 
                 <h1> Sign Out</h1>

@@ -33,28 +33,28 @@ setupLoginButtonListener();
 const data = [
     {
         image: "ShreyaPicture.jpg",
-        title: "Content Title 1",
-        text: "This is the first content section. It describes Image 1."
+        title: "Shreya Ramani",
+        text: "My name is Shreya and I am currently a junior majoring in Computer Science with a minor in finance. I'm the Project Manager for Tidy Terms."
     },
     {
         image: "NityaPicture.jpg",
-        title: "Content Title 2",
-        text: "This is the second content section. It describes Image 2."
+        title: "Nitya Chirravuri",
+        text: "My name is Nitya and I am currently a freshman majoring in Computer Science. I'm one of the frontend developers for Tidy Terms."
     },
     {
         image: "VivianPicture.jpg",
-        title: "Content Title 3",
-        text: "This is the third content section. It describes Image 3."
+        title: "Vivian Nguyen",
+        text: "My name is Vivian and I am currently a sophmore majoring in Computer Science. I'm one of the frontend developers for Tidy Terms."
     },
     {
         image: "ArshiaPicture.jpg",
-        title: "Content Title 4",
-        text: "This is the fourth content section. It describes Image 4."
+        title: "Arshia Puri",
+        text: "My name is Arshia and I am currently a sophmore majoring in Computer Science. I'm one of the backend developers for Tidy Terms."
     },
     {
         image: "AtreyaPicture.jpg",
-        title: "Content Title 5",
-        text: "This is the fifth content section. It describes Image 5."
+        title: "Atreya Ghosh",
+        text: "My name is Atreya and I am currently a sophmore majoring in Computer Science. I'm one of the backend developers for Tidy Terms."
     }
 ];
 

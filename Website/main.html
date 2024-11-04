@@ -25,9 +25,9 @@
             <i class="fa-solid fa-file-lines"></i>
             My Summaries 
         </li>
-        <li data-tab-target="#trash"  class = "tab zen-kaku-gothic-new-black" > 
+        <!-- <li data-tab-target="#trash"  class = "tab zen-kaku-gothic-new-black" > 
             <i class="fa-solid fa-trash"></i>
-            Trash </li>
+            Trash </li> -->
         <li data-tab-target="#settings"  class = "tab zen-kaku-gothic-new-black">
             <i class="fa-solid fa-gear"></i>
              Settings</li>
@@ -113,12 +113,26 @@
                </div> <!--end of the div for the box-->
             </div> <!--end of div for trash-->
             <div id="settings" data-tab-content>
-                <h1> Settings </h1>
+                <div class="box"> 
+                    <div class="profile-center"> 
+                        <img src="icon-profile.png" width="400" height="350" alt="Profile Image"> 
+                        <div class="small-box"> 
+                            <h1 id="profileName">Name: Fill in Name</h1>
+                            <p id="profileEmail">Email: _____@gmail.com</p>
+                            <p id="profilePassword">Password: *****</p>
+                            <button id="editButton">Edit Profile</button>
+                        </div>
+                        <div class="edit-form" style="display: none;">
+                            <input type="text" id="nameInput" placeholder="New Name">
+                            <input type="email" id="emailInput" placeholder="New Email">
+                            <input type="password" id="passwordInput" placeholder="New Password">
+                            <button id="updateButton">Update Profile</button>
+                            <button id="cancelButton">Cancel</button>
+                        </div>
+                    </div> 
+                </div> 
             </div><!--end of div for settings-->
 
-            <div id="support" data-tab-content> 
-                <h1> Support</h1>
-            </div><!--end of div for support-->
 
             <div id="signOut" data-tab-content> 
                 <h1> Sign Out</h1>

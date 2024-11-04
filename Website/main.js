@@ -201,3 +201,50 @@ loadButtons.forEach(button => {
 //     });
     
 // });
+
+const editButton = document.getElementById('editButton');
+const updateButton = document.getElementById('updateButton');
+const cancelButton = document.getElementById('cancelButton');
+const editForm = document.querySelector('.edit-form');
+const box = document.querySelector('.box'); // Select the main box
+
+// Show the edit form and populate it with current values when the Edit button is clicked
+editButton.addEventListener('click', function() {
+    editForm.style.display = 'block'; // Show the edit form
+    box.style.height = '650px'; // Set a specific height for the main box
+
+    // Populate the input fields with current values
+    document.getElementById('nameInput').value = document.getElementById('profileName').innerText.replace('Name: ', '');
+    document.getElementById('emailInput').value = document.getElementById('profileEmail').innerText.replace('Email: ', '');
+    document.getElementById('passwordInput').value = ''; // Clear password input for security
+});
+
+// Update profile on button click
+updateButton.addEventListener('click', function() {
+    const newName = document.getElementById('nameInput').value;
+    const newEmail = document.getElementById('emailInput').value;
+    const newPassword = document.getElementById('passwordInput').value;
+
+    if (newName) {
+        document.getElementById('profileName').innerText = `Name: ${newName}`;
+    }
+    if (newEmail) {
+        document.getElementById('profileEmail').innerText = `Email: ${newEmail}`;
+    }
+    if (newPassword) {
+        document.getElementById('profilePassword').innerText = `Password: ${newPassword}`;
+    }
+
+    // Clear input fields and hide the edit form
+    editForm.style.display = 'none';
+    box.style.height = 'auto'; // Reset height if necessary
+    document.getElementById('nameInput').value = '';
+    document.getElementById('emailInput').value = '';
+    document.getElementById('passwordInput').value = '';
+});
+
+// Cancel editing
+cancelButton.addEventListener('click', function() {
+    editForm.style.display = 'none'; // Hide the edit form
+    box.style.height = 'auto'; // Reset height if necessary
+});

@@ -3,74 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap');
-       
-   </style>
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-   <link rel="stylesheet" href="test.css">
-   <script src="test.js" defer> </script>
-   <!-- defer is used to make sure the script happens after the html is loaded  -->
+    <link rel="stylesheet" href="test.css">
+    <script src="test.js" defer></script>
+    <title>Tidy Terms</title>
 </head>
 <body>
-  
-
-    <ul class = "tabs">
-        <li data-tab-target="#home" class = "active tab zen-kaku-gothic-new-black"> <i class="fas fa-home" style="font-size: 20px;"></i></li>
-        <li data-tab-target="#about"  class = "tab zen-kaku-gothic-new-black"> <i class="fas fa-circle-info fa-lg" style="font-size: 22px;"></i></li>
-        </ul>
-    
-    
-    
-    
-        <div class="tab-content">
-            <div id="home" data-tab-content class="active">
-                <div class = "container-box">
-                    <div class = "box" >
-                        <h1 class="zen-kaku-gothic-new-black">TIDY TERMS</h1>
-                        <p class="zen-kaku-gothic-new-light"> Summarizing Terms and Conditions </p>
-    
-                    <div class = "horizontal-center"> 
-                        <button class="centered-button" style = "text-align:center;background-color: #022742; color: white; margin-top: 10px;" onmouseover="this.style.backgroundColor='#04558e';"
-                        onmouseout="this.style.backgroundColor='#022742';" > SIGN UP </button>
-                    </div>
-                        <div class = "horizontal-center"> 
-                        <button class="centered-button" style = "margin-top: 10px; ">LOGIN</button>
-                    </div>
-                </div>
-            </div>
-            </div>
-            <div id="about" data-tab-content>
-                <div class="split-screen">
-                    <div class="image-container">
-                        <img id="mainImage" src="image1.jpg" alt="Image 1" class="slide-in">
-                    </div>
-                    <div class="content-container">
-                        <h1 id="mainContentTitle" class="slide-in" style = "color: #00477A">Content Title 1</h1>
-                        <p id="mainContentText" class="slide-in" style = "color: #00477A">This is the first content section. It describes Image 1.</p>
-                    </div>
-                </div>
-                
-                <div class="image-buttons">
-                    <button class="button" data-index="0" class = "zen-kaku-gothic-new-black">SR</button>
-                    <button class="button" data-index="1" class = "zen-kaku-gothic-new-black">NC</button>
-                    <button class="button" data-index="2" class = "zen-kaku-gothic-new-black">VN</button>
-                    <button class="button" data-index="3" class = "zen-kaku-gothic-new-black">AP</button>
-                    <button class="button" data-index="4" class = "zen-kaku-gothic-new-black">AG</button>
-                </div>
-                
+    <div class="container">
+        <div class="toggle-button-container">
+            <button id="toggleButton" class="toggle-button">Show Tabs</button>
+            <button id="exitButton" class="exit-button hidden">Exit</button>
         </div>
-           
-    
-    
-    
-    
-        </div>  <!--  end of div for the tabs  -->
-
-
-
-
-
-   
+        <div class="tab-container hidden">
+            <div class="tab-content">
+                <div id="mySummaries" data-tab-content class="active">
+                    <h1>My Summaries</h1>
+                    <!-- Content goes here -->
+                </div>
+                <div id="settings" data-tab-content>
+                    <h1>Settings</h1>
+                </div>
+                <div id="signOut" data-tab-content>
+                    <h1>Sign Out</h1>
+                </div>
+            </div>
+            <ul class="tabs">
+                <li data-tab-target="#mySummaries" class="tab active">My Summaries</li>
+                <li data-tab-target="#settings" class="tab">Settings</li>
+                <li data-tab-target="#signOut" class="tab">Sign Out</li>
+            </ul>
+        </div>
+    </div>
 </body>
 </html>

@@ -448,4 +448,26 @@ input[type="url"]:focus {
     box-sizing: border-box; /* Ensure padding and border are included in width */
     
 }
+.sign-button {
+    /* display: flex; */
+    /* flex-direction: column; Stack the text and icon vertically */
+    align-items: center;   
+    justify-content: center;
+    padding: 10px 20px; /* Padding */
+    background-color: #C6D9E6; /* Button color */
+    color: #00477A; /* Text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer on hover */
+    width: 300px; 
+    transition: width 0.3s ease, padding 0.3s ease;
+    height: 60px; 
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 1000;
+    font-size: large;
+    margin-top: 50px;
+}
+.sign-button:hover {
+    background-color: #acc2d0; 
+}
 

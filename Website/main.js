@@ -322,3 +322,18 @@ cancelButton.addEventListener('click', function() {
     editForm.style.display = 'none'; // Hide the edit form
   
 });
+
+function setupSignOut() {
+    const signOut = document.getElementById('signOutButton');
+    if (signOut) {
+        //console.log('Login Button exists!'); // Log message to confirm the button is found
+        signOut.addEventListener('click', () => {
+            console.log('Sign Out Button');
+            // Redirect the user to the backend login route
+            window.location.href = 'http://localhost:5000/logout';
+        });
+    } else {
+        console.error('Login button not found!'); // Error message if button is missing
+    }
+}
+setupSignOut();

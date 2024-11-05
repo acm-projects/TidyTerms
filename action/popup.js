@@ -491,7 +491,7 @@ if (titleElement) {
 
                 const saveObject = {
                     "title": title,
-                    "content": document.getElementById("summaryBox").textContent,
+                    "content": document.getElementById("summaryBox").innerHTML,
                 }
                 saveString = JSON.stringify(saveObject, null, 2);
     

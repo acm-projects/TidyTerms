@@ -204,7 +204,7 @@ function loadNewContent(content) {
     const textWrapper = document.createElement('div');
     textWrapper.style.maxHeight = '300px';  // Adjust max height as needed
     textWrapper.style.overflowY = 'auto';   // Enable vertical scrolling for content
-    textWrapper.innerHTML = `<p>${content.text}</p>`;
+    textWrapper.innerHTML = content.text;
 
     // Append the scrollable content to the overlay
     overlayContent.appendChild(textWrapper);

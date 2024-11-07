@@ -46,18 +46,18 @@ tabs.forEach(tab => {
 
 
 // Toggle button functionality
-toggleButton.addEventListener('click', () => {
-    tabContainer.classList.remove('hidden'); // Show tabs
-    toggleButton.classList.add('hidden'); // Hide toggle button
-    exitButton.classList.remove('hidden'); // Show exit button
-});
+// toggleButton.addEventListener('click', () => {
+//     tabContainer.classList.remove('hidden'); // Show tabs
+//     toggleButton.classList.add('hidden'); // Hide toggle button
+//     exitButton.classList.remove('hidden'); // Show exit button
+// });
 
-// Exit button functionality
-exitButton.addEventListener('click', () => {
-    tabContainer.classList.add('hidden'); // Hide tabs
-    toggleButton.classList.remove('hidden'); // Show toggle button
-    exitButton.classList.add('hidden'); // Hide exit button
-});
+// // Exit button functionality
+// exitButton.addEventListener('click', () => {
+//     tabContainer.classList.add('hidden'); // Hide tabs
+//     toggleButton.classList.remove('hidden'); // Show toggle button
+//     exitButton.classList.add('hidden'); // Hide exit button
+// });
 
 
 
@@ -321,7 +321,7 @@ updateButton.addEventListener('click', function() {
 
     // Clear input fields and hide the edit form
     editForm.style.display = 'none';
-    box.style.height = 'auto'; // Reset height after update
+    // box.style.height = 'auto'; // Reset height after update
     document.getElementById('nameInput').value = '';
     document.getElementById('emailInput').value = '';
     document.getElementById('passwordInput').value = '';

@@ -464,10 +464,10 @@ if (titleElement) {
 
 
     function saveButtons(){
-        const loginPopup = document.getElementById('loginPopup');
+        //const loginPopup = document.getElementById('loginPopup');
         const titlePopup = document.getElementById('titlePopup');
-        const saveSummaryButton = document.getElementById('saveSummaryButton');
-        const confirmLoginButton = document.getElementById('confirmLogin');
+        //const saveSummaryButton = document.getElementById('saveSummaryButton');
+        //const confirmLoginButton = document.getElementById('confirmLogin');
         const cancelLoginPopupButton = document.getElementById('cancelLoginPopup');
         const submitTitleButton = document.getElementById('submitTitle');
         const cancelTitlePopupButton = document.getElementById('cancelTitlePopup');
@@ -476,14 +476,15 @@ if (titleElement) {
         // Show popup when "Save Summary" is clicked
         saveSummaryButton.addEventListener('click', () => {
             //console.log('Summary Saving Button clicked!');
-            loginPopup.style.display = 'flex';
+            //loginPopup.style.display = 'flex';
+            titlePopup.style.display = 'flex';
         });
         // Confirm login action
-        confirmLoginButton.addEventListener('click', () => {
-            loginPopup.style.display = 'none';
-            titlePopup.style.display = 'flex';
-            //titleInputContainer.style.display = 'block'; // Show title input
-        });
+        // confirmLoginButton.addEventListener('click', () => {
+        //     loginPopup.style.display = 'none';
+        //     titlePopup.style.display = 'flex';
+        //     //titleInputContainer.style.display = 'block'; // Show title input
+        // });
         submitTitleButton.addEventListener('click', () => {
             const title = document.getElementById('summaryTitle').value;
             if (title) {
@@ -491,7 +492,7 @@ if (titleElement) {
 
                 const saveObject = {
                     "title": title,
-                    "content": document.getElementById("summaryBox").textContent,
+                    "content": document.getElementById("summaryBox").innerHTML,
                 }
                 saveString = JSON.stringify(saveObject, null, 2);
     
@@ -512,15 +513,15 @@ if (titleElement) {
                 }
 
                 
-                alert(`Summary titled "${title}" has been saved!`); // Replace with save functionality
+                //alert(`Summary titled "${title}" has been saved!`); // Replace with save functionality
             } else {
                 alert("Please enter a title.");
             }
         });
         // Close popup without action
-        cancelLoginPopupButton.addEventListener('click', () => {
-            loginPopup.style.display = 'none';
-        });
+        // cancelLoginPopupButton.addEventListener('click', () => {
+        //     loginPopup.style.display = 'none';
+        // });
         cancelTitlePopupButton.addEventListener('click', () => {
             titlePopup.style.display = 'none';
         });

@@ -10,44 +10,54 @@ const exitButton = document.getElementById('exitButton');
 const tabContainer = document.querySelector('.tab-container');
 const loadButtons = document.querySelectorAll(".styled-button");
 
+
 tabs.forEach(tab => {
-    const currentTab = document.querySelector(tab.dataset.tabTarget);
-    if (currentTab.id === 'mySummaries') {
+
+    const currentTab = document.querySelectorAll(tab.dataset.tabTarget);
+
+    if (currentTab.id === 'mySummaries'){
         loadSummaries();
     }
 
-    tab.addEventListener('click', () => {
-        const target = document.querySelector(tab.dataset.tabTarget);
+    tab.addEventListener('click',() => {
+        const target = document.querySelector(tab.dataset.tabTarget)
         tabContents.forEach(tabContent => {
-            tabContent.classList.remove('active');
-        });
+            tabContent.classList.remove('active')
+        })
 
-        tabs.forEach(t => {
-            t.classList.remove('active');
-        });
-        tab.classList.add('active');
-        target.classList.add('active');
+
+        tabs.forEach(tab => {
+            tab.classList.remove('active')
+        })
+        tab.classList.add('active')
+
+
+        target.classList.add('active')
 
         console.log(target.id);
-        if (target.id === 'mySummaries') {
+
+        if (target.id === 'mySummaries'){
             loadSummaries();
         }
-    });
-});
+
+
+    })
+})
+
 
 // Toggle button functionality
-toggleButton.addEventListener('click', () => {
-    tabContainer.classList.remove('hidden'); // Show tabs
-    toggleButton.classList.add('hidden'); // Hide toggle button
-    exitButton.classList.remove('hidden'); // Show exit button
-});
+// toggleButton.addEventListener('click', () => {
+//     tabContainer.classList.remove('hidden'); // Show tabs
+//     toggleButton.classList.add('hidden'); // Hide toggle button
+//     exitButton.classList.remove('hidden'); // Show exit button
+// });
 
-// Exit button functionality
-exitButton.addEventListener('click', () => {
-    tabContainer.classList.add('hidden'); // Hide tabs
-    toggleButton.classList.remove('hidden'); // Show toggle button
-    exitButton.classList.add('hidden'); // Hide exit button
-});
+// // Exit button functionality
+// exitButton.addEventListener('click', () => {
+//     tabContainer.classList.add('hidden'); // Hide tabs
+//     toggleButton.classList.remove('hidden'); // Show toggle button
+//     exitButton.classList.add('hidden'); // Hide exit button
+// });
 
 
 
@@ -204,7 +214,7 @@ function loadNewContent(content) {
     const textWrapper = document.createElement('div');
     textWrapper.style.maxHeight = '300px';  // Adjust max height as needed
     textWrapper.style.overflowY = 'auto';   // Enable vertical scrolling for content
-    textWrapper.innerHTML = `<p>${content.text}</p>`;
+    textWrapper.innerHTML = content.text;
 
     // Append the scrollable content to the overlay
     overlayContent.appendChild(textWrapper);
@@ -311,7 +321,7 @@ updateButton.addEventListener('click', function() {
 
     // Clear input fields and hide the edit form
     editForm.style.display = 'none';
-    box.style.height = 'auto'; // Reset height after update
+    // box.style.height = 'auto'; // Reset height after update
     document.getElementById('nameInput').value = '';
     document.getElementById('emailInput').value = '';
     document.getElementById('passwordInput').value = '';
@@ -322,3 +332,19 @@ cancelButton.addEventListener('click', function() {
     editForm.style.display = 'none'; // Hide the edit form
   
 });
+
+
+function setupSignOut() {
+    const signOut = document.getElementById('signOutButton');
+    if (signOut) {
+        //console.log('Login Button exists!'); // Log message to confirm the button is found
+        signOut.addEventListener('click', () => {
+            console.log('Sign Out Button');
+            // Redirect the user to the backend login route
+            window.location.href = 'http://localhost:5000/logout';
+        });
+    } else {
+        console.error('Login button not found!'); // Error message if button is missing
+    }
+}
+setupSignOut();

@@ -333,6 +333,7 @@ cancelButton.addEventListener('click', function() {
   
 });
 
+
 function setupSignOut() {
     const signOut = document.getElementById('signOutButton');
     if (signOut) {

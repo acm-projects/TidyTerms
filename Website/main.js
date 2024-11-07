@@ -10,30 +10,40 @@ const exitButton = document.getElementById('exitButton');
 const tabContainer = document.querySelector('.tab-container');
 const loadButtons = document.querySelectorAll(".styled-button");
 
+
 tabs.forEach(tab => {
-    const currentTab = document.querySelector(tab.dataset.tabTarget);
-    if (currentTab.id === 'mySummaries') {
+
+    const currentTab = document.querySelectorAll(tab.dataset.tabTarget);
+
+    if (currentTab.id === 'mySummaries'){
         loadSummaries();
     }
 
-    tab.addEventListener('click', () => {
-        const target = document.querySelector(tab.dataset.tabTarget);
+    tab.addEventListener('click',() => {
+        const target = document.querySelector(tab.dataset.tabTarget)
         tabContents.forEach(tabContent => {
-            tabContent.classList.remove('active');
-        });
+            tabContent.classList.remove('active')
+        })
 
-        tabs.forEach(t => {
-            t.classList.remove('active');
-        });
-        tab.classList.add('active');
-        target.classList.add('active');
+
+        tabs.forEach(tab => {
+            tab.classList.remove('active')
+        })
+        tab.classList.add('active')
+
+
+        target.classList.add('active')
 
         console.log(target.id);
-        if (target.id === 'mySummaries') {
+
+        if (target.id === 'mySummaries'){
             loadSummaries();
         }
-    });
-});
+
+
+    })
+})
+
 
 // Toggle button functionality
 toggleButton.addEventListener('click', () => {

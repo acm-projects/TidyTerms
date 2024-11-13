@@ -181,7 +181,7 @@ async function loadSummaries() {
                 </div>
             `;
             summaryButton.addEventListener('click', () => {
-                const content = { title: "Summary loaded", text: summary.summary };
+                const content = { title: summary.title, text: summary.summary };
                 loadNewContent(content);
             });
             summaryContainer.appendChild(summaryButton);
@@ -197,6 +197,37 @@ const overlay = document.getElementById("overlay");
 const overlayContent = document.getElementById("overlayContent");
 
 // Function to load new content based on button clicked
+// function loadNewContent(content) {
+//     // Hide main content
+//     document.getElementById("mainContent").style.display = "none";
+    
+//     // Show overlay with slide-down animation
+//     overlay.style.display = "flex"; // Make overlay visible
+//     setTimeout(() => overlay.classList.add('zoom-in'), 10); // Add class slightly after display change
+    
+//     // Populate overlay with new content and back button
+//     overlayContent.innerHTML = `
+//         <h2>${content.title}</h2>
+//     `;
+
+//     // Create a scrollable wrapper for the content text
+//     const textWrapper = document.createElement('div');
+//     textWrapper.style.maxHeight = '300px';  // Adjust max height as needed
+//     textWrapper.style.overflowY = 'auto';   // Enable vertical scrolling for content
+//     textWrapper.innerHTML = content.text;
+
+//     // Append the scrollable content to the overlay
+//     overlayContent.appendChild(textWrapper);
+
+//     // Add a back button with an event listener to return to the main content
+//     const backButton = document.createElement('button');
+//     backButton.id = 'backButton';
+//     backButton.classList.add('styled-button');
+//     backButton.textContent = 'Back to Main Content';
+//     backButton.addEventListener('click', resetContent);
+//     overlayContent.appendChild(backButton);
+// }
+
 function loadNewContent(content) {
     // Hide main content
     document.getElementById("mainContent").style.display = "none";
@@ -210,14 +241,23 @@ function loadNewContent(content) {
         <h2>${content.title}</h2>
     `;
 
-    // Create a scrollable wrapper for the content text
+    // Create a scrollable wrapper for the content text inside a box
+    const summaryBox = document.createElement('div');
+    summaryBox.classList.add('summary-box'); // Add a class for styling the box
+    summaryBox.style.textAlign = 'left';     // Left-align the content within the box
+    summaryBox.style.padding = '15px';       // Optional: padding for better spacing
+    summaryBox.style.border = '1px solid #ccc'; // Optional: box border for visual separation
+    summaryBox.style.borderRadius = '8px';   // Optional: rounded corners
+
+    // Create a scrollable container for the summary text
     const textWrapper = document.createElement('div');
-    textWrapper.style.maxHeight = '300px';  // Adjust max height as needed
-    textWrapper.style.overflowY = 'auto';   // Enable vertical scrolling for content
+    textWrapper.style.maxHeight = '300px';       // Adjust max height as needed
+    textWrapper.style.overflowY = 'auto';        // Enable vertical scrolling for content
     textWrapper.innerHTML = content.text;
 
-    // Append the scrollable content to the overlay
-    overlayContent.appendChild(textWrapper);
+    // Append the text to the box and the box to the overlay
+    summaryBox.appendChild(textWrapper);
+    overlayContent.appendChild(summaryBox);
 
     // Add a back button with an event listener to return to the main content
     const backButton = document.createElement('button');
@@ -227,6 +267,10 @@ function loadNewContent(content) {
     backButton.addEventListener('click', resetContent);
     overlayContent.appendChild(backButton);
 }
+
+
+
+
 
 // Function to reset content to main view
 function resetContent() {

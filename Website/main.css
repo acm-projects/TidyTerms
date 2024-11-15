@@ -255,6 +255,7 @@ input[type="url"]:focus {
     /*min-width: 100vh;  */
 }
 
+
 .back-button:hover {
     background-color: #0056b3;
 }
@@ -276,6 +277,8 @@ input[type="url"]:focus {
     border: none; 
     font-size: 20px; 
     border-radius: 5px; 
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 575;
 
 }
 
@@ -494,4 +497,21 @@ h1, h2, h3, .summary-title {
 .sign-button:hover {
     background-color: #acc2d0; 
 }
+.tts-icon-container {
+    position: absolute; /* Make it relative to the popup */
+    bottom: 20px;       /* Distance from the bottom */
+    right: 20px;        /* Distance from the right */
+    z-index: 10;        /* Ensure it appears on top if necessary */
+}
+
+.tts-icon {
+    font-size: 20px;     /* Adjust icon size */ 
+    cursor: pointer;     /* Make it look interactive */
+    transition: color 0.3s ease; /* Smooth hover effect */
+}
+
+.tts-icon:hover {
+    color: #afc6de; /* Highlight color on hover */
+}
+
 

@@ -45,6 +45,119 @@ tabs.forEach(tab => {
 })
 
 
+// Toggle button functionality
+// toggleButton.addEventListener('click', () => {
+//     tabContainer.classList.remove('hidden'); // Show tabs
+//     toggleButton.classList.add('hidden'); // Hide toggle button
+//     exitButton.classList.remove('hidden'); // Show exit button
+// });
+
+// // Exit button functionality
+// exitButton.addEventListener('click', () => {
+//     tabContainer.classList.add('hidden'); // Hide tabs
+//     toggleButton.classList.remove('hidden'); // Show toggle button
+//     exitButton.classList.add('hidden'); // Hide exit button
+// });
+
+
+
+
+// async function loadSummaries() {
+//     const apiUrl = 'http://localhost:5000/documents'; // Your API endpoint
+
+
+//     try {
+//         const response = await fetch(apiUrl);
+//         const summaries = await response.json();
+
+//         // Get the container where the summaries will be displayed
+//         var summaryContainer = document.getElementById(id='summaryContainer');
+//         summaryContainer.innerHTML = '<div></div>';  // Clear previous content
+
+
+//         // Loop through the summaries and generate buttons for each
+//         summaries.forEach(summary => {
+//             console.log(summary.toString());
+            
+//             const summaryButton = document.createElement('button');
+//             summaryButton.classList.add('styled-button', 'zen-kaku-gothic-new-regular');
+//             //summaryButton.id = "summaryOne"
+//             summaryButton.innerHTML = `
+//                 ${summary.title} 
+//                 <div class="icon-container">
+//                     <i class="fas fa-share"></i>
+//                 </div>
+//             `;
+//             summaryButton.addEventListener('click', () => {
+//                 const content = {title: "Summary loaded", text: summary.summary}
+//                 loadNewContent(content);
+//             });
+//             summaryContainer.appendChild(summaryButton);
+//         });
+//     } catch (error) {
+//         console.error('Error fetching summaries:', error);
+//     }
+// }
+
+
+// // Get the button and main content container
+// const loadButton = document.getElementById("loadContentButton");
+// const mainContent = document.getElementById("mainContent");
+
+// // Function to load the new content and show a back button
+// function loadNewContent() {
+//     // Populate the empty content div with new content
+//     mainContent.innerHTML = `
+//         <h2>New Content Loaded</h2>
+//         <p>This is the new content that was dynamically added.</p>
+//         <button id="backButton" class="styled-button">Back to Main Content</button>
+//     `;
+
+//     // Hide the load button
+//     loadButton.style.display = "none";
+
+//     // Add event listener for the back button
+//     const backButton = document.getElementById("backButton");
+//     backButton.addEventListener("click", resetContent);
+// }
+
+// // Function to reset content (back to the empty state)
+// function resetContent() {
+//     // Clear the main content
+//     mainContent.innerHTML = "";
+
+//     // Show the load button again
+//     loadButton.style.display = "block";
+// }
+
+// // Add event listener to load content when the button is clicked
+// loadButton.addEventListener("click", loadNewContent);
+
+// Get references to the buttons and overlay elements
+// const overlay = document.getElementById("overlay");
+// const overlayContent = document.getElementById("overlayContent");
+// const loadButtons = document.querySelectorAll(".styled-button");
+
+// // Function to load new content based on button clicked
+// function loadNewContent(content) {
+//     // Hide main content
+//     document.getElementById("mainContent").style.display = "none";
+    
+//     // Show overlay
+//     overlay.style.display = "flex";
+    
+//     // Populate overlay with new content and back button
+//     overlayContent.innerHTML = `
+//         <h2>${content.title}</h2>
+//         <p>${content.text}</p>
+//         <button id="backButton" class="styled-button">Back to Main Content</button>
+//     `;
+    
+//     // Add event listener for back button
+//     document.getElementById("backButton").addEventListener("click", function() {
+//         resetContent();
+//     });
+// }
 
 async function loadSummaries() {
     const apiUrl = 'http://localhost:5000/documents'; // Your API endpoint
@@ -64,18 +177,12 @@ async function loadSummaries() {
             summaryButton.innerHTML = `
                 ${summary.title} 
                 <div class="icon-container">
-                    <i class="fas fa-volume-up tts-icon" title="Read aloud"></i>
+                    <i class="fas fa-share"></i>
                 </div>
             `;
             summaryButton.addEventListener('click', () => {
                 const content = { title: "Summary loaded", text: summary.summary };
                 loadNewContent(content);
-            });
-
-            const ttsIcon = summaryButton.querySelector('.tts-icon');
-            ttsIcon.addEventListener('click', (event) => {
-                event.stopPropagation(); // Prevent parent button from triggering
-                readTextAloud(summary.summary); // Call text-to-speech function with summary text
             });
             summaryContainer.appendChild(summaryButton);
         });
@@ -84,26 +191,6 @@ async function loadSummaries() {
         console.error('Error fetching summaries:', error);
     }
 }
-
-// Flag to track if TTS is active
-let isSpeaking = false;
-
-function readTextAloud(text) {
-    if (isSpeaking) {
-        // Stop speech if currently speaking
-        speechSynthesis.cancel();
-        isSpeaking = false;
-    } else {
-        // Start speech if not currently speaking
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.onend = () => {
-            isSpeaking = false; // Reset flag when speech ends
-        };
-        speechSynthesis.speak(utterance);
-        isSpeaking = true;
-    }
-}
-
 
 // Variables for overlay and buttons
 const overlay = document.getElementById("overlay");
@@ -118,7 +205,7 @@ function loadNewContent(content) {
     overlay.style.display = "flex"; // Make overlay visible
     setTimeout(() => overlay.classList.add('zoom-in'), 10); // Add class slightly after display change
     
-    // Populate overlay with new content
+    // Populate overlay with new content and back button
     overlayContent.innerHTML = `
         <h2>${content.title}</h2>
     `;
@@ -132,18 +219,6 @@ function loadNewContent(content) {
     // Append the scrollable content to the overlay
     overlayContent.appendChild(textWrapper);
 
-    // Add a TTS icon container for bottom-right positioning
-    const ttsIconContainer = document.createElement('div');
-    ttsIconContainer.classList.add('tts-icon-container'); // New container for TTS icon
-    const ttsIcon = document.createElement('i');
-    ttsIcon.classList.add('fas', 'fa-volume-up', 'tts-icon');
-    ttsIcon.title = 'Read aloud';
-    ttsIcon.addEventListener('click', () => {
-        readTextAloud(textWrapper.textContent); // Use the summary text for TTS
-    });
-    ttsIconContainer.appendChild(ttsIcon);
-    overlayContent.appendChild(ttsIconContainer);
-
     // Add a back button with an event listener to return to the main content
     const backButton = document.createElement('button');
     backButton.id = 'backButton';
@@ -152,8 +227,6 @@ function loadNewContent(content) {
     backButton.addEventListener('click', resetContent);
     overlayContent.appendChild(backButton);
 }
-
-
 
 // Function to reset content to main view
 function resetContent() {

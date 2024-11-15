@@ -55,7 +55,7 @@ h1 {
 
 
 p {
-    text-align: center;
+    text-align: left;
     color: white;
     margin-top: 0;
     font-family: "Zen Kaku Gothic New", sans-serif;
@@ -134,9 +134,11 @@ p {
 
 
 .tab-content {
-    margin-left: 20px;
+    margin-left: 20px; 
     margin-right: 20px; 
 }
+
+
 
 li {
     color: #C6D9E6; 
@@ -236,8 +238,12 @@ input[type="url"]:focus {
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5); 
     opacity: 0.9; 
     margin-top: 0px; 
+    text-align:center; 
 }
 
+.text-center {
+    text-align: center !important; /* Override center alignment for specific elements */
+}
 
 
 #new-screen {
@@ -440,6 +446,22 @@ input[type="url"]:focus {
 .edit-form button:hover {
     background-color: #00355B;
 }
+h1, h2, h3, .summary-title {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+}
+
+
+
+.summary-box {
+    width: 100%; /* Adjust width as needed */
+    text-align: left;
+    padding: 15px;
+    border-radius: 10px;
+    /* background-color: #4da5e4;  */
+    background-color: #0b3654; 
+    border:none !important;; 
+}
+
 
 #summaryContainer {
     display: flex;
